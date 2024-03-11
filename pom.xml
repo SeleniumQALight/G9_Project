@@ -11,6 +11,17 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>overAll</module>
+    <module>buturlimProj</module>
+    <module>horobetsProj</module>
+    <module>karhinaProj</module>
+    <module>malonohaProj</module>
+    <module>semeniukProj</module>
+    <module>rozhkovaProj</module>
+    <module>lapchakProj</module>
+    <module>miroshnykProj</module>
+    <module>skuratovskaProj</module>
+    <module>chabanProj</module>
+    <module>tsivilProj</module>
   </modules>
 
   <properties>
