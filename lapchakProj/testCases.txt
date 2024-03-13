@@ -1,0 +1,17 @@
+#001 Title
+
+Pre - conditions:
+1. Sign in as new user(user_hh.mm.ss)
+
+Steps:
+1. Open "Login page"
+2. Enter login "user_hh.mm.ss" in input header page
+
+
+Expected:
+1. View "Sign out" button;
+2. Dont see "Sign in" button
+
+
+Post - conditions:
+1. Delete user
