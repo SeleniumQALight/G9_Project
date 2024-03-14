@@ -1,0 +1,6 @@
+#Page Login
+header.input.login = '//input[@id='login'] // це для прикладу використовавит? той що на сторінці
+
+
+#Home Page
+button.sign_out=''
