@@ -1,0 +1,16 @@
+№001 name
+
+Precondition
+1. User sign up (user_hh.mm.ss)
+
+STR:
+1. Open login page (URL)
+2. Insert login to the input in page's header
+....
+
+Expected result:
+1. Sign up button is visible
+2. {} button isn't visible
+
+Post condition
+1. Delete created user

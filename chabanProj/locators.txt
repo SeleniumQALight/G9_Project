@@ -1,0 +1,5 @@
+#Login Page
+
+header.input.login = "//input[id='login']"
+
+#Home Page

@@ -1,0 +1,8 @@
+#Page Login
+
+header.input.login="//input[@id='login']"
+
+
+#Home Page
+
+button.sign_out=""
