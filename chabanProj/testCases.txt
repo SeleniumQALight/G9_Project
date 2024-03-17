@@ -1,16 +1,105 @@
-№001 name
+№001 Login to complexapp
 
 Precondition
-1. User sign up (user_hh.mm.ss)
+1. Create a user with the following values:
+ Username: alenachab + current time e.g. alenachab2004
+ Email: chabanelena0@gmail.com
+ Password: complexapp1234
 
 STR:
-1. Open login page (URL)
-2. Insert login to the input in page's header
-....
+1. Open login page (https://aqa-complexapp.onrender.com/)
+2. Insert username from preconditions to the input 'Username' in page's header
+3. Insert password from preconditions to the input 'Password' in page's header
+4. Click on 'Sign in' button
 
 Expected result:
-1. Sign up button is visible
-2. {} button isn't visible
+1. 'Sign out' and 'Create post' buttons are visible
+2. 'Sign in' button isn't visible
+3.  My profile contains image
+
+Post condition
+1. Delete created user
+
+№002 Create a post
+
+Precondition
+1. User sign in (alenachab+ current time e.g. alenachab2004)
+
+STR:
+1. Click on 'Create post' button
+2. Populate title field with 'Title123'
+3. Populate Body Content field with 'test description'
+4. Click on 'Save new post' button
+
+Expected result:
+1. Pop up with message 'New post successfully created.' appears
+2. Url contains post id
+3. 'Edit' and 'Delete' buttons appear
+
+Post condition
+1. Delete created user
+
+№003 Search for not existing topic
+
+Precondition
+1. User sign in (alenachab+ current time e.g. alenachab2004)
+
+STR:
+1. Click on search button
+2. Type 'qwerty' in search input
+
+Expected result:
+1. Popup displays 'Sorry, we could not find any results for that search.'
+
+
+Post condition
+1. Delete created user
+
+№004 Follow a user
+
+Precondition
+1.  Create a user with the following values:
+    Username: helena + current time e.g. helena2052
+    Email: alena.chaban@gmail.com
+    Password: complexapp1234
+2. Login as helena
+3. Click on 'Create post' button
+4. Populate title field with 'Test123'
+5. Populate Body Content field with 'test description'
+6. Click on 'Save new post' button
+7. Click on 'Sign out' button
+8. Login as alenachab
+
+STR:
+1. Click on search button
+2. Type 'Test123' in search input
+3. Click on found result
+4. Click on Profile icon under the title
+5. Click on 'Follow' button
+
+Expected result:
+1. Popup is displayed with the text 'Successfully followed helena.'
+2. 'Stop following' button is displayed
+3. In 'Followers' tab previous value + 1
+
+Post condition
+1. Delete created user
+
+№005 Delete post
+
+Precondition
+1. User sign in (alenachab+ current time e.g. alenachab2004)
+2. Post is created
+
+STR:
+1. Click on 'My profile' button
+2. In 'Post' tab click on any post
+3. Click on 'delete' button
+
+Expected result:
+1. Popup is displayed with the text 'Post successfully deleted.'
+2. URL changed to profile/username
+3. In 'posts' tab previous value - 1
 
 Post condition
 1. Delete created user
