@@ -1,6 +1,95 @@
 #Page Login
-header.input.login = '//input[@id='login'] // це для прикладу використовавит? той що на сторінці
+registration-form.input.username = //input[@id='username-register']
+registration-form.input.email = //input[@id='email-register']
+registration-form.input.password = //input[@id='password-register']
+button.sign_up = //button[@type='submit']
+header.input.username = //input[@placeholder='Username']
+header.input.password = //input[@placeholder='Password']
+button.sign_in = //button[@class='btn btn-primary btn-sm']
+header.link = //a[@href='/']
+text.on_the page  = //h1
+text.on_the page_content = //p[@class='lead text-muted']
 
 
 #Home Page
-button.sign_out=''
+header.link = //a[@href='/']
+header.icon.search = //a[@href='#']
+header.icon.Chat = //span[@class='text-white mr-2 header-chat-icon']
+header.icon.My_profile = //a[@class='mr-2']
+header.username = //span[@class='text-white mr-2']
+header.button.Create_post = //a[@class='btn btn-sm btn-success mr-2']
+header.button.Sign_out  = //button[@class='btn btn-sm btn-secondary']
+text.with_greeting = //h2[contains(text(),'Hello')]
+text.on_the_home_page = //p[text () = ‘Your feed displays the latest posts from the people you follow. If you don’t have any friends to follow that’s okay; you can use the “Search” feature in the top menu bar to find content written by people with similar interests and then follow them.’]
+
+#Page for creating post
+header.link = //a[@href='/']
+header.icon.search = //a[@href='#']
+header.icon.Chat = //span[@class='text-white mr-2 header-chat-icon']
+header.icon.My_profile = //a[@class='mr-2']
+header.username = //span[@class='text-white mr-2']
+header.button.Create_post = //a[@class='btn btn-sm btn-success mr-2']
+header.button.Sign_out  = //button[@class='btn btn-sm btn-secondary']
+form.input.title = //input[@id='post-title']
+form.textarea.post_body = //textarea[@id='post-body']
+input.checkbox = //input[@name='uniquePost']
+select_value = //select[@id='select1']
+select_value.option.загальнодоступне = //option[@value='All Users']
+select_value.option.приватне_повідомлення = //option[@value='One Person']
+select_value.option.групове_повідомлення = //option[@value='Group Message']
+button.save_new_post = //button[@class='btn btn-primary']
+
+#Page with post
+header.link = //a[@href='/']
+header.icon.search = //a[@href='#']
+header.icon.Chat = //span[@class='text-white mr-2 header-chat-icon']
+header.icon.My_profile = //a[@class='mr-2']
+header.username = //span[@class='text-white mr-2']
+header.button.Create_post = //a[@class='btn btn-sm btn-success mr-2']
+header.button.Sign_out  = //button[@class='btn btn-sm btn-secondary']
+text.post_title = //h2[contains(text(),'Lorem Ipsum')]
+icon_for_editing_a_post = //a[@data-original-title="Edit"]
+icon_for_deleting_a_post = //form[@class='delete-post-form d-inline']
+text.post_title = //h2[contains(text(),'Lorem Ipsum')]
+text.note_this_post_was_written_for_one_person = //div[@class='body-content']
+text.is_this_post_unique? : yes = //p[text()='Is this post unique? : yes']
+text.created_post = //p[text()='"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."’
+text.new_post_successfully_created = //div[@class='alert alert-success text-center']
+
+
+#My profile Page
+header.link = //a[@href='/']
+header.icon.search = //a[@href='#']
+header.icon.Chat = //span[@class='text-white mr-2 header-chat-icon']
+header.icon.My_profile = //a[@class='mr-2']
+header.username = //span[@class='text-white mr-2']
+header.button.Create_post = //a[@class='btn btn-sm btn-success mr-2']
+header.button.Sign_out  = //button[@class='btn btn-sm btn-secondary']
+icon.my_profile = //img[@class='avatar-small']
+tabs = //div[@class='profile-nav nav nav-tabs pt-2 mb-4']
+tab.posts = //a[@class='profile-nav-link nav-item nav-link active']
+tab.followers = //a[@class='profile-nav-link nav-item nav-link ']
+tab. following = //a[@class='profile-nav-link nav-item nav-link ']
+list.posts = //div[@class='list-group']
+list.posts.name_of_post_for_editing = //a[@class='list-group-item list-group-item-action']//strong[contains(text(),'Lorem Ipsum')]
+text.post_successfully_updated = //div[@class='alert alert-success text-center']
+
+
+#Page_for_editing_the_post
+header.link = //a[@href='/']
+header.icon.search = //a[@href='#']
+header.icon.Chat = //span[@class='text-white mr-2 header-chat-icon']
+header.icon.My_profile = //a[@class='mr-2']
+header.username = //span[@class='text-white mr-2']
+header.button.Create_post = //a[@class='btn btn-sm btn-success mr-2']
+header.button.Sign_out  = //button[@class='btn btn-sm btn-secondary']
+link.back_to_post_permalink = //a[@class='small font-weight-bold']
+form.input.title = //input[@id='post-title']
+form.textarea.post_body = //textarea[@id='post-body']
+input.checkbox = //input[@name='uniquePost']
+select_value = //select[@id='select1']
+select_value.option.общедоступное = //option[@value='All Users']
+select_value.option.частное_сообщение = //option[@value='One Person']
+select_value.option.сообщение_для_группы; = //option[@value='Group Message']
+button.save_updates = //button[@class='btn btn-primary']
+text.post_successfully_updated = //div[@class='alert alert-success text-center']
