@@ -65,7 +65,7 @@ public class LoginTestAllActionInOneClass {
         }catch (Exception e){
             logger.info("Element is not visible");
             return false;
-
+    // comment
 
         }
 
