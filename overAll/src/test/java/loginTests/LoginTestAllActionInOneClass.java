@@ -66,6 +66,7 @@ public class LoginTestAllActionInOneClass {
             logger.info("Element is not visible");
             return false;
 
+
         }
 
     }
