@@ -1,8 +1,72 @@
-#Page Login
+#Login Page
 
-header.input.login = '//inout[@id='']' //example
+HEADER
+header.logo.button = .//header//a[@href='/']
+header.login.input.username = .//header//input[@name='username']
+header.login.input.password = .//header//input[@name='password']
+header.login.button.SignIn = .//header//form//button
 
+BODY
+input.register.username = .//input[@id='username-register']
+input.register.email = .//input[@id='email-register']
+input.register.password = .//input[@id='password-register']
+button.register.signUp = .//*[@id="registration-form"]/button
+
+FOOTER
+footer.companyName.button = .//footer//a[@href='/']
+
+ERRORS
+error.input.register.username = //*[@id="registration-form"]//div[contains(text(), 'Username')]
+error.input.register.email = //*[@id="registration-form"]//div[contains(text(), 'email')]
+error.input.register.password = //*[@id="registration-form"]//div[contains(text(), 'Password')]
+error.login = .//div[@class='alert alert-danger text-center']
 
 #Home Page
 
-button.signout = ''
+HEADER
+header.logo.button = .//header//a[@href='/']
+header.search.button = .//header//a[@data-original-title='Search']
+header.openChat.button = .//header//span[@data-original-title='Chat']
+header.myProfile.button = .//header//a/img[@alt='My profile']
+button.header.createPost = .//a[@href='/create-post']
+button.header.signOut = .//header//form[@action='/logout']/button
+
+SEARCH
+search.input = .//input[@id='live-search-field']
+search.close.button = .//span[@class='close-live-search']
+search.result.list = .//div[@class='live-search-results live-search-results--visible']
+
+CREAT POST
+createPost.input.title = .//form//input[@name='title']
+createPost.textArea.body = .//form//textarea[@name='body']
+createPost.unique.checkbox = .//form//input[@type='checkbox']
+createPost.select.list = .//form//select[@name='select1']
+createPost.select.option1 = .//form//select[@name='select1']/option[@value='All Users']
+createPost.select.option2 = .//form//select[@name='select1']/option[@value='One Person']
+createPost.select.option3 = .//form//select[@name='select1']/option[@value='Group Message']
+createPost.button = .//form[@action='/create-post']/button
+createPost.success.message = .//div[@class='alert alert-success text-center']
+
+MY PROFILE
+profile.posts = .//div/a[contains(text(), 'Posts')]
+profile.followers = .//div/a[contains(text(), 'Followers')]
+profile.following = .//div/a[contains(text(), 'Following')]
+profile.list.first = .//div[@class='list-group']/a[1]
+
+POST EDITING
+post.edit = .//span/a[@data-original-title='Edit']
+post.delete = .//span//button[@data-original-title='Delete']
+editPost.button = .//form//button[@class='btn btn-primary']
+
+CHAT
+chat.widget = .//div[@id='chat-wrapper']
+chat.input = .//form[@id='chatForm']/input
+chat.close = .//div[@id='chat-wrapper']//span[@class='chat-title-bar-close']
+chat.message.other = .//div//div[@id='chat']/div[@class='chat-other']
+chat.message.self = .//div//div[@id='chat']/div[@class='chat-self']
+
+ERRORS
+search.result.error = .//div[@class='search-overlay-bottom']//p[text()='Sorry, we could not find any results for that search.']
+
+FOOTER
+footer.companyName.button = .//footer//a[@href='/']
