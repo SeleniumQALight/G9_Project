@@ -1,9 +1,83 @@
-#Page Login
+№01 Вхід користувачем в акаунт
 
-header.input.login = "//input[@id='']"
-header.input.password
-button.login
+Steps:
+1. https://aqa-complexapp.onrender.com/
+2. header.input.login = "//input[@placeholder="Username"]"
+3. header.input.password = "//input[@placeholder="Password"]"
+4. button.login = "//button[text()='Sign In']"
 
-#Home Page
+Expected result:
+1. button.sign_out="//button[text()='Sign Out']"
+2. button.login = "//button[text()='Sign In']" doesn't exist
 
-button.sign_out=""
+№02 Створити пост
+
+Steps:
+1. https://aqa-complexapp.onrender.com/
+2. header.input.login = "//input[@placeholder="Username"]"
+3. header.input.password = "//input[@placeholder="Password"]"
+4. button.login = "//button[text()='Sign In']"
+5. header.button.create-post = "//a[@href="/create-post"]"
+6. body.input.title = "//*[@id="post-title"]"
+7. body.input.body-content = "//*[@id="post-body"]"
+8. body.button.save-new-post = "//button[text()='Save New Post']"
+
+Expected result:
+1. body.content = "//*[text()='test1']"
+2. body.content = "//p[text()='test content1']"
+3. body.content = "//*[text()='New post successfully created.']"
+
+№03 Видалення поста
+
+Steps:
+1. https://aqa-complexapp.onrender.com/
+2. header.input.login = "//input[@placeholder="Username"]"
+3. header.input.password = "//input[@placeholder="Password"]"
+4. button.login = "//button[text()='Sign In']"
+5. header.button.create-post = "//a[@href="/create-post"]"
+6. body.input.title = "//*[@id="post-title"]"
+7. body.input.body-content = "//*[@id="post-body"]"
+8. body.button.save-new-post = "//button[text()='Save New Post']"
+9. body.button.delete-post-button = "//button[@data-original-title='Delete']"
+
+Expected result:
+1. body.content = "//*[text()='test1']" doesn't exist
+2. body.content = "//p[text()='test content1']" doesn't exist
+3. body.content = "//*[text()='Post successfully deleted.']"
+
+№04 Відкрити профіль
+
+Steps:
+1. https://aqa-complexapp.onrender.com/
+2. header.input.login = "//input[@placeholder="Username"]"
+3. header.input.password = "//input[@placeholder="Password"]"
+4. button.login = "//button[text()='Sign In']"
+5. header.button.title = "//*[@alt='My profile']"
+
+Expected result:
+1. button.sign_out="//button[text()='Sign Out']"
+2. button.login = "//button[text()='Sign In']" doesn't exist
+3. body.content = "//*/a[contains(text(),'Post') and @href="/profile/qasemeniuk"]"
+4. body.content = "//*/a[contains(text(),'Followers') and @href="/profile/qasemeniuk/followers"]"
+5. body.content = "//*/a[contains(text(),'Following') and @href="/profile/qasemeniuk/following"]"
+
+№05 Відредагувати пост
+
+Steps:
+1. https://aqa-complexapp.onrender.com/
+2. header.input.login = "//input[@placeholder="Username"]"
+3. header.input.password = "//input[@placeholder="Password"]"
+4. button.login = "//button[text()='Sign In']"
+5. header.button.create-post = "//a[@href="/create-post"]"
+6. body.input.title = "//*[@id="post-title"]"
+7. body.input.body-content = "//*[@id="post-body"]"
+8. body.button.save-new-post = "//button[text()='Save New Post']"
+9. body.edit = //a[@data-original-title='Edit']
+10. body.input.title = "//*[@id="post-title"]"
+11. body.input.body-content = "//*[@id="post-body"]"
+12. body.button.save-updates = "//button[text()='Save Updates']"
+
+Expected result:
+1. body.input.title = "//input[@value="test2"]"
+2. body.input.body-content = //textarea[text()='test content2']
+3. body.content = //*[text()='Post successfully updated.']
