@@ -1,17 +1,260 @@
-№001 назва тест кейсу
+№ 001 Registration with valid data
 
-Прекондішен
-1. Зареєструвати користувача (user_hh.mm.ss)
+Pre-conditions:
+1. Go to link https://aqa-complexapp.onrender.com/
 
-Кроки:
-1. Відкрити ЛогінПейдж // можну урл вказати
-2. Ввести логін user_hh.mm.ss в інпут логін в хедері
-...
+Steps:
+1. Enter valid data in the field ‘Username’ in the registration form;
+Expected result:
+1) The field ‘Username’ is filled;
 
-Очікуваний результат
-1. Бачимо кнопку Sign Out
-2. не бачимо Sign In
+2. Enter valid data in the field ‘Email’ in the registration form;
+Expected result:
+1) The field ‘Email’ is filled;
+
+3. Enter valid data in the field ‘Password’ in the registration form;
+Expected result:
+1) The field ‘Password’  is filled;
 
 
-Посткондішен
-1. Видалити створеного користувача
+4. Click on the button ‘Sign up for OurApp’.
+
+Expected result:
+1) The page with the following elements opens:
+- Link with name Complex app for testing - QA in the header;
+- Icon Search in the header;
+- Icon Chat in the header;
+- Icon  My profile in the header;
+- Name of logged in user in the header;
+- Button Create post in the header;
+- Button Sign out in the header;
+- Text  Hello name of user, your feed is empty.
+- Greeting text ‘Your feed displays the latest posts from the people you follow. If you don’t have any friends to follow that’s okay; you can use the “Search” feature in the top menu bar to find content written by people with similar interests and then follow them’;
+
+Post-conditions:
+1. Click on the button Sign out;
+2. Delete created user.
+
+
+№ 002 Authorization with valid data
+
+Pre-conditions:
+1. Go to link https://aqa-complexapp.onrender.com/
+2. Register a user (user_hh.mm.ss)
+
+Steps:
+
+1. Enter valid data in the field ‘Username’ in the header;
+Expected result:
+1) The field ‘Username’ is filled;
+
+2. Enter valid data in the field ‘Password’ in the header;
+Expected result:
+1) The field ‘Password’ is filled;
+
+3. Click on the button ‘Sign in’.
+
+Expected result:
+1) The page with the following elements opens:
+- Link with name Complex app for testing - QA in the header;
+- Icon Search in the header;
+- Icon Chat in the header;
+- Icon  My profile in the header;
+- Name of logged in user in the header;
+- Button Create post in the header;
+- Button Sign out in the header;
+- Text  Hello name of user, your feed is empty.
+- Greeting text ‘Your feed displays the latest posts from the people you follow. If you don’t have any friends to follow that’s okay; you can use the “Search” feature in the top menu bar to find content written by people with similar interests and then follow them’;
+
+
+Post-conditions:
+1. Click on the button Sign out;
+2. Delete user.
+
+
+
+№ 003 Creating a post with valid data, selecting the checkbox “Is this post unique?” and selected option ‘Приватне повідомлення’.
+
+Pre-conditions:
+1. Go to link https://aqa-complexapp.onrender.com/;
+2. Register a user (user_hh.mm.ss);
+3. Log in;
+
+Steps:
+
+1. Click on the button ‘Create post’ in the header;
+Expected result:
+1) The page with the following elements opens:
+- An empty input field ‘Title’;
+- An empty textarea field ‘Bode Content’;
+- Checkbox  “Is this post unique?” is not selected;
+- Select value with option ‘Загальнодоступне’;
+- Button ‘Save New Post’;
+
+2. Fill in the input field ‘Title’ with valid data;
+Expected result:
+1) An input field ‘Title’ is filled.
+
+3. Fill in the textarea field ‘Bode Content’ with valid data;
+Expected result:
+1) Textarea field ‘Bode Content’ is filled.
+
+4. Click on the checkbox  “Is this post unique?”;
+Expected result:
+1) Checkbox  “Is this post unique?” is selected.
+
+5. Click on the Selector ‘Select value’ ;
+Expected result:
+1) Selector with options:
+- Загальнодоступне;
+- Приватне повідомлення;
+- Групове повідомлення;
+ has opened.
+
+6. Click on option ‘Приватне повідомлення’
+Expected result:
+1) Selector is closed;
+2) Option  ‘Приватне повідомлення’ is selected;
+
+7. Click on button ‘Save New Post’
+Expected result:
+1) A page with created post and the following elements opens:
+- Text ‘New post successfully created;
+- Icon for editing a post;
+- Icon for deleting a post;
+- Created post title;
+- Text ‘Note: This post was written for One Person’;
+- Text ‘Is this post unique? : yes’;
+- Created post text;
+
+
+Post-conditions:
+1. Click on the button Sign out;
+2. Delete user.
+
+
+№ 004 Editing created post.
+Pre-conditions:
+1. Go to link https://aqa-complexapp.onrender.com/;
+2. Register a user (user_hh.mm.ss);
+3. Log in;
+4. Create a post;
+
+Steps:
+
+1. Click on the ‘My profile’ icon  in the header;
+Expected result:
+1) The page with the following elements opens:
+- Icon My profile;
+- Tabs: Posts, Followers, Followings.
+- List with created posts;
+
+2. Click on post for editing in the list;
+Expected result:
+1) The page with the following elements opens:
+- Icon for editing a post;
+- Icon for deleting a post;
+- Post title;
+- Text ‘Note: This post was written for One Person’;
+- Text ‘Is this post unique? : yes’;
+- Post text;
+
+3. Click on icon ‘Edit’
+Expected result:
+1) The page with the following elements opens:
+- Link ‘Back to post permalink’;
+- The filled input field ‘Title’;
+- The filled textarea field ‘Bode Content’;
+- Checkbox  “Is this post unique?” is not selected;
+- Select value with option ‘Загальнодоступне’;
+- Button ‘Save Updates’;
+
+
+4. Fill in the input field ‘Title’ with valid data;
+Expected result:
+1) An input field ‘Title’ is filled.
+
+5. Fill in the textarea field ‘Bode Content’ with valid data;
+Expected result:
+1) Textarea field ‘Bode Content’ is filled.
+
+6. Click on the Selector ‘Select value’ ;
+Expected result:
+1) Selector with options:
+- Общедоступное;
+- Частное сообщение;
+- Сообщение для группы;
+ has opened.
+
+7. Click on option ‘Общедоступное’
+Expected result:
+1) Selector is closed;
+2) Option  ‘Общедоступное’ is selected;
+
+8. Click on button ‘Save Updates’
+Expected result:
+1) The page with for editing post with following elements opens:
+- Text ‘Post successfully updated’;
+- Link ‘Back to post permalink’;
+- The filled input field ‘Title’;
+- The filled textarea field ‘Bode Content’;
+- Checkbox  “Is this post unique?” is not selected;
+- Select value with option ‘Общедоступное’;
+- Button ‘Save Updates’;
+
+
+9. Click on Link ‘Back to post permalink’;
+Expected result:
+1) Page with editing post and following element opens:
+- Icon for editing a post;
+- Icon for deleting a post;
+- Post title;
+- Text ‘Note: This post was written for All Users’;
+- Text ‘Is this post unique? : no’;
+- Post text;
+
+
+Post-conditions:
+1. Click on the button Sign out;
+2. Delete user.
+
+
+№ 005 Delete the post.
+
+Pre-conditions:
+1. Go to link https://aqa-complexapp.onrender.com/;
+2. Register a user (user_hh.mm.ss);
+3. Log in;
+4. Create a post;
+
+Steps:
+
+1. Click on the ‘My profile’ icon  in the header;
+Expected result:
+1) Page with the following elements opens:
+- Icon My profile;
+- Tabs: Posts, Followers, Followings.
+- List with created post;
+
+2. Click on post for editing in the list
+Expected result:
+1) The page with the following elements opens:
+- Icon for editing a post;
+- Icon for deleting a post;
+- Post title;
+- Text ‘Note: This post was written for All Users’;
+- Text ‘Is this post unique? : no’;
+- Post text;
+
+3. Click on icon ‘delete’
+Expected result:
+1) Page with the following elements opens:
+- Text ‘Post successfully deleted’;
+- Icon My profile;
+- Tabs: Posts, Followers, Followings.
+- List with created post;
+
+Post-conditions:
+1. Click on the button Sign out;
+2. Delete user.
+
