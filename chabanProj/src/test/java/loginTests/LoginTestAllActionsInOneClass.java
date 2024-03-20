@@ -55,7 +55,7 @@ public class LoginTestAllActionsInOneClass {
         webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
         logger.info("Button Sign in was clicked");
 
-        Assert.assertTrue("Button Sign Ot is not visible ",isButtonSignOutDisplayed());
+        Assert.assertTrue("Button Sign Out is not visible ",isButtonSignOutDisplayed());
 
     }
 
@@ -69,5 +69,54 @@ public class LoginTestAllActionsInOneClass {
             return false;
         }
     }
+
+    @Test
+    public void invalidLogin(){
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserNameLoginForm =
+                webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+        inputUserNameLoginForm.clear();
+        inputUserNameLoginForm.sendKeys("qaauto432");
+        logger.info("'qaauto' was inserted into Username filed");
+        WebElement inputPasswordLoginForm =
+                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPasswordLoginForm.clear();
+        inputPasswordLoginForm.sendKeys("123456qwerty");
+        logger.info("Password was inserted");
+
+        webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
+        logger.info("Button Sign in was clicked");
+
+        Assert.assertTrue("Button Sign In is not visible ",isButtonSignInDisplayed());
+        Assert.assertFalse("Button Sing out is visible", isButtonSignOutDisplayed() );
+        Assert.assertTrue("Pop up isn't displayed", isPopUpDisplayed());
+
+    }
+    private boolean isButtonSignInDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).isDisplayed();
+            logger.info(state + " is button displayed");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not visible");
+            return false;
+        }
+
+    }
+    private boolean isPopUpDisplayed(){
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//div[contains(text(), 'Invalid username/password.')]")).isDisplayed();
+            logger.info(state + " is button displayed");
+            return state;
+        }catch (Exception e){
+            logger.info("Element is not visible");
+            return false;
+        }
+    }
+
+
+
 }
 

@@ -1,20 +1,121 @@
-№001 назва
+------------------------------------------------------------------------------------------------
+№001 Registration
 
-Прекондішн
-1. Зареєструвати користувача (user_hh.mm.ss)
+Pre-condition:
+1. Перейти на сторінку Login Page
+2. Перевірити наявність елементу header.input.username
 
-Кроки
-1. Відкрити логін пейдж
-2. Ввести логін в інпут логін в хедері
-..
-Очікуваний результат
-1. Бачимо кнопку Сігн Аут
-2. Не бачимо кнопку Сігн Ін
+Steps:
+1. Клікнути на input.register.username
+2. Ввести Username - mariiab+{hh.mm.ss}
+3. Клікнути на input.register.email
+4. Ввести Email - mariiab+{hh.mm.ss}@email.com
+5. Клікнути на input.register.password
+6. Ввести Password - qwerty123456
+7. Клікнути на button.register.signUp
 
-Посткондішн
-1. Видалити створеного користувача
+Expected Result:
+1. Користувач був доданий в базу даних.
+2. Спрацював редірект на Home Page сторінку.
+3. З'явився елемент button.header.createPost.
 
+Post-condition:
+1.Видалити створеного користувача.
+------------------------------------------------------------------------------------------------
+№002 Login
 
+Pre-condition:
+1. Перейти на сторінку Login Page
+2. Перевірити наявність елементу header.input.username
 
-№002 назва1
-...
+Steps:
+1. Клікнути на header.login.input.username
+2. Ввести Username - qaauto
+3. Клікнути на header.login.input.password
+4. Ввести Password - 123456qwerty
+5. Клікнути на header.login.button.SignIn
+
+Expected result:
+1. На сторінці немає елементу error.login.
+2. Спрацював редірект на Home Page сторінку.
+3. З'явився елемент button.header.createPost.
+
+Post-condition:
+1. Клікнути на button.header.signOut щоб вийти з аккаунту.
+2. Перевірити наявність елементу header.login.input.username.
+------------------------------------------------------------------------------------------------
+№003 Створення публікації (Унікальна та Загальнодоступна)
+
+Pre-condition:
+1. Створити нового користувача, використовуючи тест-кейс №001
+2. Зайти в аккаунт
+
+Steps:
+1. Клікнути на button.header.createPost
+2. Перевірити наявність елементу createPost.input.title
+3. Клікнути на createPost.input.title
+4. Ввести текст "test_[profile name]"
+5. Клікнути на createPost.textArea.body
+6. Ввести текст "test_[profile name]"
+7. Активувати чекбокс createPost.unique.checkbox
+8. Клікнути на createPost.select.list
+9. В селекторі обрати createPost.select.option1
+10. Клікнути на createPost.button
+
+Expected result:
+1. Спрацював перехід на сторінку https://aqa-complexapp.onrender.com/post/post_id
+2. З'явився елемент createPost.success.message
+3. Пост опубліковано із заданими раніше параметрами.
+
+Post-condition:
+1. Видалити створену публікацію.
+2. Видалити створеного користувача.
+------------------------------------------------------------------------------------------------
+№004 Редагування створеної публікації
+
+Pre-condition:
+1. Створити нового користувача, використовуючи тест-кейс №001.
+2. Створити публікацію, використовуючи тест-кейс №003.
+
+Steps:
+1. Клікнути на header.myProfile.button
+2. Клікнути на profile.posts
+3. Клікнути на першу публікацію в списку profile.list.first
+4. Клікнути на post.edit
+5. Клікнути на createPost.input.title
+6. Додати до існуючої назви _edited
+7. Клікнути на createPost.textArea.body
+8. Додати до існуючого тексту _edited
+9. Клікнути на editPost.button
+
+Expected result:
+1. З'явився елемент createPost.success.message
+2. Дані в публікації були змінені на нові.
+
+Post-condition:
+1. Видалити публікацію.
+2. Видалити створеного користувача.
+------------------------------------------------------------------------------------------------
+№005 Надсилання повідомлень в чаті
+
+Pre-conditions:
+1. Створити двох(2) користувачів, використовуючи тест-кейс №001.
+2. Залогінитися для обох користувачів в різних браузерах/або вікнах одного браузеру, використовуючи тест-кейс №002.
+
+Steps for User1:
+1. Клікнути на header.openChat.button
+2. Клікнути на chat.input
+3. Ввести текст {user_name}_test{hh.mm.ss}
+4. Натиснути клавішу Enter
+Steps for User2:
+1. Клікнути на header.openChat.button
+2. Перевірити наявність повідомлень від User1 (chat.message.other)
+3. Клікнути на chat.input
+4. Ввести текст {user_name}_test{hh.mm.ss}
+5. Натиснути клавішу Enter
+
+Expected result:
+1. Повідомлення від обох користувачів відображаються в обох аккаунтах (chat.message.other та (chat.message.self)
+
+Post-condition:
+1. Видалити користувачів.

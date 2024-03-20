@@ -1,5 +1,39 @@
 #Login Page
-
-header.input.login = "//input[id='login']"
+username.register = .//input[@id='username-register']
+email.register = .//input[@id='email-register']
+password.register = .//input[@id='password-register']
+sign.up.button = .//button[@type="submit"]
+header.input.login = .//input[@name="username" and @class="form-control form-control-sm input-dark"]
+header.input.password = .//input[@type="password" and @class="form-control form-control-sm input-dark"]
+sign.in.button = .//button[@class="btn btn-primary btn-sm"]
 
 #Home Page
+
+my.profile.link = ".//a[@class='mr-2']"
+my.profile.image = ".//img[@data-original-title='My Profile']"
+search = ".//a[@data-original-title='Search']"
+create.post = ".//a[@href='/create-post']"
+sign.out.button = ".//button[@class='btn btn-sm btn-secondary']"
+
+#Create Post
+title.input = .//input[@id="post-title"]
+body.content.textarea = .//textarea[@id="post-body"]
+save.new.post.button = .//button[@class="btn btn-primary"]
+
+#Post
+popup = .//div[@class="alert alert-success text-center"]
+edit = .svg-inline--fa.fa-edit.fa-w-18
+delete.button = .//button[@class="delete-post-button text-danger"]
+
+#Search
+search.input =.//input[@id="live-search-field"]
+search.result.item =  .//a[@class="list-group-item list-group-item-action"]
+popup = .//p[@class="alert alert-danger text-center shadow-sm"]
+profile = .//p[@class="text-muted small mb-4"]
+
+#Profile
+follow.button = .//button[@class="btn btn-primary btn-sm"]
+popup.Successfully.followed = .//div[@class="alert alert-success text-center"]
+stop.following.button = .//button[@class="btn btn-danger btn-sm"]
+followers.tab = .//a[@href="/profile/autoapi/followers"]
+posts.tab = .//a[@class="profile-nav-link nav-item nav-link active"]
