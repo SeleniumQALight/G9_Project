@@ -1,6 +1,6 @@
 #Page Login
 
-header.input.username="//input[@id='username2']"
+header.input.username="////input[@placeholder='Username']"
 header.input.password="//header//input[@name='password']"
 header.button.sign_in="//header//button"
 
