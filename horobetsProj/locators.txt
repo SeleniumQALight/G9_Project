@@ -1,8 +1,30 @@
 #Page Login
 
-header.input.login="//input[@id='login']"
+header.input.username="////input[@placeholder='Username']"
+header.input.password="//header//input[@name='password']"
+header.button.sign_in="//header//button"
+
+
 
 
 #Home Page
 
-button.sign_out=""
+button.sign_out="//button"
+button.my_profile="//img[@alt='My profile']"
+button.create_post="//a[@href='/create-post']"
+
+create_post.title="//input[@name='title']"
+create_post.body_content="//textarea[@name='body']"
+create_post.select_value="//select[@name='select1']"
+create_post.save_new_post="//button[@class='btn btn-primary']"
+create_post."New post successfully created."="//*[text()='New post successfully created.']"
+
+edit_post="//a[@href='/post/65f76efe74044900376ee528/edit']"
+button.save_updates="//button[@class='btn btn-primary']"
+edit_post."Post successfully updated."="//*[text()='Post successfully updated.']"
+
+button.delete_post="//button[@class='delete-post-button text-danger']"
+delete_post,"Post successfully deleted."="//*[text()='Post successfully deleted.']"
+
+button.chat="//*[@class='text-white mr-2 header-chat-icon']"
+type_a_message="//input[@id='chatField']"
