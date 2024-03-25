@@ -1,10 +1,10 @@
 package loginTests;
 
-import baseTests.BaseTests;
+import baseTests.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LoginTestWithPageObject extends BaseTests {
+public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin() {
         pageProvider.getLoginPage().openLoginPage();
