@@ -16,4 +16,5 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Button Sign Out is not displayed", pageProvider.getHomePage().isButtonSignOutDisplayed());
 
     }
+
 }
