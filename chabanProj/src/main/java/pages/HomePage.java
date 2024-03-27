@@ -9,6 +9,12 @@ public class HomePage extends ParentPage{
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
     private WebElement buttonSignOut;
 
+    @FindBy(xpath = "//button[contains(text(),'Sign In')]")
+    private WebElement buttonSignIn;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Invalid username/password.')]")
+    private WebElement popUp;
+
     @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
@@ -19,6 +25,13 @@ public class HomePage extends ParentPage{
     public boolean isButtonSignOutDisplayed() {
         return isElementDisplayed(buttonSignOut);
     }
+    public boolean isButtonSignInDisplayed(){
+        return isElementDisplayed(buttonSignIn);
+    }
+    public boolean isPopUpDisplayed(){
+        return isElementDisplayed(popUp);
+    }
+
 
     public HomePage checkIsRedirectToHomePage() {
         //TODO check current URL
