@@ -1,9 +1,39 @@
-#Page Login
+Login page
 
-header.input.login = "//input[@id='']"
-header.input.password
-button.login
+header.input.login = "//input[@placeholder="Username"]"
+header.input.password = "//input[@placeholder="Password"]"
+button.login = "//button[text()='Sign In']"
 
-#Home Page
+Home page
 
-button.sign_out=""
+header.button.sign_out="//button[text()='Sign Out']"
+header.button.create-post = "//a[@href="/create-post"]"
+header.button.title = "//*[@alt='My profile']"
+
+Create post
+
+body.input.title = "//*[@id="post-title"]"
+body.input.body-content = "//*[@id="post-body"]"
+body.button.save-new-post = "//button[text()='Save New Post']"
+body.content = "//*[text()='test1']"
+body.content = "//p[text()='test content1']"
+body.content = "//*[text()='New post successfully created.']"
+body.button.delete-post-button = "//button[@data-original-title='Delete']"
+body.content = "//*[text()='Post successfully deleted.']"
+
+My Profile
+
+body.content = "//*/a[contains(text(),'Post') and @href="/profile/qasemeniuk"]"
+body.content = "//*/a[contains(text(),'Followers') and @href="/profile/qasemeniuk/followers"]"
+body.content = "//*/a[contains(text(),'Following') and @href="/profile/qasemeniuk/following"]"
+
+
+Post editing
+
+body.edit = //a[@data-original-title='Edit']
+body.input.title = "//*[@id="post-title"]"
+body.input.body-content = "//*[@id="post-body"]"
+body.button.save-updates = "//button[text()='Save Updates']"
+body.input.title = "//input[@value="test2"]"
+body.input.body-content = //textarea[text()='test content2']
+body.content = //*[text()='Post successfully updated.']
