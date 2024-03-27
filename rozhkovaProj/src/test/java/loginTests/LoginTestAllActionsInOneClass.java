@@ -16,11 +16,11 @@ import java.util.concurrent.TimeUnit;
 public class LoginTestAllActionsInOneClass {
 
     WebDriver webDriver;
-    Logger logger = Logger.getLogger(getClass());
+    Logger logger = Logger.getLogger(getClass());//автоматично отримує назву класу в логгері
 
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();  //скачує виконуваний файл
+        WebDriverManager.chromedriver().setup();  //скачує виконуваний файл Chrome
         webDriver = new ChromeDriver(); //відкривання браузера
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //дефолтне очікування, протягом 5 сек вебдрайвер буде намагатися виконати дію.
@@ -54,18 +54,63 @@ public class LoginTestAllActionsInOneClass {
         webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
         logger.info("Button Sign In was clicked");
 
-        Assert.assertTrue("Button Sign out is not visible", isButtonSignOutDisplayed()); //виводиться протилежне повідомлення
+        Assert.assertTrue("Button Sign out is not visible", isButtonSignOutDisplayed()); //виводиться протилежне повідомлення у меседжі
 
     }
 
     private boolean isButtonSignOutDisplayed() {
         try {
             boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
-            logger.info(state + " is button displayed");
+            logger.info(state + " 'Sign Out' button is displayed");
             return state;
-        } catch (Exception e){
-            logger.info("Element is not visible");
+        } catch (Exception e) {
+            logger.info("Element 'Sign Out' is not visible");
             return false;
         }
     }
+
+    @Test
+    public void notValidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+        WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath("//input [@placeholder = 'Username']"));
+        inputUserNameLoginForm.clear();
+        inputUserNameLoginForm.sendKeys("qaauto");
+        logger.info("'qaauto22' was inputted into input UserName");
+
+        WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        inputPasswordLoginForm.clear();
+        inputPasswordLoginForm.sendKeys("123456qwerty");
+        logger.info("Password was inputted");
+
+        webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
+        logger.info("Button Sign In was clicked");
+
+        Assert.assertFalse("Button Sign out is visible", isButtonSignOutDisplayed());
+        Assert.assertTrue("Button Sign In is not visible", isButtonSignInDisplayed());
+        Assert.assertTrue("Alert message is not visible", isAlertMessageDisplayed());
+    }
+
+    private boolean isAlertMessageDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//div[text()= 'Invalid username/password.']")).isDisplayed();
+            logger.info("Alert message 'Invalid username/password.' is displayed");
+            return state;
+        } catch (Exception e) {
+            logger.info("Alert message 'Invalid username/password.' is not visible");
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()= 'Sign In']")).isDisplayed();
+            logger.info(state + " 'Sign In' button is displayed");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element 'Sign In' is not visible");
+            return false;
+        }
+    }
+
 }
