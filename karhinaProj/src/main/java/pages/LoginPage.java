@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,4 +53,12 @@ public class LoginPage extends ParentPage{
         return IsElementDisplayed(massageInvalidUsernamePassword);
     }
 
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
+    }
 }
