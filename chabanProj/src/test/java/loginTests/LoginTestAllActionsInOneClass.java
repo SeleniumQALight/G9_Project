@@ -114,6 +114,7 @@ public class LoginTestAllActionsInOneClass {
             logger.info("Element is not visible");
             return false;
         }
+
     }
 
 

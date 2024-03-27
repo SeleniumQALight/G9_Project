@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionWithElements {
    protected WebDriver webDriver;
@@ -48,6 +49,28 @@ public class CommonActionWithElements {
             return false;
         }
     }
+
+    // select text in dropdown by visible text
+    protected void selectValueInDropdownByVisibleText(WebElement dropdown, String text) {
+        try {
+            Select select = new Select(dropdown);
+            select.selectByVisibleText(text);
+            logger.info(text + " was selected in dropdown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    protected void selectValueInDropdown(WebElement dropdown, String value) {
+        try {
+            Select select = new Select(dropdown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in dropdown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
