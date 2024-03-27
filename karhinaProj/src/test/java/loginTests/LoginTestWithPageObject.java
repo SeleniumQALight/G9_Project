@@ -19,7 +19,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void invalidLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("12345");
+        pageProvider.getLoginPage().enterTextIntoInputLogin("NotValidLogin");
         pageProvider.getLoginPage().enterTextIntoPassword("123456qwerty");
         pageProvider.getLoginPage().clickOnButtonSignIn();
 

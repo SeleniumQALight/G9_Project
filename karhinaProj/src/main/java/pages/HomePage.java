@@ -19,7 +19,7 @@ public class HomePage extends ParentPage{
     }
 
     public boolean isButtonSignOutDisplayed() {
-        return IsElementDisplayed(buttonSignOut);
+        return isElementDisplayed(buttonSignOut);
     }
 
     public HomePage checkIsRedirectToHomePage() {

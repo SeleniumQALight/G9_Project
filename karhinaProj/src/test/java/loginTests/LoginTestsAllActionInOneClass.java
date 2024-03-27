@@ -81,8 +81,8 @@ public class LoginTestsAllActionInOneClass {
         WebElement inputUserNameLoginForm = webDriver.findElement
                 (By.xpath("//input[@placeholder='Username']"));
         inputUserNameLoginForm.clear();
-        inputUserNameLoginForm.sendKeys("12345");
-        logger.info("'12345' was inputted into UserName");
+        inputUserNameLoginForm.sendKeys("NotValidLogin");
+        logger.info("'NotValidLogin' was inputted into UserName");
 
         WebElement inputPasswordLoginForm = webDriver.findElement
                 (By.xpath(".//input[@placeholder='Password']"));

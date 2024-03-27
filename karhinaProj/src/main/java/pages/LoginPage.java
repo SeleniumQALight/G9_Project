@@ -46,11 +46,11 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignIn);
     }
 
-    public boolean isButtonSignInDisplayed() {return IsElementDisplayed(buttonSignIn);
+    public boolean isButtonSignInDisplayed() {return isElementDisplayed(buttonSignIn);
     }
 
     public boolean isInvalidUsernamePasswordDisplayed() {
-        return IsElementDisplayed(massageInvalidUsernamePassword);
+        return isElementDisplayed(massageInvalidUsernamePassword);
     }
 
 
