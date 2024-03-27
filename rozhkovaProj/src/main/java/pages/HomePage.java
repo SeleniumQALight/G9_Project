@@ -2,6 +2,7 @@ package pages;
 
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.By;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,13 @@ public class HomePage extends ParentPage{
     private WebElement buttonSignIn;
     @FindBy(xpath = "//div[text()= 'Invalid username/password.']")
     private WebElement alertMessage;
+
+
+    @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
+
+
+
 
 
     public HomePage(WebDriver webDriver) {
@@ -29,6 +37,17 @@ public class HomePage extends ParentPage{
             return false;
         }*/
         return isElementDisplayed(buttonSignOut);
+    }
+
+    public HomePage checkIsRedirectToHomePage() {
+        //TODO check current URL
+        Assert.assertTrue("Invalid page Not Home page", isButtonSignOutDisplayed());
+        return this;
+    }
+
+    public CreatePostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
     }
 
     public boolean isButtonSignInDisplayed() {
