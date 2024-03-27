@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import org.junit.Assert;
 
 import org.openqa.selenium.WebDriver;
@@ -66,9 +67,12 @@ public class LoginPage extends ParentPage{
     public boolean isPopUpDisplayed() {
         return isElementDisplayed(popUp);
     }
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
 
+    }
 }
-
-
-
-
