@@ -9,7 +9,10 @@ Steps:
 
 
 Expected:
-1."Sign out" button is visible.;
+1."Sign out" button is visible and profile name is equal to "Username" value
+
+Post - conditions:
+1. Delete user
 
 #002 Sign_in in App with valid "Username" and "Password"
 
@@ -28,7 +31,7 @@ View "Sign out" button
 Post - conditions:
 1. Delete user
 
-#003 Sign_in in App with not valid "Password"
+#003 Sign_in in App with not valid "Password" and not valid "Username"
 
 Pre-conditions:
 User should have been created previously

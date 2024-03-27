@@ -1,6 +1,6 @@
 #Page Log_in
 
-1. header.input_login: //input[@id="username5"]
+1. header.input_login: .//input[@placeholder="Username"]
 2. header.input_password: //input[@placeholder="Password"]
 3. header.click_sign in: //button[@class="btn btn-primary btn-sm"]
 4. error_message: //div[@class="alert alert-danger text-center"]
@@ -17,4 +17,5 @@
 
 1. button.sign_out: //button[@class="btn btn-sm btn-secondary"]
 2. button.create_post: //a[@class="btn btn-sm btn-success mr-2"]
+3. profile.name: //span[text()='qaauto']
 
