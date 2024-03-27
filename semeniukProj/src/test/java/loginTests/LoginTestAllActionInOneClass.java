@@ -76,7 +76,7 @@ public class LoginTestAllActionInOneClass {
         WebElement inputUserNameLoginForm =
                 webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserNameLoginForm.clear();
-        inputUserNameLoginForm.sendKeys("qaauto111");
+        inputUserNameLoginForm.sendKeys("NotValidLogin");
         logger.info("'qaauto' was inputted into input UserName");
         WebElement inputPasswordLoginForm =
                 webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
@@ -105,7 +105,7 @@ public class LoginTestAllActionInOneClass {
     private boolean isPopUpDisplayed() {
         try {
             boolean state = webDriver.findElement(By.xpath(".//div[contains(text(), 'Invalid username/password.')]")).isDisplayed();
-            logger.info(state + " is button displayed");
+            logger.info(state + " is message displayed");
             return state;
         } catch (Exception e) {
             logger.info("Element is not visible");
