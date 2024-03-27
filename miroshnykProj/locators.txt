@@ -5,3 +5,11 @@ header.input.login="//input[@id='login']"
 #Home Page
 
 button.sign_out=""
+
+-------------------------------------------------------
+
+
+form.input.username="//input [@placeholder = 'Pick a username']"
+form.input.email="//input [@id= 'email-register']"
+form.input.password="//input [@id= 'password-register']"
+form.button="//form [@id='registration-form']/button [@type= 'submit']"
