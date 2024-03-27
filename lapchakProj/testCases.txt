@@ -41,8 +41,11 @@ Steps:
 2. Enter valid "Username" in Sign_in form
 3. Enter not valid  "Password" in Sign_in form
 4. Click "Sign_in" button
+5. Enter not valid  "Username" in Sign_in form
+6. Enter valid  "Password" in Sign_in form
+7. Click "Sign_in" button
 
-Expected:
+Expected 4 and 7:
 User can't Sign_in in App and should see error message: "Invalid username/password"("Sign out" button is not visible.)
 
 #004 Sign_in in App with not valid "Username"
