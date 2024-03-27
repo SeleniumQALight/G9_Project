@@ -18,6 +18,10 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
 
+    @FindBy(xpath = "//div[contains(text(), 'Invalid username/password.')]")
+    private WebElement popUp;
+
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -56,6 +60,13 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignIn);
     }
 
+    public boolean isButtonSignInDisplayed() {
+        return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isPopUpDisplayed() {
+        return isElementDisplayed(popUp);
+    }
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
