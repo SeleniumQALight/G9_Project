@@ -75,7 +75,7 @@ public class LoginTestAllActionsInOneClass {
         logger.info("Site was opened");
         WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath("//input [@placeholder = 'Username']"));
         inputUserNameLoginForm.clear();
-        inputUserNameLoginForm.sendKeys("qaauto");
+        inputUserNameLoginForm.sendKeys("qaauto22");
         logger.info("'qaauto22' was inputted into input UserName");
 
         WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
