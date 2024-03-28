@@ -9,7 +9,7 @@ public class HomePage extends ParentPage{
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2')]")
+    @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
     public HomePage(WebDriver webDriver) {
