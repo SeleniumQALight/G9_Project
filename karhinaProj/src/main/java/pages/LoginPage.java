@@ -16,6 +16,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
 
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement massageInvalidUsernamePassword;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -42,6 +45,14 @@ public class LoginPage extends ParentPage{
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
+
+    public boolean isButtonSignInDisplayed() {return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isInvalidUsernamePasswordDisplayed() {
+        return isElementDisplayed(massageInvalidUsernamePassword);
+    }
+
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
