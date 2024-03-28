@@ -1,8 +1,52 @@
 #Page Login
-header.input.login = "//input[@id='login']"
-header.input.password
+user_register_form.input.username = //input [@placeholder = 'Pick a username'] або //input [@placeholder = 'Pick a username' and @id= 'username-register']
+user_register_form.input.email = //input [@id= 'email-register']
+user_register_form.input.password = //input [@id= 'password-register']
+user_register_form.button.Signup_for_OurApp = //form [@id='registration-form']/button [@type= 'submit']
+user_register_form = //form [@id='registration-form']
+header.input.username = //input [@placeholder= 'Username']
+header.input.password = //form [@action='/login']//input [@name = 'password']
+header.button.SignIn = //button [text()= 'Sign In']
 ...
 
-
 #Home Page
-button.sign_out=""
+header.search = //a[@href="#" and @data-original-title="Search"];
+header.chat = //span[@ data-original-title="Chat"];
+header.my_profile_avatar = //a [@href="/profile/1user202403181500"] або //a [contains (@href, "/profile/")]
+header.my_profile_name = //span [text()='1user202403181500'];
+header.create_post = //a[@href="/create-post"];
+header.button.sign_out = //button[text()='Sign Out']
+
+#Post Page
+post.input.title = //input [@id='post-title'];
+post.input.body.content = //textarea [@id='post-body'];
+post.checkbox.uniquePost = //input [@name='uniquePost'];
+post.checkbox.onePerson = //select [@id="select1"]//option [@value='One Person'];
+post.button.saveNewPost = //button [text() = 'Save New Post'];
+post.alert.creation.message = //div [text()= 'New post successfully created.'];
+post.title = //h2 [text()= 'New post 1user202403181500_202403181510'];
+post.user.name = //a [@href="/profile/1user202403181500"]
+post.availability.for.view = //u[text()= ' One Person'];
+post.unique = //p [text()= 'Is this post unique? : yes'];
+post.body.content = //p [text() = 'Good day 202403181510'];
+post.edit.button = //a[@data-original-title="Edit"];
+post.delete.button = //button[@data-original-title="Delete"];
+
+#Search Page
+post.search.field = //input [@id='live-search-field'];
+post.search.icon = //label [@for='live-search-field'];
+post.close.search.icon = //span [@class='close-live-search'];
+post.search.result.fullName = //a/strong [text() = 'New post 1user202403181500_202403181510'];
+
+#Chat
+chat.window = //div [@id = 'chat'];
+chat.input.message.field = //form [@id= 'chatForm']/input [@id='chatField'];
+chat.message.text.from.selfUser = //div [@id= 'chat-wrapper']//div [contains (text(), 'test1')]
+chat.selfUser.avatar = //div [@class="chat-self"]/img;
+chat.otherUser.avatar = //div [@class='chat-other']/a[@href= '/profile/2user202403181520']/img;
+chat.otherUser.name = //div [@class='chat-other']//div [@class= 'chat-message']//a[@href= '/profile/2user202403181520']//strong [text() = '2user202403181520:'];
+chat.message.text.from.otherUser = //div[@class= 'chat-other']//div[@class="chat-message-inner"] - locator for link and text
+
+Поки не потрібні локатори:
+header.link.home_page = "//header/div/h4/a [@href='/']";
+header.input.login = "//input[@id='login']"
