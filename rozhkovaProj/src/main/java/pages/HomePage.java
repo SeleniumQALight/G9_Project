@@ -1,6 +1,7 @@
 package pages;
 
 //import org.openqa.selenium.By;
+//import org.openqa.selenium.By;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,11 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends ParentPage{
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
     private WebElement buttonSignOut;
+    @FindBy(xpath = "//button[text()= 'Sign In']")
+    private WebElement buttonSignIn;
+    @FindBy(xpath = "//div[text()= 'Invalid username/password.']")
+    private WebElement alertMessage;
+
 
     @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
@@ -42,5 +48,12 @@ public class HomePage extends ParentPage{
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public boolean isButtonSignInDisplayed() {
+        return isElementDisplayed(buttonSignIn);
+    }
+    public boolean isAlertMessageDisplayed() {
+        return isElementDisplayed(alertMessage);
     }
 }
