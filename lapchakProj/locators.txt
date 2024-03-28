@@ -19,3 +19,8 @@
 2. button.create_post: //a[@class="btn btn-sm btn-success mr-2"]
 3. profile.name: //span[text()='qaauto']
 
+#Create Post page
+
+1. create_post.input_title: //input[@id="post-title"]
+2. create_post.input_body: //textarea[@id="post-body"]
+3. create_post.click_create: //button[@class="btn btn-primary"]

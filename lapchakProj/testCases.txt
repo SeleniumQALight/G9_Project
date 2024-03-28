@@ -48,21 +48,8 @@ Steps:
 Expected 4 and 7:
 User can't Sign_in in App and should see error message: "Invalid username/password"("Sign out" button is not visible.)
 
-#004 Sign_in in App with not valid "Username"
 
-Pre-conditions:
-User should have been created previously
-
-Steps:
-1. Open "Login page"
-2. Enter valid "Password" in Sign_in form
-3. Enter not valid  "Username" in Sign_in form
-4. Click "Sign_in" button
-
-Expected:
-User can't Sign_in in App and should see error message: "Invalid username/password"("Sign out" button is not visible.)
-
-#005 Sign_up form: Validation for "Password"
+#004 Sign_up form: Validation for "Password"
 
 Conditions: Password must be at least 12 characters.
 
@@ -75,3 +62,24 @@ Steps:
 
 Expected:
 User can't Sign_up in App and should see error message: "Password must be at least 12 characters"("Sign out" button is not visible.)
+
+
+#005 "Create Post" page: Validation for "Title" and "Body Content" fields
+
+Pre-conditions:
+User should have been created previously
+
+Steps:
+1. Open "Login page"
+2. Enter valid "Password" and "Username" in Sign_in form
+3. Click "Sign_in" button
+4. Click "Create Post" button
+5. Enter valid value in "Title" field
+6. Enter valid value in "Body Content" field
+7. Click "Save New Post" button
+
+Expected:
+User can see new post in "Posts" page
+
+Post - conditions:
+1. Delete post
