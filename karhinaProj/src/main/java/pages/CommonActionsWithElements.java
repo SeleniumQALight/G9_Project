@@ -37,7 +37,7 @@ public class CommonActionsWithElements {
 
     }
 
-    protected boolean IsElementDisplayed(WebElement webElement){
+    protected boolean isElementDisplayed(WebElement webElement){
         try {
             boolean state = webElement.isDisplayed();
             if (state){
