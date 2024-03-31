@@ -29,7 +29,7 @@ public class PostPage extends ParentPage{
     private WebElement postTextForOnePerson;
 
     @FindBy(xpath = ".//i")
-    private WebElement TextNoteThisPostWasWrittenFor;
+    private WebElement textNoteThisPostWasWrittenFor;
 
 
     public PostPage(WebDriver webDriver) {
@@ -71,18 +71,23 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkValueInTitleAndBodyOfPost(String expectedPostTextTitle, String expectedTextBody) {
+    public PostPage checkValueInTitleOfPost(String expectedPostTextTitle) {
         String actualPostTextTitle = postTextTitle.getText();
-        String actualTextBody = postTextBody.getText();
         Assert.assertEquals("Incorrect text in title", expectedPostTextTitle, actualPostTextTitle);
+        logger.info("Text in title is correct");
+        return this;
+    }
+
+    public PostPage checkValueInBodyOfPost (String expectedTextBody) {
+        String actualTextBody = postTextBody.getText();
         Assert.assertEquals("Incorrect text in body", expectedTextBody, actualTextBody);
-        logger.info("Text in title and body are correct");
+        logger.info("Text in body is correct");
         return this;
     }
 
     public PostPage checkIsMessageNotificationAboutPostForOnePersonDisplayed() {
         Assert.assertTrue("Message 'This post was written for one person' is not displayed",
-                isElementDisplayed(postTextForOnePerson) && isElementDisplayed(TextNoteThisPostWasWrittenFor));
+                isElementDisplayed(postTextForOnePerson) && isElementDisplayed(textNoteThisPostWasWrittenFor));
                 logger.info("Message 'This post was written for one person' is displayed");
 
         return this;
@@ -93,5 +98,4 @@ public class PostPage extends ParentPage{
 
 }
 
-//u[contains(text(),'One Person')]
 

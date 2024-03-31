@@ -7,11 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class commonActionsWithElements {
+public class СommonActionsWithElements {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
 
-    public commonActionsWithElements(WebDriver webDriver) {
+    public СommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //Ініціалізує всі елементи описані в @FindBy
     }
@@ -98,15 +98,17 @@ public class commonActionsWithElements {
 
             protected void setCheckboxToNeededState(WebElement webElement, String neededState) {
                 if (neededState.equals("Checked") && !webElement.isSelected()) {
-                    webElement.click();
+                    setCheckboxSelected(webElement);
                     logger.info("Checkbox is checked");
                 } else if (neededState.equals("Checked") && webElement.isSelected()) {
                     logger.info("Checkbox is already checked");
                 } else if (neededState.equals("Unchecked") && webElement.isSelected()) {
-                    webElement.click();
+                    setCheckboxUnselected(webElement);
                     logger.info("Checkbox is unchecked");
                 } else if (neededState.equals("Unchecked") && !webElement.isSelected()) {
                     logger.info("Checkbox is already unchecked");
+                } else {
+                    logger.info("Do nothing with checkbox because checkbox are already in needed state");
                 }
             }
 
@@ -116,3 +118,4 @@ public class commonActionsWithElements {
         Assert.fail("Can not work with element " + e);
     }
 }
+
