@@ -18,6 +18,9 @@ public class CreatePostPage extends ParentPage {
      @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+     @FindBy(xpath = ".//input[@type='checkbox']")
+     private WebElement checkbox;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -62,6 +65,11 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage selectValueInDropdownRole(String value) {
         selectValueInDropdown(dropdownRole, value);
+        return this;
+    }
+
+    public CreatePostPage checkCheckBoxNeededState(String checked) {
+        checkCheckBoxNeededState(checkbox, checked);
         return this;
     }
 }
