@@ -1,14 +1,13 @@
-#001 Register a unique user
+#001 Register on the site
 
 Precondition
-1. Register a new user
+1. Open site https://aqa-complexapp.onrender.com/
 
 Steps:
-1. Open Login Page
-2. Enter the login user_hh.mm.ss and input the login in the header of the page
-3. Enter password
-4. Click the button [Sign In]
-
+1. Enter the Username in register form input
+2. Enter the Email in register form input
+3. Enter the Password in register form input
+4. Click the button [Sing Up for Our App]
 
 Expected result:
 1. The [Sign Out] button appeared
@@ -20,18 +19,16 @@ Postcondition
 #002 Create post
 
 Precondition
-1. Log in to the site (username: qaauto, password: 123456qwerty)
+1. Open Login Page
 
 Steps:
-1. Open Login Page
-2. Enter the login user_hh.mm.ss and input the login in the header of the page
-3. Enter password
+1. Enter the login user_hh.mm.ss and input the login in the header of the page (username: qaauto)
+3. Enter password (password: 123456qwerty)
 4. Click the button [Sign In]
 5. Click the button [Create Post]
 6. Enter Title into [Title] input
 7. Enter text into [Body Content] textarea
 8. Click the button [Save New Post]
-
 
 Expected result:
 1. The [New post successfully created.] alert appeared
@@ -44,23 +41,21 @@ Postcondition
 #003 Edit the created post on the site
 
 Precondition
-1. Log in to the site (username: qaauto, password: 123456qwerty)
-
-Steps:
 1. Open Login Page
-2. Enter the login user_hh.mm.ss and input the login in the header of the page
-3. Enter password
+2. Enter the login user_hh.mm.ss and input the login in the header of the page (username: qaauto)
+3. Enter password (password: 123456qwerty)
 4. Click the button [Sign In]
 5. Click the button [Create Post]
 6. Enter Title into [Title] input
 7. Enter text into [Body Content] textarea
 8. Click the button [Save New Post]
-9. Click [Edit] checkbox near the entered Title
-10. Make some changes in the [Title] input (enter text)
-11. Make some changes in the [Body Content] textarea (enter text)
-12. Click the [Save Updates] button
-13. Click the [Back to post permalink] link
 
+Steps:
+1. Click [Edit] checkbox near the entered Title
+2. Make some changes in the [Title] input (enter text)
+2. Make some changes in the [Body Content] textarea (enter text)
+3. Click the [Save Updates] button
+4. Click the [Back to post permalink] link
 
 Expected result:
 1. The [Post successfully updated.] alert appeared
@@ -95,6 +90,10 @@ Postcondition
 
 Precondition
 1. Open Login Page
+2. Enter the Username in register form input
+3. Enter the Email in register form input
+4. Enter the Password in register form input
+5. Click the button [Sing Up for Our App]
 
 Steps:
 1. Enter the login user_hh.mm.ss and input the login in the header of the page
