@@ -1,5 +1,6 @@
 package pages;
 
+import data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,9 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
+
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement massageInvalidUsernamePassword;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -40,5 +44,21 @@ public class LoginPage extends ParentPage{
 
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
+    }
+
+    public boolean isButtonSignInDisplayed() {return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isInvalidUsernamePasswordDisplayed() {
+        return isElementDisplayed(massageInvalidUsernamePassword);
+    }
+
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }
