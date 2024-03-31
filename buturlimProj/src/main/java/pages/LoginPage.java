@@ -1,6 +1,8 @@
 package pages;
 
+import data.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +20,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
+
+    @FindBy(xpath = ".//div[contains(text(), 'Invalid username/password.')]")
+    private WebElement loginError;
 
     public void openLoginPage() {
         try {
@@ -52,4 +57,21 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
+    public boolean isLoginErrorDisplayed(){
+        return isElementDisplayed(loginError);
+    }
+
+    public boolean isButtonSignInDisplayed() {
+        return isElementDisplayed(buttonSignIn);
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
+    }
 }
+
+

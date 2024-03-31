@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -46,6 +47,26 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
+        }
+    }
+
+    // Select text in dropdown by visible text
+    protected void selectTextInDropdownByVisibleText(WebElement dropdown, String textForSelect){
+        try {
+            Select select = new Select(dropdown);
+            select.selectByVisibleText(textForSelect);
+            logger.info(textForSelect + " was selected in dropdown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropdown(WebElement dropdown, String value) {
+        try {
+            Select select = new Select(dropdown);
+            select.selectByValue(value);
+        } catch (Exception e){
+            printErrorAndStopTest(e);
         }
     }
 
