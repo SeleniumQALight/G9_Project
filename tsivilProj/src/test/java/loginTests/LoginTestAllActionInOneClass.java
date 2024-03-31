@@ -93,6 +93,9 @@ public class LoginTestAllActionInOneClass {
 
         // Проверяем появление сообщения об ошибке
         Assert.assertTrue("Error message is not displayed", isErrorMessageDisplayed());
+        Assert.assertTrue("Button Sign In is not visible", isButtonSignInDisplayed());
+        Assert.assertFalse("Button Sign Out is visible", isButtonSignOutDisplayed());
+
     }
 
     private boolean isErrorMessageDisplayed() {
@@ -105,4 +108,16 @@ public class LoginTestAllActionInOneClass {
             return false;
         }
     }
+
+    private boolean isButtonSignInDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).isDisplayed();
+            logger.info(state + " is button displayed");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not visible");
+            return false;
+        }
+    }
+
 }
