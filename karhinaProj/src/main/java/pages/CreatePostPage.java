@@ -20,6 +20,10 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkbox;
+
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -27,7 +31,7 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         // TODO check current URL
-        Assert.assertTrue("Invalid page - not Create Post", IsElementDisplayed(inputTitle));
+        Assert.assertTrue("Invalid page - not Create Post", isElementDisplayed(inputTitle));
         return this;
     }
 
@@ -57,4 +61,21 @@ public class CreatePostPage extends ParentPage {
         selectValueInDropdown(dropdownRole, value);
         return this;
     }
+
+   public CreatePostPage setCheckboxPostUniqueSelected () {
+       setCheckboxUnselected(checkbox);
+       return this;
+   }
+
+    public CreatePostPage setCheckboxPostUniqueUnselected () {
+        setCheckboxSelected(checkbox);
+        return this;
+    }
+
+    public CreatePostPage setCheckboxPostUniqueToNeededState(String neededState) {
+        setCheckboxToNeededState(checkbox, neededState);
+        return this;
+
+    }
+
 }
