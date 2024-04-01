@@ -67,6 +67,7 @@ public class LoginPage extends ParentPage{
     public boolean isPopUpDisplayed() {
         return isElementDisplayed(popUp);
     }
+
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);

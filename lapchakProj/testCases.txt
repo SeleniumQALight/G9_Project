@@ -1,17 +1,85 @@
-#001 Title
-
-Pre - conditions:
-1. Sign in as new user(user_hh.mm.ss)
+#001 Sign up as new user
 
 Steps:
 1. Open "Login page"
-2. Enter login "user_hh.mm.ss" in input header page
+2. Enter unique "Username" in input "Sign up" form
+3. Enter unique "Email" in input "Sign up" form
+4. Enter "Password" in input "Sign up" form
+5. Click "Sign up for OurApp" button
 
 
 Expected:
-1. View "Sign out" button;
-2. Dont see "Sign in" button
-
+1."Sign out" button is visible and profile name is equal to "Username" value
 
 Post - conditions:
 1. Delete user
+
+#002 Sign_in in App with valid "Username" and "Password"
+
+Pre-conditions:
+User should have been created previously
+
+Steps:
+1. Open "Login page"
+2. Enter "Username" in Sign_in form
+3. Enter "Password" in Sign_in form
+4. Click "Sign_in" button
+
+Expected:
+View "Sign out" button
+
+Post - conditions:
+1. Delete user
+
+#003 Sign_in in App with not valid "Password" and not valid "Username"
+
+Pre-conditions:
+User should have been created previously
+
+Steps:
+1. Open "Login page"
+2. Enter valid "Username" in Sign_in form
+3. Enter not valid  "Password" in Sign_in form
+4. Click "Sign_in" button
+5. Enter not valid  "Username" in Sign_in form
+6. Enter valid  "Password" in Sign_in form
+7. Click "Sign_in" button
+
+Expected 4 and 7:
+User can't Sign_in in App and should see error message: "Invalid username/password"("Sign out" button is not visible.)
+
+
+#004 Sign_up form: Validation for "Password"
+
+Conditions: Password must be at least 12 characters.
+
+Steps:
+1. Open "Login page"
+2. Enter valid "Username" in Sign_up form
+3. Enter valid  "Email" in Sign_up form
+5. Enter not valid  "Password"(less than 11 characters) in Sign_up form
+4. Click "Sign up for OurApp" button
+
+Expected:
+User can't Sign_up in App and should see error message: "Password must be at least 12 characters"("Sign out" button is not visible.)
+
+
+#005 "Create Post" page: Validation for "Title" and "Body Content" fields
+
+Pre-conditions:
+User should have been created previously
+
+Steps:
+1. Open "Login page"
+2. Enter valid "Password" and "Username" in Sign_in form
+3. Click "Sign_in" button
+4. Click "Create Post" button
+5. Enter valid value in "Title" field
+6. Enter valid value in "Body Content" field
+7. Click "Save New Post" button
+
+Expected:
+User can see new post in "Posts" page
+
+Post - conditions:
+1. Delete post
