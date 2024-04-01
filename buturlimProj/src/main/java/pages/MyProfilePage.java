@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class MyProfilePage extends ParentPage{
-    private String postTitleLocator = ".//*[text(),'%s']"; // параметризований локатор
+    private String postTitleLocator = " .//*[contains(text(),'%s')]"; // параметризований локатор
 
 
 
