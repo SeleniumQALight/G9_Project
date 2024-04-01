@@ -58,11 +58,11 @@ public class LoginPage extends ParentPage {
     }
 
     public boolean isLoginErrorDisplayed(){
-        return isElementDisplayed(loginError);
+        return isElementDisplayed(loginError, "Login Error");
     }
 
     public boolean isButtonSignInDisplayed() {
-        return isElementDisplayed(buttonSignIn);
+        return isElementDisplayed(buttonSignIn, "Button Sign In");
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {

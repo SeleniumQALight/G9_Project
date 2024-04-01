@@ -38,7 +38,7 @@ public class PostPage extends ParentPage{
     }
 
     public PostPage checkIsSuccessMessageDisplayed() {
-        Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage));
+        Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage, "Success message"));
         return this;
     }
 
@@ -49,7 +49,7 @@ public class PostPage extends ParentPage{
     }
 
     public PostPage checkIsPostUnique() {
-        Assert.assertTrue("Post is not unique", isElementDisplayed(isPostUnique));
+        Assert.assertTrue("Post is not unique", isElementDisplayed(isPostUnique, "Unique post"));
         return this;
     }
 

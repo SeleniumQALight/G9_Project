@@ -29,7 +29,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return new MyProfilePage(webDriver);
     }
     public boolean isButtonSignOutDisplayed() {
-        return isElementDisplayed(buttonSignOut);
+        return isElementDisplayed(buttonSignOut, "Button Sign Out");
     }
 
     public CreatePostPage clickOnButtonCreatePost() {

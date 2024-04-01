@@ -19,8 +19,9 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement) {
         try {
+            String elementName = webElement.getTagName();
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + " : element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -30,19 +31,19 @@ public class CommonActionsWithElements {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element");
+            logger.info(text + " was inputted into element: " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected boolean isElementDisplayed(WebElement webElement) {
+    protected boolean isElementDisplayed(WebElement webElement, String elementName) {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(elementName + " : element is displayed");
             } else {
-                logger.info("Element is not displayed");
+                logger.info(elementName + " : element is not displayed");
             }
             return state;
         } catch (Exception e) {
@@ -56,7 +57,7 @@ public class CommonActionsWithElements {
         try {
             Select select = new Select(dropdown);
             select.selectByVisibleText(textForSelect);
-            logger.info(textForSelect + " was selected in dropdown");
+            logger.info(textForSelect + " was selected in dropdown " + getElementName(dropdown));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -72,12 +73,13 @@ public class CommonActionsWithElements {
     }
 
     protected void setCheckbox(WebElement checkbox) {
+        String elementName = checkbox.getTagName();
         try {
             if (!checkbox.isSelected()) {
                 checkbox.click();
-                logger.info("Checkbox is selected");
+                logger.info(elementName + ": checkbox is selected");
             } else {
-                logger.info("Checkbox was already selected");
+                logger.info(elementName + ": checkbox was already selected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -85,12 +87,13 @@ public class CommonActionsWithElements {
     }
 
     protected void unsetCheckbox(WebElement checkbox) {
+        String elementName = checkbox.getTagName();
         try {
             if (checkbox.isSelected()) {
                 checkbox.click();
-                logger.info("Checkbox is unselected");
+                logger.info(elementName + ": checkbox is unselected");
             } else {
-                logger.info("Checkbox was already unselected");
+                logger.info(elementName + ": checkbox was already unselected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -114,5 +117,13 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
+    }
+
+    private String getElementName(WebElement webElement) {
+        try {
+            return webElement.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
     }
 }

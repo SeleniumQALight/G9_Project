@@ -28,7 +28,7 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage checkIsRedirectOnCreatePostPage() {
         // TODO check current URL
-        Assert.assertTrue("Invalid page not Create Post page", isElementDisplayed(inputTitle));
+        Assert.assertTrue("Invalid page not Create Post page", isElementDisplayed(inputTitle, "Input Title"));
         return this;
     }
 
