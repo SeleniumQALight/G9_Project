@@ -28,6 +28,8 @@ final String POST_TITLE = "TС_001_tsivil " + Util.getDateAndTimeFormatted();
 
         pageProvider.getPostPage()
                 .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE, 1)
                 ;
 
     }
