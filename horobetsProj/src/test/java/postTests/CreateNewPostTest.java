@@ -7,14 +7,14 @@ import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
 
-    final String POST_TITLE = "TC_001_horobets" + Util.getDateAndTimeFormatted();
+    final String POST_TITLE = "TC_001_horobets_" + Util.getDateAndTimeFormatted();
 
         @Test
     public void TC_001_createNewPost() {
             pageProvider.getLoginPage()
                     .openLoginPageAndFillLoginFormWithValidCred()
                     .chekIsRedirectToHomePage()
-                    .clickOnButtonCreatePost()
+                    .getHeaderElement().clickOnButtonCreatePost()
                     .checkIsRedirectToCreatePostPage()
                     .enterTitleIntoInputTitle(POST_TITLE)
                     .enterTextIntoInputBody("body text")
@@ -24,6 +24,14 @@ public class CreateNewPostTest extends BaseTest {
                     .checkIsRedirectToPostPage()
                     .checkIsSuccessMessageDisplayed()
                     .checkTextInSuccessMessage("New post successfully created.")
+            ;
+
+
+
+
+
+            pageProvider.getPostPage()
+                    .getHeaderElement().clickOnMyProfileButton()
             ;
 
 
