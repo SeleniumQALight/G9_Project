@@ -11,7 +11,7 @@ final String POST_TITLE = "TС_001_tsivil " + Util.getDateAndTimeFormatted();
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .clickOnButtonCreatePost()
+                .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("body text")
@@ -22,7 +22,13 @@ final String POST_TITLE = "TС_001_tsivil " + Util.getDateAndTimeFormatted();
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
 
+
         ;
+
+
+        pageProvider.getPostPage()
+                .getHeaderElement().clickOnMyProfileButton()
+                ;
 
     }
 }
