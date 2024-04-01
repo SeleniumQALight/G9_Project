@@ -1,7 +1,60 @@
 #Page Login
 
-header.input.login="//input[@id='login']" (for example)
+Header [Username] and [Password] input:
+//input[@placeholder='Username']
+//input[@placeholder='Password']
+
+[Sign In] button:
+//button[contains(text(),'Sign In')]
+
+Form register inputs:
+//input[@id="username-register"]
+
+//input[@id="email-register"]
+
+//input[@id="password-register"]
+
+[Sing Up] button:
+//button[@type="submit"]
 
 #Home Page
+[Sign Out] button:
+//button[contains(text(),'Sign Out')]
+or
+//button[@class="btn btn-sm btn-secondary"]
 
-button.sign_out=""
+[Create Post] button:
+//a[@class="btn btn-sm btn-success mr-2"]
+
+#Create Post page
+Input [Title]:
+//input[@name="title"]
+
+[Body Content] textarea:
+//textarea[@id="post-body"]
+
+[Save New Post] button:
+//button[@class="btn btn-primary"]
+
+
+#Post Page
+The [New post successfully created.] alert:
+//div[@class="alert alert-success text-center"]
+
+Title of the post:
+//div[@class="d-flex justify-content-between"]
+
+Body Content:
+//div[@class="body-content"]
+
+Edit:
+//a[@data-original-title="Edit"]
+
+Delete:
+//button[@data-original-title="Delete"]
+
+[Save Updates] button:
+//button[@class="btn btn-primary"]
+
+[Back to post permalink]:
+//a[@class="small font-weight-bold"]
