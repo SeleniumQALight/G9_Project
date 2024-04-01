@@ -15,6 +15,7 @@ public class CreateNewPost extends BaseTest {
     pageProvider.getLoginPage()
             .openLoginPageAndFillLoginFormWithValidCred()
             .checkIsRedirectOnHomePage()
+            .getHeaderElement()
             .clickOnButtonCreatePost()
             .checkIsRedirectOnCreatePostPage()
             .enterTitleInToInputTitle(POST_TITLE)
@@ -31,6 +32,8 @@ public class CreateNewPost extends BaseTest {
             .checkTextInBody(POST_BODY)
             .checkNoteMessage(NOTE_MESSAGE)
     ;
+
+    pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton();
     }
 }
 
