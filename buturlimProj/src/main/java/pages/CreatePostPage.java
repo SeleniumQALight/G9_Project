@@ -58,7 +58,7 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage isCheckboxUniquePostChecked(String value) {
-        isCheckboxChecked(checkboxUniquePost, value);
+        setCheckboxState(checkboxUniquePost, value);
         return this;
     }
 

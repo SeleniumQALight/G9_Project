@@ -75,6 +75,7 @@ public class CommonActionsWithElements {
         try {
             if (!checkbox.isSelected()) {
                 checkbox.click();
+                logger.info("Checkbox is selected");
             } else {
                 logger.info("Checkbox was already selected");
             }
@@ -87,6 +88,7 @@ public class CommonActionsWithElements {
         try {
             if (checkbox.isSelected()) {
                 checkbox.click();
+                logger.info("Checkbox is unselected");
             } else {
                 logger.info("Checkbox was already unselected");
             }
@@ -95,14 +97,12 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void isCheckboxChecked(WebElement checkbox,String check) {
+    protected void setCheckboxState(WebElement checkbox, String check) {
         try {
             if (check.equals("checked")) {
                 setCheckbox(checkbox);
-                logger.info("Checkbox is selected");
             } else if (check.equals("unchecked")) {
                 unsetCheckbox(checkbox);
-                logger.info("Checkbox is unselected");
             } else {
                 logger.info("Wrong parameter for checkbox");
             }
