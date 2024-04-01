@@ -31,7 +31,11 @@ public class CreateNewPostTest extends BaseTest {
 
 
         pageProvider.getPostPage()
-                .getHeaderElement().clickOnButtonMyProfile();
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresented(POST_TITLE, 1)
+
+        ;
     }
 
 
