@@ -26,7 +26,7 @@ public class PostPage extends ParentPage{
     }
 
     public PostPage checkIsSuccessMessageDisplayed() {
-        Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage));
+        Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage, "Success message")); //додали назву елемента для логів
         return this;
     }
 
