@@ -33,7 +33,11 @@ public class CreateNewPost extends BaseTest {
             .checkNoteMessage(NOTE_MESSAGE)
     ;
 
-    pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton();
+    pageProvider.getPostPage()
+            .getHeaderElement().clickOnMyProfileButton()
+            .checkIsRedirectToMyProfilePage()
+            .checkPostWithTitleIsPresent(POST_TITLE, 1)
+    ;
     }
 }
 
