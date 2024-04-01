@@ -13,7 +13,7 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .clickOnButtonCreatePost()
+                .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("body text")
@@ -26,9 +26,12 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTitlesValue(POST_TITLE)
                 .checkBodyValue("body text")
                 .checkBodyNoteValue("One Person")
-                .checkIsPostUnique("Is this post unique? : yes")
+                .checkIsPostUnique("Is this post unique? : yes");
 
-        ;
+
+
+        pageProvider.getPostPage()
+                .getHeaderElement().clickOnButtonMyProfile();
     }
 
 
