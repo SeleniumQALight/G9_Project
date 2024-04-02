@@ -16,47 +16,47 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); //ініціалізує всі елементи, описані @FindBy
     }
 
-    protected void clickOnElement(WebElement webElement){
-        try{
+    protected void clickOnElement(WebElement webElement) {
+        try {
             webElement.click();
             logger.info("Element was clicked");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void cleanAndEnterTextIntoElement(WebElement webElement, String text){
+    protected void cleanAndEnterTextIntoElement(WebElement webElement, String text) {
         try {
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + " was inputted into element ");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected boolean isElementDisplayed(WebElement webElement){
-        try{
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
             boolean state = webElement.isDisplayed();
-            if (state){
+            if (state) {
                 logger.info("Element is displayed");
-            }else{
+            } else {
                 logger.info("Element is not displayed");
             }
             return state;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
         }
     }
 
     // select text in dropdown by visible text
-    protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text){
-        try{
+    protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text) {
+        try {
             Select select = new Select(dropdown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in dropdown");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
@@ -82,6 +82,8 @@ public class CommonActionsWithElements {
             if (!webElement.isSelected()) {
                 webElement.click();
                 logger.info("Checkbox is selected");
+            } else {
+                logger.info("Checkbox was already selected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -93,6 +95,8 @@ public class CommonActionsWithElements {
             if (webElement.isSelected()) {
                 webElement.click();
                 logger.info("Checkbox is unselected");
+            } else {
+                logger.info("Checkbox was already unselected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -100,18 +104,22 @@ public class CommonActionsWithElements {
     }
 
     protected void setCheckboxToNeededState(WebElement webElement, String neededState) {
-        if (neededState.equals("Checked") && !webElement.isSelected()) {
-            setCheckboxSelected(webElement);
-            logger.info("Checkbox is checked");
-        } else if (neededState.equals("Checked") && webElement.isSelected()) {
-            logger.info("Checkbox is already checked");
-        } else if (neededState.equals("Unchecked") && webElement.isSelected()) {
-            setCheckboxUnselected(webElement);
-            logger.info("Checkbox is unchecked");
-        } else if (neededState.equals("Unchecked") && !webElement.isSelected()) {
-            logger.info("Checkbox is already unchecked");
-        } else {
-            logger.info("Do nothing with checkbox because checkbox are already in needed state");
+        try {
+            if (neededState.equals("Checked") && !webElement.isSelected()) {
+                setCheckboxSelected(webElement);
+                logger.info("Checkbox is checked");
+            } else if (neededState.equals("Checked") && webElement.isSelected()) {
+                logger.info("Checkbox is already checked");
+            } else if (neededState.equals("Unchecked") && webElement.isSelected()) {
+                setCheckboxUnselected(webElement);
+                logger.info("Checkbox is unchecked");
+            } else if (neededState.equals("Unchecked") && !webElement.isSelected()) {
+                logger.info("Checkbox is already unchecked");
+            } else {
+                logger.info("Do nothing with checkbox because checkbox are already in needed state");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 }
