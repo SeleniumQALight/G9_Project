@@ -18,6 +18,9 @@ public class CreatePostPage extends ParentPage{
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = ".//input[@name='uniquePost']")
+    private WebElement checkBoxUniquePost;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -51,6 +54,36 @@ public CreatePostPage enterTitleInToInputTitle(String title) {
 
     public CreatePostPage selectValueInDropdownRole(String value) {
         selectValueInDropdown(dropdownRole, value);
+        return this;
+    }
+    public CreatePostPage selectCheckBox() {
+        checkBoxUniquePost.isSelected();
+        if (!checkBoxUniquePost.isSelected()) {
+            clickOnElement(checkBoxUniquePost);
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox is already selected");
+        }
+        return this;
+    }
+    public CreatePostPage deSelectCheckBox() {
+        checkBoxUniquePost.isSelected();
+        if (checkBoxUniquePost.isSelected()) {
+            clickOnElement(checkBoxUniquePost);
+            logger.info("Checkbox is deselected");
+        } else {
+            logger.info("Checkbox is already deselected");
+        }
+        return this;
+    }
+
+    public CreatePostPage settingCheckBox(String state) {
+        if (state.equals("check")) {
+             selectCheckBox();
+            }
+        if (state.equals("uncheck")) {
+                deSelectCheckBox();
+         }
         return this;
     }
 }
