@@ -76,17 +76,22 @@ public class CommonActionsWithElements {
             if (!checkboxElement.isSelected()) {
                 checkboxElement.click();
                 logger.info("Checkbox was selected");
+            } else {
+                logger.info("Checkbox is already selected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+
     protected void unselectCheckbox(WebElement checkboxElement) {
         try {
             if (checkboxElement.isSelected()) {
                 checkboxElement.click();
                 logger.info("Checkbox was unselected");
+            } else {
+                logger.info("Checkbox is already unselected");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -96,15 +101,14 @@ public class CommonActionsWithElements {
     protected void setCheckboxState(WebElement checkboxElement, String state) {
         if (state.equals("check")) {
             selectCheckbox(checkboxElement);
-           // logger.info("Checkbox was selected");
+            // logger.info("Checkbox was selected");
         } else if (state.equals("uncheck")) {
             unselectCheckbox(checkboxElement);
-           // logger.info("Checkbox was unselected");
+            // logger.info("Checkbox was unselected");
         } else {
             logger.info("Сheckbox state is not selected.");
+        }
     }
-}
-
 
 
     private void printErrorAndStopTest(Exception e) {

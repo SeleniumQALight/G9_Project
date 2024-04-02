@@ -58,11 +58,12 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextInMessagePostUnique() {
         if (isElementDisplayed(messagePostUniqueNo)) {
-           // logger.info("Message 'Is this post unique? : no' is displayed");
+            logger.info("Message 'Is this post unique? : no' is displayed");
         } else if (isElementDisplayed(messagePostUniqueYes)) {
-          //  logger.info("Message 'Is this post unique? : yes' is displayed");
+           logger.info("Message 'Is this post unique? : yes' is displayed");
         } else {
-           // logger.error("Message 'Is this post unique? : no/ yes' is not displayed");
+           logger.error("Message 'Is this post unique? : no' or 'Is this post unique? : yes'  is not displayed");
+           Assert.fail("Message 'Is this post unique? : no' or 'Is this post unique? : yes'  is not displayed");
         }
         return this;
     }
