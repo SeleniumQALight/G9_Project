@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class PostPage extends ParentPage{
+public class PostPage extends ParentPage {
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
@@ -32,12 +32,15 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//i")
     private WebElement textNoteThisPostWasWrittenFor;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public HeaderElement getHeaderElement(){
+    public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
     }
 
@@ -65,10 +68,10 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkValueInMessagePostUnique(){
-        if (isElementDisplayed(postUniqueYesMessage)){
+    public PostPage checkValueInMessagePostUnique() {
+        if (isElementDisplayed(postUniqueYesMessage)) {
             logger.info("Message 'Is this post unique? : yes' is displayed");
-        } else if (isElementDisplayed(postUniqueNoMessage)){
+        } else if (isElementDisplayed(postUniqueNoMessage)) {
             logger.info("Message 'Is this post unique? : no' is displayed");
         } else {
             logger.error("Message 'Is this post unique? : yes' or 'Is this post unique? : no' is not displayed");
@@ -84,7 +87,7 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkValueInBodyOfPost (String expectedTextBody) {
+    public PostPage checkValueInBodyOfPost(String expectedTextBody) {
         String actualTextBody = postTextBody.getText();
         Assert.assertEquals("Incorrect text in body", expectedTextBody, actualTextBody);
         logger.info("Text in body is correct");
@@ -94,14 +97,18 @@ public class PostPage extends ParentPage{
     public PostPage checkIsMessageNotificationAboutPostForOnePersonDisplayed() {
         Assert.assertTrue("Message 'This post was written for one person' is not displayed",
                 isElementDisplayed(postTextForOnePerson) && isElementDisplayed(textNoteThisPostWasWrittenFor));
-                logger.info("Message 'This post was written for one person' is displayed");
+        logger.info("Message 'This post was written for one person' is displayed");
 
         return this;
     }
 
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost);
+        return new MyProfilePage(webDriver);
 
 
+    }
 }
 
 
