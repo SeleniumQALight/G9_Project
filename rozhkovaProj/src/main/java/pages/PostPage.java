@@ -10,6 +10,8 @@ public class PostPage extends ParentPage{
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -34,5 +36,10 @@ public class PostPage extends ParentPage{
         String actualText = successMessage.getText();//якщо елемент знайдений по локатору, а не по тексту, то буде працювати на будь-якій мові
         Assert.assertEquals("Text in message", expectedMessageText, actualText);
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost);
+        return new MyProfilePage(webDriver);
     }
 }
