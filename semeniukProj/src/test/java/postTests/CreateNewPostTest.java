@@ -2,6 +2,7 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
@@ -29,6 +30,16 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE, 1)
+        ;
+    }
+
+    @After
+    public void deletePosts(){
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
         ;
     }
 }
