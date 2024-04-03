@@ -23,6 +23,9 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='body-content']//i[contains(text(), ' Note: This post was written for ')]")
     private WebElement noteMessage;
 
+    @FindBy(xpath = ".//span//button[@data-original-title='Delete']")
+    private WebElement buttonDeletePost;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -71,4 +74,9 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost);
+        return new MyProfilePage(webDriver);
+
+    }
 }
