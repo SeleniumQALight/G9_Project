@@ -2,7 +2,7 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
-import org.junit.Assert;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
@@ -37,6 +37,12 @@ public class CreateNewPostTest extends BaseTest {
 
         ;
     }
-
-
+    @After
+    public void deletePost(){
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE);
+    }
 }
