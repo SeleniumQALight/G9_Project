@@ -15,9 +15,14 @@ public class HomePage extends ParentPage{
 
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
 
     public HomePage checkIsRedirectToHomePage() {
-        // TODO check current URL
+       checkUrl();
         Assert.assertTrue("Invalid Page Not Home Page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
