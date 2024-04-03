@@ -72,8 +72,52 @@ public class CommonActionsWithElements {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
-        logger.error("Can not work with element " + e); //іде в консоль і в логфайл
-        Assert.fail("Can not work with element " + e); // іде в репорт
+    protected void selectCheckbox(WebElement checkbox){
+        try{
+            if (!checkbox.isSelected()){
+                checkbox.click();
+                logger.info("Checkbox was selected");
+            }else{
+                logger.info("Checkbox was already selected");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
     }
-}
+
+    protected void unselectCheckbox(WebElement checkbox){
+        try{
+            if (checkbox.isSelected()){
+                checkbox.click();
+                logger.info("Checkbox was unselected");
+            }else{
+                logger.info("Checkbox was already unselected");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckboxState(WebElement checkbox, String neededState) {
+        if (neededState.equals("Check")) {
+            if (!checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was selected");
+            } else {
+                logger.info("Checkbox was already selected");
+            }
+        } else if (neededState.equals("Uncheck")) {
+            if (checkbox.isSelected()) {
+                checkbox.click();
+                logger.info("Checkbox was unselected");
+            } else {
+                logger.info("Checkbox was already unselected");
+            }
+        }
+    }
+
+            private void printErrorAndStopTest (Exception e){
+                logger.error("Can not work with element " + e); //іде в консоль і в логфайл
+                Assert.fail("Can not work with element " + e); // іде в репорт
+            }
+        }
