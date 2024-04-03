@@ -2,7 +2,6 @@ package pages;
 
 import data.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +9,11 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
     }
 
     @FindBy(xpath = ".//button[contains(text(), 'Sign In')]") // ініціалізується в CommonActionsWithElements
@@ -26,8 +30,8 @@ public class LoginPage extends ParentPage {
 
     public void openLoginPage() {
         try {
-            webDriver.get("https://aqa-complexapp.onrender.com");
-            logger.info("Log In Page was opened");
+            webDriver.get(baseUrl);
+            logger.info("Log In Page was opened with URL " + baseUrl);
         } catch (Exception e) {
             logger.error("Can not open Login Page" + e);
             Assert.fail("Can not open Login Page" + e);
