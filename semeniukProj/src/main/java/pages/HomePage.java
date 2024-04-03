@@ -14,6 +14,11 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     @FindBy(xpath = "//button[contains(text(),'Sign In')]")
     private WebElement buttonSignIn;
 
@@ -26,7 +31,7 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check current URL
+        checkUrl();
         Assert.assertTrue("Invalid page is not Home page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
