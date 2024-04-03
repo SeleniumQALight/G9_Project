@@ -22,12 +22,17 @@ public class HomePage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check current URL
+        checkUrl();
         Assert.assertTrue("Invalid page Not Home page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }

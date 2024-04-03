@@ -17,12 +17,17 @@ public class PostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*"; // * тому що може бути багато символів
+    }
+
     public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check current URL
+        checkUrlWithPattern();
         //TODO check some element that must be present at this page
         return this;
     }
