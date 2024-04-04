@@ -26,9 +26,14 @@ public class CreatePostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectOnCreatePostPage() {
-        // TODO check current URL
-        Assert.assertTrue("Invalid page not Create Post page", isElementDisplayed(inputTitle));
+        checkUrl();
+        Assert.assertTrue("Invalid page not Create Post page", isElementDisplayed(inputTitle, "Input Title"));
         return this;
     }
 
