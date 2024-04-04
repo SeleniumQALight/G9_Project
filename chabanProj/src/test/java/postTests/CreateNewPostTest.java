@@ -2,7 +2,7 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
-import org.junit.Assert;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
@@ -13,7 +13,7 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .clickOnButtonCreatePost()
+                .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("body text")
@@ -26,10 +26,23 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTitlesValue(POST_TITLE)
                 .checkBodyValue("body text")
                 .checkBodyNoteValue("One Person")
-                .checkIsPostUnique("Is this post unique? : yes")
+                .checkIsPostUnique("Is this post unique? : yes");
+
+
+
+        pageProvider.getPostPage()
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresented(POST_TITLE, 1)
 
         ;
     }
-
-
+    @After
+    public void deletePost(){
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE);
+    }
 }
