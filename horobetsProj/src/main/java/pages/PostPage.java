@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class PostPage extends ParentPage {
 
@@ -28,19 +29,31 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//p[contains(text(), 'yes')]")
     private WebElement messagePostUniqueYes;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check current URL
-        // TODO chek some element that is only on this page
+        checkUrlWithPattern();
+        // TODO check some element that is only on this page
         return this;
     }
 
     public PostPage checkIsSuccessMessageDisplayed() {
         Assert.assertTrue("Success message is not displayed"
-                , isElementDisplayed(successMessage));
+                , isElementDisplayed(successMessage, "Success Message"));
         return this;
     }
 
@@ -60,10 +73,10 @@ public class PostPage extends ParentPage {
         if (isElementDisplayed(messagePostUniqueNo)) {
             logger.info("Message 'Is this post unique? : no' is displayed");
         } else if (isElementDisplayed(messagePostUniqueYes)) {
-           logger.info("Message 'Is this post unique? : yes' is displayed");
+            logger.info("Message 'Is this post unique? : yes' is displayed");
         } else {
-           logger.error("Message 'Is this post unique? : no' or 'Is this post unique? : yes'  is not displayed");
-           Assert.fail("Message 'Is this post unique? : no' or 'Is this post unique? : yes'  is not displayed");
+            logger.error("Message 'Is this post unique? : no' or 'Is this post unique? : yes'  is not displayed");
+            Assert.fail("Message 'Is this post unique? : no' or 'Is this post unique? : yes'  is not displayed");
         }
         return this;
     }
@@ -93,6 +106,10 @@ public class PostPage extends ParentPage {
     }
 
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost);
+        return new MyProfilePage(webDriver);
+    }
 }
 
 

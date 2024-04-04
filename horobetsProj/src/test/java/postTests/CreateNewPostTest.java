@@ -3,18 +3,19 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
 
-    final String POST_TITLE = "TC_001_horobets" + Util.getDateAndTimeFormatted();
+    final String POST_TITLE = "TC_001_horobets_" + Util.getDateAndTimeFormatted();
 
         @Test
     public void TC_001_createNewPost() {
             pageProvider.getLoginPage()
                     .openLoginPageAndFillLoginFormWithValidCred()
                     .chekIsRedirectToHomePage()
-                    .clickOnButtonCreatePost()
+                    .getHeaderElement().clickOnButtonCreatePost()
                     .checkIsRedirectToCreatePostPage()
                     .enterTitleIntoInputTitle(POST_TITLE)
                     .enterTextIntoInputBody("body text")
@@ -34,6 +35,23 @@ public class CreateNewPostTest extends BaseTest {
             ;
 
 
+
+            pageProvider.getPostPage()
+                    .getHeaderElement().clickOnMyProfileButton()
+                    .checkIsRedirectToMyProfilePage()
+                    .checkPostWithTitleIsPresent(POST_TITLE, 1)
+            ;
+
+        }
+
+        @After
+    public void deletePosts() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
+        ;
 
         }
 
