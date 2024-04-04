@@ -60,8 +60,8 @@ public class CreatePostPage extends ParentPage{
         return this;
     }
 
-    public CreatePostPage selectCheckboxPostUniqueToNeededState(){
-        setCheckboxState(checkBoxPostUnique, "Check");
+    public CreatePostPage selectCheckboxPostUniqueToNeededState (String neededState){
+        setCheckboxState(checkBoxPostUnique, neededState);
         return this;
     }
 

@@ -74,15 +74,28 @@ public class PostPage extends ParentPage {
         }
         return this;
     }
+    public PostPage checkValueInTitleOfPost(String expectedTextInPostTitle) {
+        String actualPostTextTitle = postTextTitle.getText();
+        Assert.assertEquals("Text in post title is wrong", expectedTextInPostTitle, actualPostTextTitle);
+        logger.info("Text in post title is correct");
+        return this;
+    }
 
-    public PostPage checkValueInTitleAndBodyOfPost(String expectedTextInPostTitle, String expectedTextInPostBody) {
+    public PostPage checkValueInBodyOfPost(String expectedTextInPostBody) {
+        String actualPostTextBody = postTextBody.getText();
+        Assert.assertEquals("Text in post body is wrong", expectedTextInPostBody, actualPostTextBody);
+        logger.info("Text in post body is correct");
+        return this;
+    }
+
+   /* public PostPage checkValueInTitleAndBodyOfPost(String expectedTextInPostTitle, String expectedTextInPostBody) {
         String actualPostTextTitle = postTextTitle.getText();
         String actualPostTextBody = postTextBody.getText();
         Assert.assertEquals("Text in post title is wrong", expectedTextInPostTitle, actualPostTextTitle);
         Assert.assertEquals("Text in post body is wrong", expectedTextInPostBody, actualPostTextBody);
         logger.info("Texts in post title and post body are correct");
         return this;
-    }
+    }*/
 
     public PostPage checkIsMessageNotificationAboutOnePersonRoleDisplayed() {
         Assert.assertTrue("Message 'Note: This post was written for One Person' is not displayed", isElementDisplayed(postRoleOnePerson) && isElementDisplayed(TextThisPostWasWrittenFor));
