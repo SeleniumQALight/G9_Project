@@ -1,23 +1,18 @@
 package pages;
 
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.By;
+import data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
-    @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
-    private WebElement buttonSignOut;
+
     @FindBy(xpath = "//button[text()= 'Sign In']")
     private WebElement buttonSignIn;
     @FindBy(xpath = "//div[text()= 'Invalid username/password.']")
     private WebElement alertMessage;
-
-
-    @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
-    private WebElement buttonCreatePost;
 
 
 
@@ -27,27 +22,19 @@ public class HomePage extends ParentPage{
         super(webDriver);
     }
 
-    public boolean isButtonSignOutDisplayed() {
-       /* try {
-            boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
-            logger.info(state + " is button displayed");
-            return state;
-        } catch (Exception e){
-            logger.info("Element is not visible");
-            return false;
-        }*/
-        return isElementDisplayed(buttonSignOut);
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        //TODO check current URL
-        Assert.assertTrue("Invalid page Not Home page", isButtonSignOutDisplayed());
+        checkUrl();
+        Assert.assertTrue("Invalid page Not Home page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
-    }
-
-    public CreatePostPage clickOnButtonCreatePost() {
-        clickOnElement(buttonCreatePost);
-        return new CreatePostPage(webDriver);
     }
 
     public boolean isButtonSignInDisplayed() {
@@ -55,5 +42,20 @@ public class HomePage extends ParentPage{
     }
     public boolean isAlertMessageDisplayed() {
         return isElementDisplayed(alertMessage);
+    }
+
+    public HomePage openHomePageAndLoginIfNeeded() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (this.getHeaderElement().isButtonSignOutDisplayed()){
+            logger.info("User is already logged in");
+        } else {
+            loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+            loginPage.enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+            loginPage.clickOnButtonSignIn();
+            checkIsRedirectToHomePage();
+            logger.info("User was logged in");
+        }
+        return this;
     }
 }

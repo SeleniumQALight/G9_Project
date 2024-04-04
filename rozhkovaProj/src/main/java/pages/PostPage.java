@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class PostPage extends ParentPage {
 
@@ -24,19 +25,30 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//i")
     private WebElement TextThisPostWasWrittenFor;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*"; // * тому що може бути багато символів
+    }
+
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
+    }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check current URL
+        checkUrlWithPattern();
         //TODO check some element that must be present at this page
         return this;
     }
 
     public PostPage checkIsSuccessMessageDisplayed() {
-        Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage));
+        Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage, "Success message")); //додали назву елемента для логів
         return this;
     }
 
@@ -76,6 +88,11 @@ public class PostPage extends ParentPage {
         Assert.assertTrue("Message 'Note: This post was written for One Person' is not displayed", isElementDisplayed(postRoleOnePerson) && isElementDisplayed(TextThisPostWasWrittenFor));
         logger.info("Message 'Note: This post was written for One Person' is displayed");
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost);
+        return new MyProfilePage(webDriver);
     }
 }
 
