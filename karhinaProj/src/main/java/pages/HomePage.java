@@ -1,16 +1,13 @@
 package pages;
 
+import data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
-
-    @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
-    private WebElement buttonSignOut;
-    @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
-    private WebElement buttonCreatePost;
 
 
     public HomePage(WebDriver webDriver) {
@@ -18,19 +15,36 @@ public class HomePage extends ParentPage{
 
     }
 
-    public boolean isButtonSignOutDisplayed() {
-        return isElementDisplayed(buttonSignOut);
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
     }
 
+
     public HomePage checkIsRedirectToHomePage() {
-        // TODO check current URL
-        Assert.assertTrue("Invalid Page Not Home Page", isButtonSignOutDisplayed());
+       checkUrl();
+        Assert.assertTrue("Invalid Page Not Home Page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
 
-    public CreatePostPage clickOnButtonCreatePost() {
-        clickOnElement(buttonCreatePost);
-        return new CreatePostPage(webDriver);
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
+    }
+
+
+    public HomePage openHomePageAndLoginIfNeeded() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (this.getHeaderElement().isButtonSignOutDisplayed()) {
+            logger.info("User is already logged in.");
+        } else {
+            loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+            loginPage.enterTextIntoPassword(TestData.VALID_PASSWORD_UI);
+            loginPage.clickOnButtonSignIn();
+            checkIsRedirectToHomePage();
+            logger.info("User is logged in.");
+        }
+        return this;
     }
 }
 

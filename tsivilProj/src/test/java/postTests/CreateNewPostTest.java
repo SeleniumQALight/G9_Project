@@ -2,6 +2,7 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 
@@ -13,7 +14,7 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .clickOnButtonCreatePost()
+                .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("body text")
@@ -29,7 +30,24 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTheNoteAboutOnePersonIsPresent("One Person")
 
 
+
         ;
 
+
+        pageProvider.getPostPage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE, 1)
+                ;
+
+    }
+    @After
+    public void deletePost(){
+       pageProvider.getHomePage()
+               .openHomePageAndLoginIfNeeded()
+               .getHeaderElement().clickOnMyProfileButton()
+               .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
+               ;
     }
 }
