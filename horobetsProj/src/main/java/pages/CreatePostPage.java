@@ -19,13 +19,21 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy (xpath = "//input[@type='checkbox']")
+    private WebElement checkbox;
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        // TODO check current URL
+        checkUrl();
         Assert.assertTrue("Invalid page - not Create Post Page"
                 , isElementDisplayed(inputTitle));
         return this;
@@ -38,6 +46,11 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage enterTextIntoInputBody(String bodyText) {
         cleanAndEnterTextIntoElement(textAreaBody, bodyText);
+        return this;
+    }
+
+    public CreatePostPage setCheckboxStateCheckOrUncheck(String state){
+        setCheckboxState(checkbox, state);
         return this;
     }
 

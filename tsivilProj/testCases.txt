@@ -1,18 +1,118 @@
-#001 назва тесткейсу
+#001 Register on the site
 
-Прекондішен
-1. Зареєструвати користувача (user_hh.mm.ss)
+Precondition
+1. Open site https://aqa-complexapp.onrender.com/
 
-Кроки:
-1. Відкрити ЛогінПейдж
-2. Ввести логін user_hh.mm.ss і інпут логін в Хедері сторінки
-3. Ввести пароль
-4. Клікнути на кнопку
-...
+Steps:
+1. Enter the Username in register form input
+2. Enter the Email in register form input
+3. Enter the Password in register form input
+4. Click the button [Sing Up for Our App]
 
-Очікуваний результат:
-1. Бачимо кнопку Sing Out
-2. Не бачимо кнопку Sign In
+Expected result:
+1. The [Sign Out] button appeared
+2. The [Sign In] button disappeared
 
-Посткондішен
-1. Видалити створеного користувача
+Postcondition
+1. Delete the created user
+
+#002 Create post
+
+Precondition
+1. Open Login Page
+
+Steps:
+1. Enter the login user_hh.mm.ss and input the login in the header of the page (username: qaauto)
+3. Enter password (password: 123456qwerty)
+4. Click the button [Sign In]
+5. Click the button [Create Post]
+6. Enter Title into [Title] input
+7. Enter text into [Body Content] textarea
+8. Click the button [Save New Post]
+
+Expected result:
+1. The [New post successfully created.] alert appeared
+2. The entered Title appeared
+3. The entered Body Content of the post appeared
+
+Postcondition
+1. Delete the created post
+
+#003 Edit the created post on the site
+
+Precondition
+1. Open Login Page
+2. Enter the login user_hh.mm.ss and input the login in the header of the page (username: qaauto)
+3. Enter password (password: 123456qwerty)
+4. Click the button [Sign In]
+5. Click the button [Create Post]
+6. Enter Title into [Title] input
+7. Enter text into [Body Content] textarea
+8. Click the button [Save New Post]
+
+Steps:
+1. Click [Edit] checkbox near the entered Title
+2. Make some changes in the [Title] input (enter text)
+2. Make some changes in the [Body Content] textarea (enter text)
+3. Click the [Save Updates] button
+4. Click the [Back to post permalink] link
+
+Expected result:
+1. The [Post successfully updated.] alert appeared
+2. The entered changes have appeared in the [Title]
+3. The entered changes have appeared in the [Body Content] textarea
+
+Postcondition
+1. Delete the created post with changes
+
+#004 Send a message to the chat
+
+Precondition
+1. Log in to the site (username: qaauto, password: 123456qwerty)
+
+Steps:
+1. Open Login Page
+2. Enter the login user_hh.mm.ss and input the login in the header of the page
+3. Enter password
+4. Click the button [Sign In]
+5. Click the [Chat] icon
+6. Enter some text in the [Chat] form input
+
+Expected result:
+1. The [Chat] pop-up window appeared
+2. The entered text (chat message) appeared in the [Chat] pop-up
+
+Postcondition
+1. Close the chat
+2. Sign Out from the site
+
+#005 Sign In to the site
+
+Precondition
+1. Open Login Page
+2. Enter the Username in register form input
+3. Enter the Email in register form input
+4. Enter the Password in register form input
+5. Click the button [Sing Up for Our App]
+
+Steps:
+1. Enter the login user_hh.mm.ss and input the login in the header of the page
+2. Enter password
+3. Click the button [Sign In]
+
+Expected result:
+1. The [Sign Out] button appeared
+2. The [Sign In] button disappeared
+
+Postcondition
+1. Sign Out from the site
+2. Close Login Page
+
+
+
+
+
+
+
+
+

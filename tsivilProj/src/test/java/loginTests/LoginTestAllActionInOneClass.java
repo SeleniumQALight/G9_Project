@@ -70,4 +70,54 @@ public class LoginTestAllActionInOneClass {
             return false;
         }
     }
+
+    @Test
+    public void invalidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserNameLoginForm =
+                webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        inputUserNameLoginForm.clear();
+        inputUserNameLoginForm.sendKeys("invalidusername"); // Логин, который не существует
+        logger.info("'invalidusername' was inputted into input UserName");
+
+        WebElement inputPasswordLoginForm =
+                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPasswordLoginForm.clear();
+        inputPasswordLoginForm.sendKeys("invalidpassword"); // Неверный пароль
+        logger.info("Invalid password was inputted");
+
+        webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
+        logger.info("Button Sign In was clicked");
+
+        // Проверяем появление сообщения об ошибке
+        Assert.assertTrue("Error message is not displayed", isErrorMessageDisplayed());
+        Assert.assertTrue("Button Sign In is not visible", isButtonSignInDisplayed());
+        Assert.assertFalse("Button Sign Out is visible", isButtonSignOutDisplayed());
+
+    }
+
+    private boolean isErrorMessageDisplayed() {
+        try {
+            WebElement errorMessage = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid username/password.')]"));
+            logger.info("Error message is displayed: " + errorMessage.getText());
+            return true;
+        } catch (Exception e) {
+            logger.info("Error message is not displayed");
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).isDisplayed();
+            logger.info(state + " is button displayed");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not visible");
+            return false;
+        }
+    }
+
 }
