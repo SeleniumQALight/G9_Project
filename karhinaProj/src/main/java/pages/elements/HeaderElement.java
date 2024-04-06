@@ -3,9 +3,7 @@ package pages.elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.CreatePostPage;
-import pages.MyProfilePage;
-import pages.СommonActionsWithElements;
+import pages.*;
 
 public class HeaderElement extends СommonActionsWithElements {
 
@@ -20,6 +18,14 @@ public class HeaderElement extends СommonActionsWithElements {
     private WebElement buttonSignOut;
     @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
+    @FindBy(xpath = "//span[contains(text(), 'qaauto')]")
+    private WebElement userName;
+    @FindBy(xpath = "//a[@data-original-title = 'Search']")
+    private WebElement buttonSearch;
+    @FindBy(xpath = "//span[@data-original-title = 'Chat']")
+    private WebElement buttonChat;
+
+
 
 
     public HeaderElement(WebDriver webDriver) {
@@ -35,10 +41,53 @@ public class HeaderElement extends СommonActionsWithElements {
         return isElementDisplayed(buttonSignOut);
     }
 
+    public boolean isButtonCreatePostDisplayed() {
+        return isElementDisplayed(buttonCreatePost);
+    }
+
+    public boolean isButtonMyProfileDisplayed() {
+        return isElementDisplayed(buttonMyProfile);
+    }
+
+    public boolean isUserNameDisplayed() {
+        return isElementDisplayed(userName);
+    }
+
+    public boolean isButtonSearchDisplayed() {
+        return isElementDisplayed(buttonSearch);
+    }
+    public boolean isButtonChatDisplayed() {
+        return isElementDisplayed(buttonChat);
+    }
+
+
+    public boolean isButtonCreatePostNotDisplayed() {
+        return isElementIsNotDisplayed(buttonCreatePost);
+    }
+
+    public boolean isButtonMyProfileNotDisplayed() {
+        return isElementIsNotDisplayed(buttonMyProfile);
+    }
+
+    public boolean isButtonSearchNotDisplayed() {
+        return isElementIsNotDisplayed(buttonSearch);
+    }
+    public boolean isButtonChatNotDisplayed() {
+        return isElementIsNotDisplayed(buttonChat);
+    }
+
+    public boolean isButtonSignOutNotDisplayed() {
+        return isElementIsNotDisplayed(buttonSignOut);
+    }
+
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
 
 
+    public LoginPage clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
+    }
 }

@@ -15,6 +15,12 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Button Sign Out is not displyed" ,
                 pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
 
+        Assert.assertTrue("Button Create Post is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonCreatePostDisplayed());
+        Assert.assertTrue("Button My Profile is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonMyProfileDisplayed());
+        Assert.assertTrue("User name is not displayed", pageProvider.getHomePage().getHeaderElement().isUserNameDisplayed());
+        Assert.assertTrue("Input UserName is displayed", pageProvider.getHomePage().isInputUserNameHomePageIsNotDisplayed());
+        Assert.assertTrue("Input Password is displayed", pageProvider.getHomePage().isInputPasswordHomePageIsNotDisplayed());
+
     }
 
     @Test
@@ -34,3 +40,8 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
 }
+
+
+//1. додати перевірки в тест на валідний логін:
+//- що після того як залогінилися, ми бачимо кнопки Create Post, MyProfile, імʼя юзера
+//- і не бачимо інпутів куди ми вводили логін та пароль

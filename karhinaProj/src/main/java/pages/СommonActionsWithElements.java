@@ -75,7 +75,23 @@ public class СommonActionsWithElements {
             logger.info("Element is not displayed");
             return false;
         }
+    }
 
+    protected boolean isElementIsNotDisplayed(WebElement webElement) {
+        try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String elementName = getElementName(webElement);
+            boolean state = webElement.isDisplayed();
+            if (!state) {
+                logger.info(elementName + " Element is not displayed");
+            } else {
+                logger.info(elementName + " Element is displayed");
+            }
+            return !state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return true;
+        }
     }
 
 

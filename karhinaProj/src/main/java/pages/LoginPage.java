@@ -32,7 +32,7 @@ public class LoginPage extends ParentPage{
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
-            logger.info("Login Pge was opened with URL " + baseUrl);
+            logger.info("Login Page was opened with URL " + baseUrl);
         } catch (Exception e){
             logger.error("Can not open Login Page " + e);
             Assert.fail("Can not open Login Page " + e);
@@ -65,5 +65,19 @@ public class LoginPage extends ParentPage{
         enterTextIntoPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrl();
+        Assert.assertTrue("Invalid Page Not Home Page", isButtonSignInDisplayed());
+        return this;
+    }
+
+    public boolean isInputUserNameDisplayed() {
+        return isElementDisplayed(inputUserNameLoginForm);
+    }
+
+    public boolean isInputPasswordDisplayed() {
+        return isElementDisplayed(inputPasswordLoginForm);
     }
 }
