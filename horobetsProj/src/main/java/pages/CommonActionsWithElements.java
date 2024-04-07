@@ -59,6 +59,7 @@ public class CommonActionsWithElements {
         }
     }
 
+
     protected boolean isElementDisplayed(WebElement webElement, String elementName) {
         try {
             boolean state = webElement.isDisplayed();
@@ -71,6 +72,36 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
+        }
+    }
+
+    protected boolean isElementNotDisplayed(WebElement webElement, String elementName) {
+        try {
+            boolean state = !webElement.isDisplayed();
+            if (state) {
+                logger.info(elementName + " Element is not displayed");
+            } else {
+                logger.info(elementName + " Element is displayed");
+            }
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return true;
+        }
+    }
+
+    protected boolean isElementNotDisplayed(WebElement webElement) {
+        try {
+            boolean state = !webElement.isDisplayed();
+            if (state) {
+                logger.info(getElementName(webElement) + " Element is not displayed");
+            } else {
+                logger.info(getElementName(webElement) + " Element is displayed");
+            }
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return true;
         }
     }
 

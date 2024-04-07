@@ -81,4 +81,24 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
 
     }
+
+    public boolean isInputLoginDisplayed() {
+        return isElementDisplayed(inputUserNameLoginForm);
+    }
+
+    public boolean isInputPasswordDisplayed() {
+        return isElementDisplayed(inputPasswordLoginForm);
+    }
+
+    public boolean isInputLoginNotDisplayed() {
+        return isElementNotDisplayed(inputUserNameLoginForm, "Input Login");
+    }
+
+    public boolean isInputPasswordNotDisplayed() {
+        return isElementNotDisplayed(inputPasswordLoginForm, "Input Password");
+    }
+
+    public boolean isButtonSignInNotDisplayed() {
+        return isElementNotDisplayed(buttonSignIn, "Sign In");
+    }
 }

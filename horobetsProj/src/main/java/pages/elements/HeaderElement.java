@@ -3,9 +3,7 @@ package pages.elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.CommonActionsWithElements;
-import pages.CreatePostPage;
-import pages.MyProfilePage;
+import pages.*;
 
 // описує елементи, які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionsWithElements {
@@ -19,6 +17,17 @@ public class HeaderElement extends CommonActionsWithElements {
 
     @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
+
+    @FindBy(xpath = "//span[contains(text(), 'qaauto')]")
+    private WebElement userName;
+
+    @FindBy(xpath = "//header//a[@class = 'text-white mr-2 header-search-icon']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//*[@class='text-white mr-2 header-chat-icon']")
+    private WebElement buttonChat;
+
+
 
 
     public HeaderElement(WebDriver webDriver) {
@@ -46,5 +55,53 @@ public class HeaderElement extends CommonActionsWithElements {
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public boolean isButtonCreatePostDisplayed() {
+        return isElementDisplayed(buttonCreatePost, "Button Create Post");
+    }
+
+    public boolean isButtonMyProfileDisplayed() {
+        return isElementDisplayed(buttonMyProfile, "Button My Profile");
+    }
+
+
+    public boolean isUserNameDisplayed() {
+        return isElementDisplayed(userName, "User Name");
+    }
+
+    public boolean isButtonSearchDisplayed() {
+        return isElementDisplayed(buttonSearch, "Button Search");
+    }
+
+
+    public boolean isButtonChatDisplayed() {
+        return isElementDisplayed(buttonChat,"Button Chat");
+    }
+
+
+    public LoginPage clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
+    }
+
+    public boolean isButtonSearchNotDisplayed() {
+        return isElementNotDisplayed(buttonSearch, "Button Search");
+    }
+
+    public boolean isButtonChatNotDisplayed() {
+        return isElementNotDisplayed(buttonChat, "Button Chat");
+    }
+
+    public boolean isButtonMyProfileNotDisplayed() {
+        return isElementNotDisplayed(buttonMyProfile, "Button My Profile");
+    }
+
+    public boolean isButtonCreatePostNotDisplayed() {
+        return isElementNotDisplayed(buttonCreatePost, "Button Create Post");
+    }
+
+    public boolean isButtonSignOutNotDisplayed() {
+        return isElementNotDisplayed(buttonSignOut, "Button Sign Out");
     }
 }
