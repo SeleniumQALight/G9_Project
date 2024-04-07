@@ -15,7 +15,7 @@ public class UnvalidLoginTestWithPageObject extends BaseTest {
 
         Assert.assertTrue("Error is not displayed", pageProvider.getLoginPage().isButtonSignInDisplayed());
         Assert.assertTrue("Error is not displayed", pageProvider.getLoginPage().isLoginErrorDisplayed());
-        Assert.assertFalse("Button Sign Out is not displayed", pageProvider.getHomePage().isButtonSignOutDisplayed());
+        Assert.assertFalse("Button Sign Out is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
     }
 
 }

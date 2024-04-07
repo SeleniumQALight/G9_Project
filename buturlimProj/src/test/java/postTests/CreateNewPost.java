@@ -2,6 +2,7 @@ package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPost extends BaseTest {
@@ -15,6 +16,7 @@ public class CreateNewPost extends BaseTest {
     pageProvider.getLoginPage()
             .openLoginPageAndFillLoginFormWithValidCred()
             .checkIsRedirectOnHomePage()
+            .getHeaderElement()
             .clickOnButtonCreatePost()
             .checkIsRedirectOnCreatePostPage()
             .enterTitleInToInputTitle(POST_TITLE)
@@ -31,6 +33,22 @@ public class CreateNewPost extends BaseTest {
             .checkTextInBody(POST_BODY)
             .checkNoteMessage(NOTE_MESSAGE)
     ;
+
+    pageProvider.getPostPage()
+            .getHeaderElement().clickOnMyProfileButton()
+            .checkIsRedirectToMyProfilePage()
+            .checkPostWithTitleIsPresent(POST_TITLE, 1)
+    ;
     }
+
+    @After
+    public void deletePost() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE);
+    }
+
 }
 
