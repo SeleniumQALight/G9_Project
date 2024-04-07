@@ -10,7 +10,7 @@ import pages.MyProfilePage;
 // описуємо елементи сторінки які є в хедері залогіненого користувача
 public class HeaderElement extends CommonActionsWithElements {
     // my profile
-    @FindBy(xpath = ".//a[@class='dropdown-toggle']")
+    @FindBy(xpath = "//img[@alt='My profile']")
     private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
