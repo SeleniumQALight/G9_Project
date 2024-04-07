@@ -1,14 +1,20 @@
 package pages;
 
+
 import data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
     }
 
     @Override
@@ -39,25 +45,14 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String text) {
-//        WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
-//        inputUserNameLoginForm.clear();
-//        inputUserNameLoginForm.sendKeys(text);
-//        logger.info(text + " was inputted into input Username");
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
 
     public void enterTextIntoInputPassword(String text) {
-//        WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-//        inputPasswordLoginForm.clear();
-//        inputPasswordLoginForm.sendKeys(text);
-//        logger.info(text + " was inputted into input Password");
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
     public void clickOnButtonSignIn (){
-//        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(), 'Sign In')]"));
-//        buttonSignIn.click();
-//        logger.info("Button Sign In was clicked");
         clickOnElement(buttonSignIn);
     }
 
@@ -76,6 +71,40 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+    public boolean isInputLoginDisplayed() {
+        return isElementDisplayed(inputUserNameLoginForm, "Input Login");
+    }
+
+    public boolean isInputPasswordDisplayed() {
+        return isElementDisplayed(inputPasswordLoginForm, "Input Password");
+    }
+
+    public boolean isButtonSignInNotDisplayed () {
+        return isElementNotDisplayed(buttonSignIn, "Button Sign In");
+    }
+
+    public boolean isInputLoginNotDisplayed() {
+        return isElementNotDisplayed(inputUserNameLoginForm, "Input Login");
+    }
+
+    public boolean isInputPasswordNotDisplayed() {
+        return isElementNotDisplayed(inputPasswordLoginForm, "Input Password");
+    }
+
+    public LoginPage checkIsRedirectOnLoginPage() {
+        checkUrl();
+        Assert.assertTrue("Button Sign Out displayed", getHeaderElement().isButtonSignOutNotDisplayed());
+        Assert.assertTrue("Search Icon displayed", getHeaderElement().isSearchIconNotDisplayed());
+        Assert.assertTrue("Chat Icon displayed", getHeaderElement().isChatIconNotDisplayed());
+        Assert.assertTrue("Button Create Post displayed", getHeaderElement().isButtonCreatePostNotDisplayed());
+        Assert.assertTrue("My Profile img displayed", getHeaderElement().isMyProfileButtonNotDisplayed());
+        Assert.assertTrue("Button Sign In is not displayed", isButtonSignInDisplayed());
+        Assert.assertTrue("Input Login is not displayed", isInputLoginDisplayed());
+        Assert.assertTrue("Input Password is not displayed", isInputPasswordDisplayed());
+        return this;
+    }
+
 }
 
 

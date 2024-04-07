@@ -41,7 +41,9 @@ public class PostPage extends ParentPage{
 
     public PostPage checkIsRedirectOnPostPage() {
         checkUrlWithPattern();
-        // TODO check some element that is only on this page
+        Assert.assertTrue("Title is not displayed", isElementDisplayed(titleMessage, "Title"));
+        Assert.assertTrue("Body is not displayed", isElementDisplayed(bodyMessage, "Body"));
+        Assert.assertTrue("Delete button is not displayed", isElementDisplayed(buttonDeletePost, "Delete button"));
         return this;
     }
 
