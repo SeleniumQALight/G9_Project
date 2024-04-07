@@ -101,4 +101,10 @@ public class LoginPage extends ParentPage{
     public boolean isButtonSignInNotDisplayed() {
         return isElementNotDisplayed(buttonSignIn, "Sign In");
     }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrl();
+        Assert.assertTrue("Invalid page Not Login page", isButtonSignInDisplayed());
+        return this;
+    }
 }

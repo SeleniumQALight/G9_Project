@@ -30,7 +30,7 @@ public class SignOutTests extends BaseTest {
         Assert.assertTrue("Button Sign In is displayed"
         , pageProvider.getLoginPage().isButtonSignInNotDisplayed());
 
-        pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
+        pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut().checkIsRedirectToLoginPage();
         Assert.assertTrue("Button Search is displayed"
                 , pageProvider.getHomePage().getHeaderElement().isButtonSearchNotDisplayed());
         Assert.assertTrue("Button Chat is displayed"
