@@ -38,10 +38,10 @@ public class HomePage extends ParentPage{
     }
 
     public boolean isButtonSignInDisplayed() {
-        return isElementDisplayed(buttonSignIn);
+        return isElementDisplayed(buttonSignIn, "Button Sign In");
     }
     public boolean isAlertMessageDisplayed() {
-        return isElementDisplayed(alertMessage);
+        return isElementDisplayed(alertMessage, "Alert Message");
     }
 
     public HomePage openHomePageAndLoginIfNeeded() {

@@ -74,6 +74,14 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+    protected void checkElementIsDisplayed(WebElement webElement){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+    }
+
+    protected void checkElementIsNotDisplayed(WebElement webElement) {
+        Assert.assertFalse("Element is not displayed", isElementDisplayed(webElement));
+    }
+
 
     // select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropDown, String text) {
