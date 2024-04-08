@@ -139,7 +139,7 @@ public class CommonActionsWithElements {
             } else if (neededState.equals("Unchecked") && !webElement.isSelected()) {
                 logger.info("Checkbox is already unchecked");
             } else {
-                logger.info("Do nothing with checkbox because checkbox are already in needed state");
+                logger.info("Wrong parameter for checkbox");
             }
         } catch (Exception e) {
             printErrorAndStopTest(e);
