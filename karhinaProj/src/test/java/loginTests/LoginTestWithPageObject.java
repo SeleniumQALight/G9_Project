@@ -13,16 +13,12 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
         pageProvider.getLoginPage().enterTextIntoPassword("123456qwerty");
         pageProvider.getLoginPage().clickOnButtonSignIn();
-
-        Assert.assertTrue("Button Sign Out is not displyed" ,
-                pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
-
-        Assert.assertTrue("Button Create Post is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonCreatePostDisplayed());
-        Assert.assertTrue("Button My Profile is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonMyProfileDisplayed());
-        Assert.assertTrue("User name is not displayed", pageProvider.getHomePage().getHeaderElement().checkIsUsernameIsPresent(USER_NAME));
-        Assert.assertFalse("Input UserName is displayed", pageProvider.getLoginPage().checkIsInputUserNameDisplayed());
-        Assert.assertFalse("Input Password is displayed", pageProvider.getLoginPage().checkIsInputPasswordDisplayed());
-
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostDisplayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonMyProfileDisplayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsUsernameIsPresent(USER_NAME);
+        pageProvider.getLoginPage().checkIsInputUserNameIsNotDisplayed();
+        pageProvider.getLoginPage().checkIsInputPasswordIsNotDisplayed();
 
     }
 

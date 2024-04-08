@@ -96,4 +96,29 @@ public class HeaderElement extends СommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
+    public boolean checkIsButtonSearchIsNotDisplayed() {
+        return checkElementIsNotDisplayed(buttonSearch);
+    }
+
+    public boolean checkIsButtonChatIsNotDisplayed() {
+        return checkElementIsNotDisplayed(buttonChat);
+    }
+
+    public boolean checkIsButtonMyProfileIsNotDisplayed() {
+        return checkElementIsNotDisplayed(buttonMyProfile);
+    }
+
+    public boolean checkIsButtonCreatePostIsNotDisplayed() {
+        return checkElementIsNotDisplayed(buttonCreatePost);
+    }
+    public boolean checkIsButtonSignOutIsNotDisplayed() {
+        return checkElementIsNotDisplayed(buttonSignOut);
+    }
+
+    public boolean checkIsUsernameIsNotPresent(String userName) {
+        Assert.assertFalse("Username is displayed", isElementDisplayed(getUserName(userName)));
+        return true;
+    }
+
+
 }

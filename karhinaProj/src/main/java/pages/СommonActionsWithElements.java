@@ -78,15 +78,18 @@ public class СommonActionsWithElements {
     }
 
     protected boolean checkElementIsDisplayed(WebElement webElement) {
-        try {
-            webDriverWait10.until(ExpectedConditions.visibilityOf(webElement));
-            Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
-            return true;
-        } catch (Exception e) {
-            logger.info("Element is not displayed");
-            return false;
-        }
+        webDriverWait10.until(ExpectedConditions.visibilityOf(webElement));
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+        return true;
     }
+
+    protected boolean checkElementIsNotDisplayed(WebElement webElement) {
+
+            webDriverWait10.until(ExpectedConditions.invisibilityOf(webElement));
+           Assert.assertFalse("Element is displayed", isElementDisplayed(webElement));
+            return true;
+    }
+
 
 
     // select text in dropdown by visible text
