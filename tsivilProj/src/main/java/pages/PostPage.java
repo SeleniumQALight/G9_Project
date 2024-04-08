@@ -24,6 +24,12 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = "//p[contains(text(), 'Is this post unique? : yes')]")
+    private WebElement postUniqueYes;
+
+    @FindBy(xpath = "//p[contains(text(), 'Is this post unique? : no')]")
+    private WebElement postUniqueNo;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -80,4 +86,17 @@ public class PostPage extends ParentPage{
         clickOnElement(buttonDeletePost);
         return new MyProfilePage(webDriver);
     }
-}
+
+    public PostPage checkValueIsThisPostUnique() {
+        if (isElementDisplayed(postUniqueYes)){
+            logger.info("Message 'Is this post unique? : yes' is displayed");
+        } else if (isElementDisplayed(postUniqueNo)){
+            logger.info("Message 'Is this post unique? : no' is displayed");
+        } else {
+            logger.error("Message 'Is this post unique? : yes' or 'Is this post unique? : no' is not displayed");
+            Assert.fail("Message 'Is this post unique? : yes' or 'Is this post unique? : no' is not displayed");
+        }
+        return this;
+    }
+    }
+

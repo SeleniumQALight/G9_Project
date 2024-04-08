@@ -125,15 +125,16 @@ public class CommonActionsWithElements {
 
 
     protected void checkCheckBoxNeededState(WebElement checkBox,String neededState){
-        if (checkBox.isSelected() && neededState.equals("Checked")){
-            logger.info("Checkbox is checked");
-        } else if (checkBox.isSelected() && neededState.equals("Unchecked")){
-            clickOnElement(checkBox);
-        } else if (!checkBox.isSelected() && neededState.equals("Checked")){
-            clickOnElement(checkBox);
-        } else if (!checkBox.isSelected() && neededState.equals("Unchecked")) {
-            logger.info("Checkbox is unchecked");
-        }else {
+        // check checkbox
+        if (neededState.equals("Checked")) {
+            setCheckBoxSelected(checkBox);
+        }
+        // uncheck checkbox
+        else if (neededState.equals("Unchecked")){
+            setCheckBoxUnselected(checkBox);
+        }
+        // error handling
+        else {
             logger.error("State of checkbox is not expected");
             Assert.fail("State of checkbox is not expected");
         }

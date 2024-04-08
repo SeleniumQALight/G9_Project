@@ -26,6 +26,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkYourTitleIsPostWasAdded(POST_TITLE)
+                .checkValueIsThisPostUnique()
                 .checkYourBodyIsPostWasAdded("body text")
                 .checkTheNoteAboutOnePersonIsPresent("One Person")
 
