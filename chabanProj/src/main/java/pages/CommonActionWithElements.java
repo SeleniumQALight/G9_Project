@@ -44,33 +44,44 @@ public class CommonActionWithElements {
         }
     }
 
-    protected boolean isElementDisplayed(WebElement webElement){
-        try{
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
             boolean state = webElement.isDisplayed();
-            if (state){
+            if (state) {
                 logger.info(getElementName(webElement) + " Element is displayed ");
-            }else{
+            } else {
                 logger.info(getElementName(webElement) + " Element is not displayed");
             }
             return state;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
         }
     }
-    protected boolean isElementDisplayed(WebElement webElement, String elementName){
-        try{
+
+
+    protected boolean isElementDisplayed(WebElement webElement, String elementName) {
+        try {
             boolean state = webElement.isDisplayed();
-            if (state){
+            if (state) {
                 logger.info(elementName + " Element is displayed ");
-            }else{
+            } else {
                 logger.info(elementName + " Element is not displayed");
             }
             return state;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
         }
+
+    }
+
+    public void checkElementIsDisplayed(WebElement webElement){
+            Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+        }
+
+    public void checkElementIsNotDisplayed(WebElement webElement) {
+        Assert.assertTrue("Element is displayed", !isElementDisplayed(webElement));
     }
 
 

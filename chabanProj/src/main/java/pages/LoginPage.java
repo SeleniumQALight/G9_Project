@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage{
     @FindBy(xpath = "//button[contains(text(),'Sign In')]") //ініціалізується в commonActionWithElements
@@ -15,6 +16,7 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -64,5 +66,32 @@ public class LoginPage extends ParentPage{
         enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+    public boolean isUserNameInputDisplayed(){
+        return isElementDisplayed(inputUserNameLoginForm);
+    }
+    public boolean isPasswordInputDisplayed(){
+        return isElementDisplayed(inputPasswordLoginForm);
+    }
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrlWithPattern();
+        //TODO check some element that is only on this page //dz
+        return this;
+    }
+    public LoginPage assertionsForLoginPageElementsDisplayed() {
+        checkElementIsDisplayed(inputUserNameLoginForm);
+        checkElementIsDisplayed(inputPasswordLoginForm);
+        checkElementIsDisplayed(buttonSignIn);
+        return this;
+    }
+    public LoginPage assertionsForLoginPageElementsAreNotDisplayed() {
+        checkElementIsNotDisplayed(inputUserNameLoginForm);
+        checkElementIsNotDisplayed(inputPasswordLoginForm);
+        checkElementIsNotDisplayed(buttonSignIn);
+        return this;
+    }
+
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
     }
 }

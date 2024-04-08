@@ -15,6 +15,9 @@ public class MyProfilePage extends ParentPage {
 
     private String postTitleLocator = ".//*[text()='%s']"; // параметризований локатор
 
+    @FindBy(xpath = "//*[@class='avatar-small']")
+    private WebElement avatarSmall;
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -26,7 +29,8 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
-        // TODO check some element that is only on this page
+        Assert.assertTrue("Avatar small is not displayed"
+                , isElementDisplayed(avatarSmall, "Avatar Small"));
         return this;
     }
 
@@ -47,7 +51,7 @@ public class MyProfilePage extends ParentPage {
         List<WebElement> postsList = getPostsWithTitle(postTitle);
         int counter = 0;
         final int MAX_POST_COUNT = 100; // final int MAX_POST_COUNT = postList.size() - можна було замість 100 поставити
-        while (!postsList.isEmpty() && (counter < MAX_POST_COUNT)){
+        while (!postsList.isEmpty() && (counter < MAX_POST_COUNT)) {
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
@@ -63,7 +67,6 @@ public class MyProfilePage extends ParentPage {
         }
         return this;
     }
-
 
 
     public MyProfilePage checkIsMessageSuccessDeletePresent() {
