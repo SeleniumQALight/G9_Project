@@ -7,13 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class HomePage extends ParentPage{
+public class HomePage extends ParentPage {
 
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
 
     }
+
 
     @Override
     protected String getRelativeUrl() {
@@ -22,7 +23,7 @@ public class HomePage extends ParentPage{
 
 
     public HomePage checkIsRedirectToHomePage() {
-       checkUrl();
+        checkUrl();
         Assert.assertTrue("Invalid Page Not Home Page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
@@ -47,4 +48,7 @@ public class HomePage extends ParentPage{
         return this;
     }
 }
+
+
+
 
