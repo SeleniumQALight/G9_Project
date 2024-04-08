@@ -97,6 +97,52 @@ public class CommonActionsWithElements {
         Assert.fail("Can not work with element " + e);
     }
 
+    protected void setCheckBoxSelected(WebElement webElement){
+        try{
+            if (!webElement.isSelected()){
+                webElement.click();
+                logger.info("Checkbox was selected");
+            }else{
+                logger.info("Checkbox was already selected");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckBoxUnselected(WebElement webElement){
+        try{
+            if (webElement.isSelected()){
+                webElement.click();
+                logger.info("Checkbox was unselected");
+            }else{
+                logger.info("Checkbox was already unselected");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+    protected void checkCheckBoxNeededState(WebElement checkBox,String neededState){
+        // check checkbox
+        if (neededState.equals("Checked")) {
+            setCheckBoxSelected(checkBox);
+        }
+        // uncheck checkbox
+        else if (neededState.equals("Unchecked")){
+            setCheckBoxUnselected(checkBox);
+        }
+        // error handling
+        else {
+            logger.error("State of checkbox is not expected");
+            Assert.fail("State of checkbox is not expected");
+        }
+    }
+
+
+
+
     private String getElementName(WebElement webElement){
         try {
         return webElement.getAccessibleName();
