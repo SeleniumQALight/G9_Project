@@ -1,10 +1,12 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import data.TestData;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginTestWithPageObject extends BaseTest {
+    final String USER_NAME = "qaauto";
     @Test
     public  void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
@@ -17,9 +19,10 @@ public class LoginTestWithPageObject extends BaseTest {
 
         Assert.assertTrue("Button Create Post is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonCreatePostDisplayed());
         Assert.assertTrue("Button My Profile is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonMyProfileDisplayed());
-        Assert.assertTrue("User name is not displayed", pageProvider.getHomePage().getHeaderElement().isUserNameDisplayed());
-        Assert.assertTrue("Input UserName is displayed", pageProvider.getHomePage().isInputUserNameHomePageIsNotDisplayed());
-        Assert.assertTrue("Input Password is displayed", pageProvider.getHomePage().isInputPasswordHomePageIsNotDisplayed());
+        Assert.assertTrue("User name is not displayed", pageProvider.getHomePage().getHeaderElement().checkIsUsernameIsPresent(USER_NAME));
+        Assert.assertFalse("Input UserName is displayed", pageProvider.getLoginPage().checkIsInputUserNameDisplayed());
+        Assert.assertFalse("Input Password is displayed", pageProvider.getLoginPage().checkIsInputPasswordDisplayed());
+
 
     }
 

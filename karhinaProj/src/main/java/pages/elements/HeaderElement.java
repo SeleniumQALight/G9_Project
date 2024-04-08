@@ -1,9 +1,13 @@
 package pages.elements;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.*;
+
+import java.util.List;
 
 public class HeaderElement extends СommonActionsWithElements {
 
@@ -11,30 +15,30 @@ public class HeaderElement extends СommonActionsWithElements {
 
     //myProfile button
 
-    @FindBy (xpath = "//img[@alt='My profile']")
-            private WebElement buttonMyProfile;
+    @FindBy(xpath = "//img[@alt='My profile']")
+    private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
     private WebElement buttonSignOut;
     @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
-    @FindBy(xpath = "//span[contains(text(), 'qaauto')]")
+    @FindBy(xpath = "//span[contains(text(), '%s')]")
     private WebElement userName;
     @FindBy(xpath = "//a[@data-original-title = 'Search']")
     private WebElement buttonSearch;
     @FindBy(xpath = "//span[@data-original-title = 'Chat']")
     private WebElement buttonChat;
 
-
+    private String userNameLocator = ".//span[contains(text(), '%s')]";
 
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public MyProfilePage clickOnMyProfileButton(){
+    public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
-        return new MyProfilePage (webDriver);
+        return new MyProfilePage(webDriver);
     }
 
     public boolean isButtonSignOutDisplayed() {
@@ -49,36 +53,37 @@ public class HeaderElement extends СommonActionsWithElements {
         return isElementDisplayed(buttonMyProfile);
     }
 
-    public boolean isUserNameDisplayed() {
-        return isElementDisplayed(userName);
+    public boolean checkIsButtonSignOutDisplayed() {
+        return checkElementIsDisplayed(buttonSignOut);
     }
 
-    public boolean isButtonSearchDisplayed() {
-        return isElementDisplayed(buttonSearch);
+    public boolean checkIsButtonCreatePostDisplayed() {
+        return checkElementIsDisplayed(buttonCreatePost);
     }
-    public boolean isButtonChatDisplayed() {
-        return isElementDisplayed(buttonChat);
+
+    public boolean checkIsButtonMyProfileDisplayed() {
+        return checkElementIsDisplayed(buttonMyProfile);
     }
 
 
-    public boolean isButtonCreatePostNotDisplayed() {
-        return isElementIsNotDisplayed(buttonCreatePost);
+    private WebElement getUserName(String userName) {
+        String locator = String.format(userNameLocator, userName);
+        return webDriver.findElement(By.xpath(locator));
     }
 
-    public boolean isButtonMyProfileNotDisplayed() {
-        return isElementIsNotDisplayed(buttonMyProfile);
+    public boolean checkIsUsernameIsPresent(String userName) {
+        Assert.assertTrue("Username is not displayed", isElementDisplayed(getUserName(userName)));
+        return true;
     }
 
-    public boolean isButtonSearchNotDisplayed() {
-        return isElementIsNotDisplayed(buttonSearch);
-    }
-    public boolean isButtonChatNotDisplayed() {
-        return isElementIsNotDisplayed(buttonChat);
+    public boolean checkIsButtonSearchDisplayed() {
+        return checkElementIsDisplayed(buttonSearch);
     }
 
-    public boolean isButtonSignOutNotDisplayed() {
-        return isElementIsNotDisplayed(buttonSignOut);
+    public boolean checkIsButtonChatDisplayed() {
+        return checkElementIsDisplayed(buttonChat);
     }
+
 
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
@@ -90,4 +95,5 @@ public class HeaderElement extends СommonActionsWithElements {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
     }
+
 }

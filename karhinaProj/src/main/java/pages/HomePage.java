@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class HomePage extends ParentPage{
+public class HomePage extends ParentPage {
 
 
     public HomePage(WebDriver webDriver) {
@@ -15,14 +15,6 @@ public class HomePage extends ParentPage{
 
     }
 
-    @FindBy(xpath = "//input[@placeholder='Username']")
-    private  WebElement inputUserNameLoginForm;
-
-    @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPasswordLoginForm;
-
-    @FindBy(xpath = "//button[contains(text(),'Sign In')]")
-    private WebElement buttonSignIn;
 
     @Override
     protected String getRelativeUrl() {
@@ -31,7 +23,7 @@ public class HomePage extends ParentPage{
 
 
     public HomePage checkIsRedirectToHomePage() {
-       checkUrl();
+        checkUrl();
         Assert.assertTrue("Invalid Page Not Home Page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
@@ -55,27 +47,8 @@ public class HomePage extends ParentPage{
         }
         return this;
     }
-
-    public boolean isInputUserNameHomePageDisplayed() {
-        return isElementDisplayed(inputUserNameLoginForm);
-    }
-
-    public boolean isInputPasswordHomePageDisplayed() {
-        return isElementDisplayed(inputPasswordLoginForm);
-    }
-
-    public boolean isInputUserNameHomePageIsNotDisplayed () {
-        return isElementIsNotDisplayed(inputUserNameLoginForm);
-    }
-
-    public boolean isInputPasswordHomePageIsNotDisplayed () {
-        return isElementIsNotDisplayed(inputPasswordLoginForm);
-    }
-
-
-    public boolean isButtonSignInHomePageIsNotDisplayed () {
-        return !isElementDisplayed(buttonSignIn);
-    }
-
 }
+
+
+
 

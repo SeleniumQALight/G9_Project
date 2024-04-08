@@ -9,36 +9,37 @@ public class SignOutTest extends BaseTest {
     public void validSignOut() {
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCred().checkIsRedirectToHomePage();
         Assert.assertTrue("Button Search is not displayed",
-                pageProvider.getHomePage().getHeaderElement().isButtonSearchDisplayed());
+                pageProvider.getHomePage().getHeaderElement().checkIsButtonSearchDisplayed());
         Assert.assertTrue("Button Chat is not displayed",
-                pageProvider.getHomePage().getHeaderElement().isButtonChatDisplayed());
+                pageProvider.getHomePage().getHeaderElement().checkIsButtonChatDisplayed());
         Assert.assertTrue("Avatar is not displayed",
-                pageProvider.getHomePage().getHeaderElement().isButtonMyProfileDisplayed());
+                pageProvider.getHomePage().getHeaderElement().checkIsButtonMyProfileDisplayed());
         Assert.assertTrue("Button Create Post is not displayed",
-                pageProvider.getHomePage().getHeaderElement().isButtonCreatePostDisplayed());
-        Assert.assertTrue("Button Sign In is not displayed",
-                pageProvider.getHomePage().isButtonSignInHomePageIsNotDisplayed());
-        Assert.assertTrue("Input UserName is displayed",
-                pageProvider.getHomePage().isInputUserNameHomePageIsNotDisplayed());
-        Assert.assertTrue("Input Password is displayed",
-                pageProvider.getHomePage().isInputPasswordHomePageIsNotDisplayed());
+                pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostDisplayed());
+        Assert.assertFalse("Button Sign In is displayed",
+                pageProvider.getLoginPage().checkIsButtonSignInDisplayed());
+        Assert.assertFalse("Input UserName is displayed",
+                pageProvider.getLoginPage().checkIsInputUserNameDisplayed());
+        Assert.assertFalse("Input Password is displayed",
+                pageProvider.getLoginPage().checkIsInputPasswordDisplayed());
 
 
 
             pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut().checkIsRedirectToLoginPage();
             Assert.assertTrue("Input UserName is not displayed",
-                    pageProvider.getLoginPage().isInputUserNameDisplayed());
+                    pageProvider.getLoginPage().checkIsInputUserNameDisplayed());
             Assert.assertTrue("Input Password is not displayed",
-                    pageProvider.getLoginPage().isInputPasswordDisplayed());
-            Assert.assertTrue("Button Sign Out Sign out is displayed",
-                    pageProvider.getHomePage().getHeaderElement().isButtonSignOutNotDisplayed());
-            Assert.assertTrue("Button Create Post is displayed",
-                    pageProvider.getHomePage().getHeaderElement().isButtonCreatePostNotDisplayed());
-            Assert.assertTrue("Button Search is displayed",
-                    pageProvider.getHomePage().getHeaderElement().isButtonSearchNotDisplayed());
-            Assert.assertTrue("Button Chat is displayed",
-                    pageProvider.getHomePage().getHeaderElement().isButtonChatNotDisplayed());
-            Assert.assertTrue("Avatar is displayed",
-                    pageProvider.getHomePage().getHeaderElement().isButtonMyProfileNotDisplayed());
+                    pageProvider.getLoginPage().checkIsInputPasswordDisplayed());
+            Assert.assertFalse("Button Sign Out is displayed",
+                    pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed());
+            Assert.assertFalse("Button Create Post is displayed",
+                    pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostDisplayed());
+            Assert.assertFalse("Button Search is displayed",
+                    pageProvider.getHomePage().getHeaderElement().checkIsButtonSearchDisplayed());
+            Assert.assertFalse("Button Chat is displayed",
+                    pageProvider.getHomePage().getHeaderElement().checkIsButtonChatDisplayed());
+            Assert.assertFalse("Avatar is displayed",
+                    pageProvider.getHomePage().getHeaderElement().checkIsButtonMyProfileDisplayed());
+
         }
 }

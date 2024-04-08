@@ -73,11 +73,17 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
-    public boolean isInputUserNameDisplayed() {
-        return isElementDisplayed(inputUserNameLoginForm);
+
+    public boolean checkIsInputUserNameDisplayed() {
+        return checkElementIsDisplayed(inputUserNameLoginForm);
     }
 
-    public boolean isInputPasswordDisplayed() {
-        return isElementDisplayed(inputPasswordLoginForm);
+    public boolean checkIsInputPasswordDisplayed() {
+        return checkElementIsDisplayed(inputPasswordLoginForm);
+    }
+
+    public boolean checkIsButtonSignInDisplayed() {
+        return checkElementIsDisplayed(buttonSignIn);
     }
 }
+

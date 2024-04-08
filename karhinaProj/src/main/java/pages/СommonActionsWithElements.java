@@ -77,20 +77,14 @@ public class СommonActionsWithElements {
         }
     }
 
-    protected boolean isElementIsNotDisplayed(WebElement webElement) {
+    protected boolean checkElementIsDisplayed(WebElement webElement) {
         try {
-            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
-            String elementName = getElementName(webElement);
-            boolean state = webElement.isDisplayed();
-            if (!state) {
-                logger.info(elementName + " Element is not displayed");
-            } else {
-                logger.info(elementName + " Element is displayed");
-            }
-            return !state;
+            webDriverWait10.until(ExpectedConditions.visibilityOf(webElement));
+            Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+            return true;
         } catch (Exception e) {
             logger.info("Element is not displayed");
-            return true;
+            return false;
         }
     }
 
