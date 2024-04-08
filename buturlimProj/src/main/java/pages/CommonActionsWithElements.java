@@ -2,7 +2,6 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -61,19 +60,12 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isElementNotDisplayed(WebElement webElement, String elementName) {
-        try {
-            boolean state = !webElement.isDisplayed();
-            if (state) {
-                logger.info(elementName + " : element is not displayed");
-            } else {
-                logger.info(elementName + " : element is displayed");
-            }
-            return state;
-        } catch (NoSuchElementException e) {
-            logger.info("Element is not displayed");
-            return true;
-        }
+    protected void checkIsElementVisible(WebElement webElement, String elementName) {
+        Assert.assertTrue(elementName + " is not displayed", isElementDisplayed(webElement, elementName));
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement, String elementName  ) {
+        Assert.assertFalse(elementName + " is displayed", isElementDisplayed(webElement, elementName));
     }
 
     // Select text in dropdown by visible text

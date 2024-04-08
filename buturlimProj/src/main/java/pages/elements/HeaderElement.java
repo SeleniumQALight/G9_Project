@@ -27,24 +27,14 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//header//span[@class='text-white mr-2 header-chat-icon']")
     private WebElement chatIcon;
 
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
-    }
-
-    public boolean isMyProfileButtonDisplayed() {
-        return isElementDisplayed(myProfileButton, "My Profile Button");
     }
 
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(myProfileButton);
         return new MyProfilePage(webDriver);
-    }
-    public boolean isButtonSignOutDisplayed() {
-        return isElementDisplayed(buttonSignOut, "Button Sign Out");
-    }
-
-    public boolean isButtonCreatePostDisplayed() {
-        return isElementDisplayed(buttonCreatePost, "Button Create Post");
     }
 
     public CreatePostPage clickOnButtonCreatePost() {
@@ -57,6 +47,19 @@ public class HeaderElement extends CommonActionsWithElements {
         return profileName.getText();
     }
 
+    //isDisplayed
+    public boolean isButtonSignOutDisplayed() {
+        return isElementDisplayed(buttonSignOut, "Button Sign Out");
+    }
+
+    public boolean isMyProfileButtonDisplayed() {
+        return isElementDisplayed(myProfileButton, "My Profile Button");
+    }
+
+    public boolean isButtonCreatePostDisplayed() {
+        return isElementDisplayed(buttonCreatePost, "Button Create Post");
+    }
+
     public boolean isSearchIconDisplayed() {
         return isElementDisplayed(searchIcon, "Search Icon");
     }
@@ -65,30 +68,74 @@ public class HeaderElement extends CommonActionsWithElements {
         return isElementDisplayed(chatIcon, "Chat Icon");
     }
 
-    public boolean isButtonSignOutNotDisplayed() {
-        return isElementNotDisplayed(buttonSignOut, "Button Sign Out");
+    public boolean isUserNameDisplayed() {
+        return isElementDisplayed(profileName, "User Name");
     }
 
-    public boolean isMyProfileButtonNotDisplayed() {
-        return isElementNotDisplayed(myProfileButton, "My Profile Button");
+    //check is displayed
+
+    public HomePage checkIsButtonSignOutVisible() {
+        checkIsElementVisible(buttonSignOut, "Button Sign Out");
+        return new HomePage(webDriver);
     }
 
-    public boolean isButtonCreatePostNotDisplayed() {
-        return isElementNotDisplayed(buttonCreatePost, "Button Create Post");
+    public HomePage checkIsMyProfileButtonVisible() {
+        checkIsElementVisible(myProfileButton, "My Profile Button");
+        return new HomePage(webDriver);
     }
 
-    public boolean isSearchIconNotDisplayed() {
-        return isElementNotDisplayed(searchIcon, "Search Icon");
+    public HomePage checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost, "Button Create Post");
+        return new HomePage(webDriver);
     }
 
-    public boolean isChatIconNotDisplayed() {
-        return isElementNotDisplayed(chatIcon, "Chat Icon");
+    public HomePage checkIsSearchIconVisible() {
+        checkIsElementVisible(searchIcon, "Search Icon");
+        return new HomePage(webDriver);
     }
+
+    public HomePage checkIsChatIconVisible() {
+        checkIsElementVisible(chatIcon, "Chat Icon");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsUserNameVisible() {
+        checkIsElementVisible(profileName, "User Name");
+        return new HomePage(webDriver);
+    }
+
+    //check is not displayed
+    public HomePage isButtonSignOutNotVisible() {
+        checkIsElementNotVisible(buttonSignOut, "Button Sign Out");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage isMyProfileButtonNotVisible() {
+        checkIsElementNotVisible(myProfileButton, "My Profile Button");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage isButtonCreatePostNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost, "Button Create Post");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage isSearchIconNotVisible() {
+        checkIsElementNotVisible(searchIcon, "Search Icon");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage isChatIconNotVisible() {
+        checkIsElementNotVisible(chatIcon, "Chat Icon");
+        return new HomePage(webDriver);
+    }
+
 
     public LoginPage logOut() {
         clickOnElement(buttonSignOut);
         logger.info("Button Sign Out was clicked");
         return new LoginPage(webDriver);
     }
+
 
 }

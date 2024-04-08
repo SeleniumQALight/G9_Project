@@ -52,11 +52,11 @@ public class LoginPage extends ParentPage {
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
-    public void clickOnButtonSignIn (){
+    public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
-    public boolean isLoginErrorDisplayed(){
+    public boolean isLoginErrorDisplayed() {
         return isElementDisplayed(loginError, "Login Error");
     }
 
@@ -72,36 +72,38 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public boolean isInputLoginDisplayed() {
-        return isElementDisplayed(inputUserNameLoginForm, "Input Login");
-    }
-
-    public boolean isInputPasswordDisplayed() {
-        return isElementDisplayed(inputPasswordLoginForm, "Input Password");
-    }
-
-    public boolean isButtonSignInNotDisplayed () {
-        return isElementNotDisplayed(buttonSignIn, "Button Sign In");
-    }
-
-    public boolean isInputLoginNotDisplayed() {
-        return isElementNotDisplayed(inputUserNameLoginForm, "Input Login");
-    }
-
-    public boolean isInputPasswordNotDisplayed() {
-        return isElementNotDisplayed(inputPasswordLoginForm, "Input Password");
-    }
-
     public LoginPage checkIsRedirectOnLoginPage() {
         checkUrl();
-        Assert.assertTrue("Button Sign Out displayed", getHeaderElement().isButtonSignOutNotDisplayed());
-        Assert.assertTrue("Search Icon displayed", getHeaderElement().isSearchIconNotDisplayed());
-        Assert.assertTrue("Chat Icon displayed", getHeaderElement().isChatIconNotDisplayed());
-        Assert.assertTrue("Button Create Post displayed", getHeaderElement().isButtonCreatePostNotDisplayed());
-        Assert.assertTrue("My Profile img displayed", getHeaderElement().isMyProfileButtonNotDisplayed());
-        Assert.assertTrue("Button Sign In is not displayed", isButtonSignInDisplayed());
-        Assert.assertTrue("Input Login is not displayed", isInputLoginDisplayed());
-        Assert.assertTrue("Input Password is not displayed", isInputPasswordDisplayed());
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginVisible() {
+        checkIsElementVisible(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputPasswordLoginForm, "Input Password");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn, "Button Sign In");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotVisible() {
+        checkIsElementNotVisible(buttonSignIn, "Button Sign In");
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPasswordLoginForm, "Input Password");
         return this;
     }
 
