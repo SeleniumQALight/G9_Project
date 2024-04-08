@@ -81,4 +81,51 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
 
     }
+
+    public boolean isInputLoginDisplayed() {
+        return isElementDisplayed(inputUserNameLoginForm);
+    }
+
+    public boolean isInputPasswordDisplayed() {
+        return isElementDisplayed(inputPasswordLoginForm);
+    }
+
+
+
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrl();
+        Assert.assertTrue("Invalid page Not Login page", isButtonSignInDisplayed());
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginNotDispayed() {
+        checkElementsNotDisplayed(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordNotDispayed() {
+        checkElementsNotDisplayed(inputPasswordLoginForm, "Input Password");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotDisplayed() {
+        checkElementsNotDisplayed(buttonSignIn, "Button Sign In");
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginDispayed() {
+        checkElementsDisplayed(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordDispayed() {
+        checkElementsDisplayed(inputPasswordLoginForm, "Input Password");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInDisplayed() {
+        checkElementsDisplayed(buttonSignIn, "Button Sign In");
+        return this;
+    }
 }
