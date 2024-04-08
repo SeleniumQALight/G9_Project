@@ -28,8 +28,6 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement buttonChat;
 
 
-
-
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -76,7 +74,7 @@ public class HeaderElement extends CommonActionsWithElements {
 
 
     public boolean isButtonChatDisplayed() {
-        return isElementDisplayed(buttonChat,"Button Chat");
+        return isElementDisplayed(buttonChat, "Button Chat");
     }
 
 
@@ -85,23 +83,60 @@ public class HeaderElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
-    public boolean isButtonSearchNotDisplayed() {
-        return isElementNotDisplayed(buttonSearch, "Button Search");
+    public HomePage checkIsButtonCreatePostDispayed() {
+        checkElementsDisplayed(buttonCreatePost, "Button Create Post");
+        return new HomePage(webDriver);
     }
 
-    public boolean isButtonChatNotDisplayed() {
-        return isElementNotDisplayed(buttonChat, "Button Chat");
+
+    public HomePage checkIsButtonMyProfileDisplayed() {
+        checkElementsDisplayed(buttonMyProfile, "Button My Profile");
+        return new HomePage(webDriver);
     }
 
-    public boolean isButtonMyProfileNotDisplayed() {
-        return isElementNotDisplayed(buttonMyProfile, "Button My Profile");
+    public HomePage checkIsUserNameDisplayed() {
+        checkElementsDisplayed(userName, "User Name");
+        return new HomePage(webDriver);
     }
 
-    public boolean isButtonCreatePostNotDisplayed() {
-        return isElementNotDisplayed(buttonCreatePost, "Button Create Post");
+    public HomePage checkIsButtonSearchDisplayed() {
+        checkElementsDisplayed(buttonSearch, "Button Search");
+        return new HomePage(webDriver);
+
     }
 
-    public boolean isButtonSignOutNotDisplayed() {
-        return isElementNotDisplayed(buttonSignOut, "Button Sign Out");
+    public HomePage checkIsButtonChatDisplayed() {
+        checkElementsDisplayed(buttonChat, "Button Chat");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsButtonSignOutDisplayed() {
+        checkElementsDisplayed(buttonSignOut, "Button Sign Out");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsButtonSearchNotDisplayed() {
+        checkElementsNotDisplayed(buttonSearch, "Button Search");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsButtonChatNotDisplayed() {
+        checkElementsNotDisplayed(buttonChat, "Button Chat");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsButtonMyProfileNotDisplayed() {
+        checkElementsNotDisplayed(buttonMyProfile, "Button My Profile");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsButtonCreatePostNotDisplayed() {
+        checkElementsNotDisplayed(buttonCreatePost, "Button Create Post");
+        return new HomePage(webDriver);
+    }
+
+    public HomePage checkIsButtonSignOutNotDisplayed() {
+        checkElementsNotDisplayed(buttonSignOut, "Button Sign Out");
+        return new HomePage(webDriver);
     }
 }

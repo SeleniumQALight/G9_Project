@@ -90,21 +90,42 @@ public class LoginPage extends ParentPage{
         return isElementDisplayed(inputPasswordLoginForm);
     }
 
-    public boolean isInputLoginNotDisplayed() {
-        return isElementNotDisplayed(inputUserNameLoginForm, "Input Login");
-    }
 
-    public boolean isInputPasswordNotDisplayed() {
-        return isElementNotDisplayed(inputPasswordLoginForm, "Input Password");
-    }
 
-    public boolean isButtonSignInNotDisplayed() {
-        return isElementNotDisplayed(buttonSignIn, "Sign In");
-    }
 
     public LoginPage checkIsRedirectToLoginPage() {
         checkUrl();
         Assert.assertTrue("Invalid page Not Login page", isButtonSignInDisplayed());
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginNotDispayed() {
+        checkElementsNotDisplayed(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordNotDispayed() {
+        checkElementsNotDisplayed(inputPasswordLoginForm, "Input Password");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotDisplayed() {
+        checkElementsNotDisplayed(buttonSignIn, "Button Sign In");
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginDispayed() {
+        checkElementsDisplayed(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordDispayed() {
+        checkElementsDisplayed(inputPasswordLoginForm, "Input Password");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInDisplayed() {
+        checkElementsDisplayed(buttonSignIn, "Button Sign In");
         return this;
     }
 }

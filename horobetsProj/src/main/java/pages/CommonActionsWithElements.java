@@ -75,35 +75,6 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isElementNotDisplayed(WebElement webElement, String elementName) {
-        try {
-            boolean state = !webElement.isDisplayed();
-            if (state) {
-                logger.info(elementName + " Element is not displayed");
-            } else {
-                logger.info(elementName + " Element is displayed");
-            }
-            return state;
-        } catch (Exception e) {
-            logger.info("Element is not displayed");
-            return true;
-        }
-    }
-
-    protected boolean isElementNotDisplayed(WebElement webElement) {
-        try {
-            boolean state = !webElement.isDisplayed();
-            if (state) {
-                logger.info(getElementName(webElement) + " Element is not displayed");
-            } else {
-                logger.info(getElementName(webElement) + " Element is displayed");
-            }
-            return state;
-        } catch (Exception e) {
-            logger.info("Element is not displayed");
-            return true;
-        }
-    }
 
     // select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text) {
@@ -163,6 +134,15 @@ public class CommonActionsWithElements {
         } else {
             logger.info("Сheckbox state is not selected.");
         }
+    }
+
+    protected void checkElementsDisplayed(WebElement webElement, String elementName) {
+        Assert.assertTrue(elementName + " is not displayed", isElementDisplayed(webElement, elementName));
+    }
+
+
+    protected void checkElementsNotDisplayed(WebElement webElement, String elementName) {
+        Assert.assertFalse(elementName + " is displayed", isElementDisplayed(webElement, elementName));
     }
 
 
