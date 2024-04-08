@@ -28,16 +28,6 @@ public class HeaderElement extends CommonActionWithElements {
     @FindBy(xpath = "//*[@class='text-white mr-2 header-chat-icon']")
     private WebElement chatIcon;
 
-    @FindBy(xpath = "//button[contains(text(),'Sign In')]") //ініціалізується в commonActionWithElements
-    private WebElement buttonSignIn;
-
-    @FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement inputUserNameLoginForm;
-
-    @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPasswordLoginForm;
-
-
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
