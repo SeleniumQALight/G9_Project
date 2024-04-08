@@ -32,6 +32,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = "//*[@class='svg-inline--fa fa-edit fa-w-18']")
+    private WebElement buttonEditPost;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -47,7 +50,10 @@ public class PostPage extends ParentPage {
 
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
-        // TODO check some element that is only on this page
+        Assert.assertTrue("Button Delete Post is not displayed"
+                , isElementDisplayed(buttonDeletePost, "Button Delete Post"));
+        Assert.assertTrue("Button Edit Post is not displayed"
+                , isElementDisplayed(buttonEditPost, "Button Edit Post"));
         return this;
     }
 
