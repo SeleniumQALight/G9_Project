@@ -16,6 +16,12 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Button Sign Out ia not displayed"
                 , pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
 
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostDispayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonMyProfileDisplayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsUserNameDisplayed();
+        pageProvider.getLoginPage().checkIsInputLoginNotDispayed();
+        pageProvider.getLoginPage().checkIsInputPasswordNotDispayed();
+
         }
 
     @Test

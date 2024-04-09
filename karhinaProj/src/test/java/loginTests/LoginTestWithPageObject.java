@@ -1,19 +1,24 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import data.TestData;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginTestWithPageObject extends BaseTest {
+    final String USER_NAME = "qaauto";
     @Test
     public  void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
         pageProvider.getLoginPage().enterTextIntoPassword("123456qwerty");
         pageProvider.getLoginPage().clickOnButtonSignIn();
-
-        Assert.assertTrue("Button Sign Out is not displyed" ,
-                pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostDisplayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonMyProfileDisplayed();
+        pageProvider.getHomePage().getHeaderElement().checkIsUsernameIsPresent(USER_NAME);
+        pageProvider.getLoginPage().checkIsInputUserNameIsNotDisplayed();
+        pageProvider.getLoginPage().checkIsInputPasswordIsNotDisplayed();
 
     }
 
@@ -34,3 +39,8 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
 }
+
+
+//1. додати перевірки в тест на валідний логін:
+//- що після того як залогінилися, ми бачимо кнопки Create Post, MyProfile, імʼя юзера
+//- і не бачимо інпутів куди ми вводили логін та пароль

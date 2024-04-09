@@ -59,6 +59,7 @@ public class CommonActionsWithElements {
         }
     }
 
+
     protected boolean isElementDisplayed(WebElement webElement, String elementName) {
         try {
             boolean state = webElement.isDisplayed();
@@ -73,6 +74,7 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+
 
     // select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text) {
@@ -132,6 +134,15 @@ public class CommonActionsWithElements {
         } else {
             logger.info("Сheckbox state is not selected.");
         }
+    }
+
+    protected void checkElementsDisplayed(WebElement webElement, String elementName) {
+        Assert.assertTrue(elementName + " is not displayed", isElementDisplayed(webElement, elementName));
+    }
+
+
+    protected void checkElementsNotDisplayed(WebElement webElement, String elementName) {
+        Assert.assertFalse(elementName + " is displayed", isElementDisplayed(webElement, elementName));
     }
 
 
