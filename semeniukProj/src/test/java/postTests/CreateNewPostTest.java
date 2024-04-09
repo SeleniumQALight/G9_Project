@@ -19,10 +19,15 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoInputBody("body text")
 //                .selectTextInDropdownRoleByVisibleText("Приватне повідомлення")
                 .selectValueInDropdownRole("One Person")
+                .setCheckboxPostUniqueToNeededState("Checked")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkValueInMessagePostUnique()
+                .checkValueInTitleOfPost(POST_TITLE)
+                .checkValueInBodyOfPost("body text")
+                .checkIsMessageNotificationAboutPostForOnePersonDisplayed()
                 ;
 
 
