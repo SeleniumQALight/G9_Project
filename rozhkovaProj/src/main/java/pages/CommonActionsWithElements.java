@@ -70,18 +70,17 @@ public class CommonActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element is not displayed"); //елементу немає на сторінці
+            logger.info(elementName+" Element is not displayed"); //елементу немає на сторінці
             return false;
         }
     }
-    protected void checkElementIsDisplayed(WebElement webElement){
-        Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+    protected void checkElementIsDisplayed(WebElement webElement, String elementName){
+        Assert.assertTrue(elementName +" Element is not displayed", isElementDisplayed(webElement, elementName));
     }
 
-    protected void checkElementIsNotDisplayed(WebElement webElement) {
-        Assert.assertFalse("Element is not displayed", isElementDisplayed(webElement));
+    protected void checkElementIsNotDisplayed(WebElement webElement, String elementName){
+        Assert.assertFalse(elementName+ " Element is not displayed", isElementDisplayed(webElement, elementName));
     }
-
 
     // select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropDown, String text) {
@@ -155,4 +154,5 @@ public class CommonActionsWithElements {
             return "";
         }
     }
+
 }

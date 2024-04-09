@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
 
@@ -26,6 +27,10 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    public boolean isButtonSignInDisplayed() {
+        return isElementDisplayed(buttonSignIn, "Button Sign In");
+    }
+
     public void openLoginPage() {
         try{
             webDriver.get(baseUrl);
@@ -34,6 +39,12 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open Login Page "+ e);
             Assert.fail("Can not open Login Page " + e);
         }
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrlWithPattern();
+        Assert.assertTrue("Invalid page Not Login page", isButtonSignInDisplayed());
+        return this;
     }
 
     public void enterTextIntoInputLogin(String text) {
@@ -68,8 +79,37 @@ public class LoginPage extends ParentPage {
     public boolean isUserNameInputDisplayed() {
         return isElementDisplayed(inputUserNameLoginForm, "User Name input");
     }
+    public LoginPage checkIsUserNameInputDisplayed() {
+        checkElementIsDisplayed(inputUserNameLoginForm, "User Name input");
+        return this;
+    }
+
+    public LoginPage checkIsPasswordInputDisplayed() {
+        checkElementIsDisplayed(inputPasswordLoginForm, "Password input");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInDisplayed() {
+        checkElementIsDisplayed(buttonSignIn, "Button Sign In");
+        return this;
+    }
 
     public boolean isPasswordInputDisplayed() {
         return isElementDisplayed(inputPasswordLoginForm, "Password input");
+    }
+
+    public LoginPage checkIsUserNameInputNotDisplayed() {
+        checkElementIsNotDisplayed(inputUserNameLoginForm, "User Name input");
+        return this;
+    }
+
+    public LoginPage checkIsPasswordInputNotDisplayed() {
+        checkElementIsNotDisplayed(inputPasswordLoginForm, "Password input");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotDisplayed() {
+        checkElementIsNotDisplayed(buttonSignIn, "Button Sign In");
+        return this;
     }
 }

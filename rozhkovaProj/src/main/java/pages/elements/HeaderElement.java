@@ -26,6 +26,7 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//header//span[@class='text-white mr-2 header-chat-icon']")
     private WebElement buttonChat;
 
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -74,5 +75,55 @@ public class HeaderElement extends CommonActionsWithElements {
     public LoginPage clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
+    }
+
+    public HeaderElement checkIsButtonSearchDisplayed() {
+        checkElementIsDisplayed(buttonSearch, "Button Search");
+        return this;
+    }
+
+    public HeaderElement checkIsButtonChatDisplayed() {
+        checkElementIsDisplayed(buttonChat, "Button Chat");
+        return this;
+    }
+
+    public HeaderElement checkIsMyProfileDisplayed() {
+        checkElementIsDisplayed(myProfileButton, "My Profile");
+        return this;
+    }
+
+    public HeaderElement checkIsButtonCreatePostDisplayed() {
+        checkElementIsDisplayed(buttonCreatePost, "Create Post");
+        return this;
+    }
+
+    public HeaderElement checkIsButtonSignOutDisplayed() {
+        checkElementIsDisplayed(buttonSignOut, "Sign Out");
+        return this;
+    }
+
+    public HeaderElement checkIsButtonSearchNotDisplayed() {
+        checkElementIsNotDisplayed(buttonSearch, "Button Search");
+        return this;
+    }
+
+    public HeaderElement checkIsButtonChatNotDisplayed() {
+        checkElementIsNotDisplayed(buttonChat, "Button Chat");
+        return this;
+    }
+
+    public HeaderElement checkIsMyProfileNotDisplayed() {
+        checkElementIsNotDisplayed(myProfileButton, "My Profile");
+        return this;
+    }
+
+    public HeaderElement checkIsButtonCreatePostNotDisplayed() {
+        checkElementIsNotDisplayed(buttonCreatePost, "Create Post");
+        return this;
+    }
+
+    public HeaderElement checkIsButtonSignOutNotDisplayed() {
+        checkElementIsNotDisplayed(buttonSignOut, "Sign Out");
+        return this;
     }
 }
