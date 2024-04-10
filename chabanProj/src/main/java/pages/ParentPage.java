@@ -1,12 +1,14 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends CommonActionWithElements {
 
     String env = System.getProperty("env", "aqa");
-    String baseUrl = String.format("https://%s-complexapp.onrender.com", env);
+   // String baseUrl = String.format("https://%s-complexapp.onrender.com", env);
+    String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env);
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
