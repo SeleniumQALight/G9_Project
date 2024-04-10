@@ -1,5 +1,6 @@
 package pages;
 
+
 import data.TestData;
 import io.opentelemetry.api.internal.Utils;
 import org.assertj.core.api.SoftAssertions;
@@ -12,12 +13,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
 
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
     }
 
     @Override
@@ -63,29 +69,18 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String text) {
-//        WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
-//        inputUserNameLoginForm.clear();
-//        inputUserNameLoginForm.sendKeys(text);
-//        logger.info(text + " was inputted into input Username");
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
 
     public void enterTextIntoInputPassword(String text) {
-//        WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-//        inputPasswordLoginForm.clear();
-//        inputPasswordLoginForm.sendKeys(text);
-//        logger.info(text + " was inputted into input Password");
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
-    public void clickOnButtonSignIn (){
-//        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[contains(text(), 'Sign In')]"));
-//        buttonSignIn.click();
-//        logger.info("Button Sign In was clicked");
+    public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
-    public boolean isLoginErrorDisplayed(){
+    public boolean isLoginErrorDisplayed() {
         return isElementDisplayed(loginError, "Login Error");
     }
 
@@ -100,6 +95,42 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+    public LoginPage checkIsRedirectOnLoginPage() {
+        checkUrl();
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginVisible() {
+        checkIsElementVisible(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputPasswordLoginForm, "Input Password");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn, "Button Sign In");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotVisible() {
+        checkIsElementNotVisible(buttonSignIn, "Button Sign In");
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputUserNameLoginForm, "Input Login");
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPasswordLoginForm, "Input Password");
+        return this;
+    }
+
 
     public LoginPage enterTextIntoRegistrationUsernameField(String username) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, username);
