@@ -1,8 +1,12 @@
 package registrationTests;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class)
 public class ValidationMessagesTest extends BaseTest {
     final String ERROR_USERNAME = "Username must be at least 3 characters.";
     final String ERROR_EMAIL = "You must provide a valid email address.";
@@ -10,12 +14,20 @@ public class ValidationMessagesTest extends BaseTest {
     final String SEMICOLON = ";";
 
     @Test
-    public void validationMessagesTest() {
+    @Parameters(method = "parametersForValidationMessageTest")
+    public void validationMessagesTest(String userName, String email, String password, String expectedMessages){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField("tr")
-                .enterTextIntoRegistrationEmailField("notValid")
-                .enterTextIntoRegistrationPasswordField("1234")
-                .checkErrorsMessagesText(ERROR_EMAIL + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD);
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName)
+                .enterTextIntoRegistrationEmailField(email)
+                .enterTextIntoRegistrationPasswordField(password)
+                .checkErrorsMessagesText(expectedMessages);
 
     }
-}
+    public Object[][] parametersForValidationMessageTest() {
+        return new Object[][]{
+                {"taras11", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"tr", "tr", "tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}
+        };
+    }
+
+    }
