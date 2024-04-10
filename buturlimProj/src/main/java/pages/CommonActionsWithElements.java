@@ -60,6 +60,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void checkIsElementVisible(WebElement webElement, String elementName) {
+        Assert.assertTrue(elementName + " is not displayed", isElementDisplayed(webElement, elementName));
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement, String elementName  ) {
+        Assert.assertFalse(elementName + " is displayed", isElementDisplayed(webElement, elementName));
+    }
+
     // Select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropdown, String textForSelect) {
         try {

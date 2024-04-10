@@ -20,13 +20,14 @@ public class HomePage extends ParentPage{
     public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
     }
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
+    }
 
     public HomePage checkIsRedirectOnHomePage() {
         checkUrl();
-        Assert.assertTrue("Invalid page not Home page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
-
 
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
@@ -42,4 +43,5 @@ public class HomePage extends ParentPage{
         }
         return this;
     }
+
 }

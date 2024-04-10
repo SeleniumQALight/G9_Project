@@ -34,7 +34,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void cleanAndEnterTextIntoElement(WebElement webElement, String text){
+    protected void cleanAndEnterTextIntoElement(WebElement webElement, String text) {
         try {
             webElement.clear();
             webElement.sendKeys(text);
@@ -44,8 +44,8 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isElementDisplayed(WebElement webElement){
-        try{
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
             boolean state = webElement.isDisplayed();
             if (state){
                 logger.info(getElementName(webElement) + " Element is displayed");
@@ -75,8 +75,8 @@ public class CommonActionsWithElements {
     }
 
     // select text in dropdown by visible text
-    protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text){
-        try{
+    protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text) {
+        try {
             Select select = new Select(dropdown);
             select.selectByVisibleText(text);
             logger.info(text + " was selected in dropdown " + getElementName(dropdown));
@@ -98,6 +98,52 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
+    }
+
+    protected void setCheckboxSelected(WebElement webElement) {
+        try {
+            if (!webElement.isSelected()) {
+                webElement.click();
+                logger.info("Checkbox is selected");
+            } else {
+                logger.info("Checkbox was already selected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckboxUnselected(WebElement webElement) {
+        try {
+            if (webElement.isSelected()) {
+                webElement.click();
+                logger.info("Checkbox is unselected");
+            } else {
+                logger.info("Checkbox was already unselected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckboxToNeededState(WebElement webElement, String neededState) {
+        try {
+            if (neededState.equals("Checked") && !webElement.isSelected()) {
+                setCheckboxSelected(webElement);
+                logger.info("Checkbox is checked");
+            } else if (neededState.equals("Checked") && webElement.isSelected()) {
+                logger.info("Checkbox is already checked");
+            } else if (neededState.equals("Unchecked") && webElement.isSelected()) {
+                setCheckboxUnselected(webElement);
+                logger.info("Checkbox is unchecked");
+            } else if (neededState.equals("Unchecked") && !webElement.isSelected()) {
+                logger.info("Checkbox is already unchecked");
+            } else {
+                logger.info("Wrong parameter for checkbox");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
     private String getElementName(WebElement webElement) {
