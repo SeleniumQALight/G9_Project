@@ -1,11 +1,18 @@
 package pages;
 
 import data.TestData;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.elements.HeaderElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage{
     @FindBy(xpath = "//button[contains(text(),'Sign In')]") //ініціалізується в commonActionWithElements
@@ -17,6 +24,19 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
 
+    @FindBy(id="username-register")
+    private WebElement inputUserNameRegistrationForm;
+
+    @FindBy(id="email-register")
+    private WebElement inputEmailRegistrationForm;
+
+    @FindBy(id="password-register")
+    private WebElement inputPasswordRegistrationForm;
+
+    final String listErrorsMessagesLocator= "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = listErrorsMessagesLocator)
+    private List<WebElement> listErrorsMessages;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -93,5 +113,44 @@ public class LoginPage extends ParentPage{
 
     public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
+    }
+
+    public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
+        cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
+        return this;
+    }
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
+        cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
+        return this;
+    }
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
+        cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessagesText(String messages) {
+        //error1;error2;error3 -> [error1, error2, error3]
+        String[] expectedErrors = messages.split(";");
+
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsMessagesLocator), expectedErrors.length));
+
+        Util.waitABit(1);
+
+        Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
+
+        ArrayList<String>actualTextMessages = new ArrayList<>();
+        for(WebElement element : listErrorsMessages){
+            actualTextMessages.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertAll();
+        for (int i = 0; i < expectedErrors.length; i++) {
+            softAssertions.assertThat(actualTextMessages.get(i))
+                    .as("Error " + i)
+                    .isIn(expectedErrors);
+        }
+        return this;
     }
 }
