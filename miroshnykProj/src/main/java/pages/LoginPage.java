@@ -1,11 +1,14 @@
 package pages;
 
 import data.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,10 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistrationForm;
 
-    @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    final static String listErrorsMessagesLocator
+            = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listErrorsMessages;
 
     public LoginPage(WebDriver webDriver) {
@@ -94,7 +100,10 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkErrorsMessages(String messages) {
         String[] expectedErrors = messages.split(";");
-        //webDriverWait10.until(webDriver -> listErrorsMessages.size() > 0);
+        webDriverWait10.until((ExpectedConditions.numberOfElementsToBe(
+                By.xpath(listErrorsMessagesLocator),expectedErrors.length )));
+
+        Util.waitABit(1);
 
         Assert.assertEquals("Number of messages", expectedErrors.length, listErrorsMessages.size());
 
