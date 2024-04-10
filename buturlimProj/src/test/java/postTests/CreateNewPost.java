@@ -1,9 +1,9 @@
 package postTests;
 
 import baseTest.BaseTest;
-import libs.Util;
 import org.junit.After;
 import org.junit.Test;
+import pages.libs.Util;
 
 public class CreateNewPost extends BaseTest {
 
