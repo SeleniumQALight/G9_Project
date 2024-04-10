@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -105,6 +106,20 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    //press Enter key using Action class
+
+    public void pressEnterKey(){
+        try{
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(org.openqa.selenium.Keys.ENTER).build().perform();
+            logger.info("Enter key was pressed");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
 
 
 
