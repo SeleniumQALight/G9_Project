@@ -116,11 +116,12 @@ public class LoginPage extends ParentPage {
             actualTextMessages.add(element.getText());
         }
 
-        SoftAssertions softAssertions = new SoftAssertions();
+        SoftAssertions softAssertions = new SoftAssertions(); // робимо
         for (int i = 0; i < expectedErrors.length; i++) {
-            softAssertions.assertThat(actualTextMessages.get(i)).as("Error " + i).isIn(expectedErrors);
+            softAssertions.assertThat(actualTextMessages.get(i)) // перевірка на входження всіх елементів, йде накопичення помилок але перевірка не відбувається
+                    .as("Error " + i).isIn(expectedErrors);
 
-            softAssertions.assertAll();
+            softAssertions.assertAll(); // якщо хоч одна перевірка не пройшла, то тест валиться - додається спеціальна депенденсі
         }
         return this;
     }
