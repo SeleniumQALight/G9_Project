@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
-    String baseUrl = "https://aqa-complexapp.onrender.com";
+
+    String env = System.getProperty("env", "aqa");
+    String baseUrl = String.format("https://%s-complexapp.onrender.com", env);
 
     abstract protected String getRelativeUrl();
 
