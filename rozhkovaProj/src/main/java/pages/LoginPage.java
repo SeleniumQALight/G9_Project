@@ -18,7 +18,7 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//button[contains(text(),'Sign In')]") //ініціалізується в CommonActionWithElements
     private WebElement buttonSignIn;
-    @FindBy(xpath = "//input [@placeholder = 'Username']")
+    @FindBy (xpath = "//input [@placeholder = 'Username']")
     private WebElement inputUserNameLoginForm;
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
@@ -45,6 +45,10 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    public boolean isButtonSignInDisplayed() {
+        return isElementDisplayed(buttonSignIn, "Button Sign In");
+    }
+
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -55,6 +59,12 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrlWithPattern();
+        Assert.assertTrue("Invalid page Not Login page", isButtonSignInDisplayed());
+        return this;
+    }
+
     public void enterTextIntoInputLogin(String text) {
         //WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath("//input [@placeholder = 'Username']"));  у @FindBy
         //inputUserNameLoginForm.clear(); - приписаний метод у батьківському класі
@@ -62,19 +72,17 @@ public class LoginPage extends ParentPage {
         // logger.info(text + " was inputted into input UserName");
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
-
-    public void enterTextIntoInputPassword(String text) {
+    public void enterTextIntoInputPassword (String text){
         //WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         //inputPasswordLoginForm.clear();
         //inputPasswordLoginForm.sendKeys(text);
         //logger.info(text + " Password was inputted");
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
-
-    public void clickOnButtonSignIn() {
-        // WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")); у @FindBy
-        //buttonSignIn.click();   //метод у батьківському прописаний
-        // logger.info("Button was clicked");
+    public void clickOnButtonSignIn(){
+       // WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")); у @FindBy
+       //buttonSignIn.click();   //метод у батьківському прописаний
+       // logger.info("Button was clicked");
         clickOnElement(buttonSignIn);
     }
 
@@ -127,6 +135,43 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll();//перевіряємо всі результати, які накопичили. Одразу виведе всі результати
 
 
+        return this;
+    }
+
+    public boolean isUserNameInputDisplayed() {
+        return isElementDisplayed(inputUserNameLoginForm, "User Name input");
+    }
+    public LoginPage checkIsUserNameInputDisplayed() {
+        checkElementIsDisplayed(inputUserNameLoginForm, "User Name input");
+        return this;
+    }
+
+    public LoginPage checkIsPasswordInputDisplayed() {
+        checkElementIsDisplayed(inputPasswordLoginForm, "Password input");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInDisplayed() {
+        checkElementIsDisplayed(buttonSignIn, "Button Sign In");
+        return this;
+    }
+
+    public boolean isPasswordInputDisplayed() {
+        return isElementDisplayed(inputPasswordLoginForm, "Password input");
+    }
+
+    public LoginPage checkIsUserNameInputNotDisplayed() {
+        checkElementIsNotDisplayed(inputUserNameLoginForm, "User Name input");
+        return this;
+    }
+
+    public LoginPage checkIsPasswordInputNotDisplayed() {
+        checkElementIsNotDisplayed(inputPasswordLoginForm, "Password input");
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInNotDisplayed() {
+        checkElementIsNotDisplayed(buttonSignIn, "Button Sign In");
         return this;
     }
 }
