@@ -1,13 +1,14 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends CommonActionsWithElements { //тепер треба в нащадках реалізувати метод getRelativeUrl
 
     String env = System.getProperty("env", "aqa"); //якщо не вказано у списку ранерів getProperty, то використовується aqa, як дефолтний. 'env' - ключ, 'aqa' - значення
-    String baseUrl = String.format("https://%s-complexapp.onrender.com", env); //%s = aqa
-
+    //String baseUrl = String.format("https://%s-complexapp.onrender.com", env); //%s = aqa
+    String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env); //замість строки вище, урл з файліка config.properties. замінити [env], на те що зчитати у енві
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
