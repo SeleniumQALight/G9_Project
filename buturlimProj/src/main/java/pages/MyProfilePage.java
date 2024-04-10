@@ -13,7 +13,10 @@ public class MyProfilePage extends ParentPage{
 
     @FindBy(xpath = "//*[text()='Post successfully deleted.']")
     private WebElement postSuccessfullyDeletedMessage;
-
+    @FindBy(xpath = ".//div//img[@class='avatar-small']")
+    private WebElement avatarSmall;
+    @FindBy(xpath = ".//div[@class='profile-nav nav nav-tabs pt-2 mb-4']")
+    private WebElement profileNav;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -26,7 +29,8 @@ public class MyProfilePage extends ParentPage{
 
     public MyProfilePage checkIsRedirectToMyProfilePage () {
         checkUrlWithPattern();
-        //TODO check some element that is only on this page
+        Assert.assertTrue("Small avatar is not displayed", isElementDisplayed(avatarSmall, "Avatar small"));
+        Assert.assertTrue("Profile navigation is not displayed", isElementDisplayed(profileNav, "Profile nav"));
         return this;
     }
 
