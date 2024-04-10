@@ -5,7 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends CommonActionsWithElements {
 
-    String baseUrl = "https://aqa-complexapp.onrender.com";
+    String environment = System.getProperty("env", "aqa");
+    String baseUrl = String.format("https://%s-complexapp.onrender.com", environment);
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
