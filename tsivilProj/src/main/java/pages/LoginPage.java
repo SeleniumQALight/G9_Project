@@ -59,10 +59,14 @@ public class LoginPage  extends  ParentPage {
     }
 
     public void enterTextIntoInputLogin(String text) {
+        cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
+    }
+    public void enterTextIntoInputLoginInRegistrationForm(String text) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, text);
     }
 
     public void enterTextIntoInputPassword(String text) {
+
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
