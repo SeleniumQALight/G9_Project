@@ -1,5 +1,6 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
@@ -7,7 +8,11 @@ import org.openqa.selenium.WebDriver;
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
-    String baseUrl = "https://aqa-complexapp.onrender.com";
+
+    String env = System.getProperty("env", "aqa");
+    //String baseUrl = String.format("https://%s-complexapp.onrender.com", env);
+
+     String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env);
 
     abstract protected String getRelativeUrl();
 
