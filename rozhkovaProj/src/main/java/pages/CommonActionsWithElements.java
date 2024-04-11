@@ -1,9 +1,12 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -19,8 +22,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //будуть проініціалізовані всі елементи описані в @FindBy
-        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
 
     protected void clickOnElement(WebElement webElement) {
@@ -139,6 +142,17 @@ public class CommonActionsWithElements {
         } else {
             logger.error("State should be only 'Check' or 'Uncheck'");
             Assert.fail("State should be only 'Check' or 'Uncheck'");
+        }
+    }
+
+    //press Enter key using Actions class
+    protected void pressEnterKey() {
+        try {
+            Actions action = new Actions(webDriver);
+            action.sendKeys(Keys.ENTER).build().perform();
+            logger.info("Enter key was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 

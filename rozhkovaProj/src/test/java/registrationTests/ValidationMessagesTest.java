@@ -1,8 +1,12 @@
 package registrationTests;
 
 import baseTests.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class) //яка вказує, що даний клас ми хочемо запускати з параметрами
 public class ValidationMessagesTest extends BaseTest {
     final String ERROR_USERNAME = "Username must be at least 3 characters.";
     final String ERROR_EMAIL = "You must provide a valid email address.";
@@ -10,11 +14,22 @@ public class ValidationMessagesTest extends BaseTest {
     final String SEMICOLON = ";";
 
     @Test
-    public void validationMessagesTest() {
+    @Parameters(method = "parametersForValidationMessagesTest") //вказуємо метод (щоб повязати метод і тест), який буде відповідати за параметризацію
+    public void validationMessagesTest(String userName, String email, String password, String expectedMessages) {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField("tr")
-                .enterTextIntoRegistrationEmailField("notValidEmail")
-                .enterTextIntoRegistrationPasswordField("notValid")
-                .checkErrorsMessages(ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD);
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName)
+                .enterTextIntoRegistrationEmailField(email)
+                .enterTextIntoRegistrationPasswordField(password)
+                .checkErrorsMessages(expectedMessages);
+    }
+//для того, щоб не чіпати тест, а параметри в окремому методі прописати (відокремити дані від тесту)
+    public Object[][] parametersForValidationMessagesTest() {//метод, дії не відрізняються при заповненню полів, то можемо використати параметризацію. якщо поле не затрагуємо, то інший тесткейс
+        return new Object[][]{
+                {"taras11", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"tr", "tr", "tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+
+        };
     }
 }
+
+

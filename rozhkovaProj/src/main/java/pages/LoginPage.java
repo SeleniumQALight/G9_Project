@@ -129,9 +129,10 @@ public class LoginPage extends ParentPage {
         SoftAssertions softAssertions = new SoftAssertions();//обєкт вміє робити перевірки накопичуючи результати. не буде зупинятися, поки самі не скажемо
         for (int i = 0; i < expectedErrors.length; i++) {// щоб не залежати від кількості елементів в масиві і порядку
             softAssertions.assertThat(actualTextMessages.get(i))
-                    .as("Error " + i) //пояснення, яка помилка
-                    .isIn(expectedErrors);//перевіряємо, чи є в масиві
-        }
+                    .as("Error " + i) //пояснення, яка помилка, яка буде виведено
+                    .isIn(expectedErrors);//перевіряємо, чи є обєкт в масиві
+        }//бігаємо по всіх елементах масиву і ніколи не падає тест, далі треба ассерт алл
+
         softAssertions.assertAll();//перевіряємо всі результати, які накопичили. Одразу виведе всі результати
 
 
