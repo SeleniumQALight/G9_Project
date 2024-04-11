@@ -1,9 +1,11 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -19,8 +21,8 @@ public class CommonActionWithElements {
     public CommonActionWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує всі елементи описані в @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
     protected void clickOnElement(WebElement webElement){
         try{
@@ -104,6 +106,20 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    //press Enter key using Action class
+
+    public void pressEnterKey(){
+        try{
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(org.openqa.selenium.Keys.ENTER).build().perform();
+            logger.info("Enter key was pressed");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
 
 
 
