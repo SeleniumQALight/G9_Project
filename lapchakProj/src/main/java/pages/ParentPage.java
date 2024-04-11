@@ -1,10 +1,16 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParentPage extends CommonActionsWithElements {
-    String baseUrl = "https://aqa-complexapp.onrender.com";
+
+    String env = System.getProperty("env", "aqa"); // default value is aqa - якщо не вказано в проперті командній строці
+    //   String baseUrl = String.format("https://%S-complexapp.onrender.com", env);
+
+    // https://[env]-complexapp.onrender.com
+    String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", env); // замість строки вище  // replace("[env]", env) - замінюємо [env] на env
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
