@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.ArrayList;
 import java.util.List;
 import pages.elements.HeaderElement;
+import pages.libs.Util;
 
 public class LoginPage extends ParentPage {
 
@@ -152,6 +153,7 @@ public class LoginPage extends ParentPage {
         String[] errors = messages.split(";");
 
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), errors.length));
+        Util.waitABit(1);
 
         Assert.assertEquals("Number of messages", errors.length, listErrorsMessages.size());
 
