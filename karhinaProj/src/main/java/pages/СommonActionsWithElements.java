@@ -135,7 +135,6 @@ public class СommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
             protected void setCheckboxToNeededState(WebElement webElement, String neededState) {
                 if (neededState.equals("Checked") && !webElement.isSelected()) {
                     setCheckboxSelected(webElement);
@@ -151,6 +150,7 @@ public class СommonActionsWithElements {
                     logger.info("Do nothing with checkbox because checkbox are already in needed state");
                 }
             }
+
 
 
     private void printErrorAndStopTest(Exception e) {
