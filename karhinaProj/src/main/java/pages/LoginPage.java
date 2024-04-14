@@ -163,5 +163,11 @@ public class LoginPage extends ParentPage{
 
         return this;
     }
+
+    public LoginPage refreshPage() {
+        webDriver.navigate().refresh();
+        return this;
+
+    }
 }
 
