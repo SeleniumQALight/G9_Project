@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listErrorsMessages;
 
-    public LoginPage(WebDriver webDriver) { super(webDriver); }
+    public LoginPage(WebDriver webDriver) {
+        super(webDriver);
+    }
 
     @Override
     protected String getRelativeUrl() {
@@ -45,10 +48,10 @@ public class LoginPage extends ParentPage {
     }
 
     public void openLoginPage() {
-        try{
+        try {
             webDriver.get(baseUrl);
             logger.info("Login Page was opened with url " + baseUrl);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not open Login Page" + e);
             Assert.fail("Can not open Login Page" + e);
         }
@@ -62,6 +65,7 @@ public class LoginPage extends ParentPage {
 //        logger.info(text + " was inputted into input UserName");
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
+
     public void enterTextIntoInputPassword(String text) {
 //        WebElement inputPasswordLoginForm =
 //                webDriver.findElement((By.xpath("//input[@placeholder='Password']")));
@@ -71,7 +75,7 @@ public class LoginPage extends ParentPage {
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
-    public void clickOnButtonSignIn(){
+    public void clickOnButtonSignIn() {
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
 //        buttonSignIn.click();
 //        logger.info("button was clicked");
@@ -84,6 +88,37 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public boolean isUserNameInputDisplayed() {
+        return isElementDisplayed(inputUserNameLoginForm);
+    }
+
+    public boolean isPasswordInputDisplayed() {
+        return isElementDisplayed(inputPasswordLoginForm);
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrlWithPattern();
+        return this;
+    }
+
+    public LoginPage assertionsForLoginPageElementsDisplayed() {
+        checkElementIsDisplayed(inputUserNameLoginForm);
+        checkElementIsDisplayed(inputPasswordLoginForm);
+        checkElementIsDisplayed(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage assertionsForLoginPageElementsAreNotDisplayed() {
+        checkElementIsNotDisplayed(inputUserNameLoginForm);
+        checkElementIsNotDisplayed(inputPasswordLoginForm);
+        checkElementIsNotDisplayed(buttonSignIn);
+        return this;
+    }
+
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
     }
 
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {

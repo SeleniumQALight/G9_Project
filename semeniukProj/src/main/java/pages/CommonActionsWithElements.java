@@ -61,6 +61,13 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+    public void checkElementIsDisplayed(WebElement webElement){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+    }
+
+    public void checkElementIsNotDisplayed(WebElement webElement) {
+        Assert.assertTrue("Element is displayed", !isElementDisplayed(webElement));
+    }
 
     protected boolean isElementDisplayed(WebElement webElement, String elementName){
         try{
@@ -75,6 +82,13 @@ public class CommonActionsWithElements {
             logger.info("Element is not displayed");
             return false;
         }
+    }
+    protected void checkIsElementVisible(WebElement webElement, String elementName) {
+        Assert.assertTrue(elementName + " is not displayed", isElementDisplayed(webElement, elementName));
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement, String elementName  ) {
+        Assert.assertFalse(elementName + " is displayed", isElementDisplayed(webElement, elementName));
     }
 
     // select text in dropdown by visible text
