@@ -146,11 +146,22 @@ public class CommonActionsWithElements {
     }
 
     //press Enter key using Actions class
-    protected void pressEnterKey() {
+    public void pressEnterKey() {
         try {
             Actions action = new Actions(webDriver);
             action.sendKeys(Keys.ENTER).build().perform();
             logger.info("Enter key was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //press Tab key using Actions class
+    public void pressTabKey() {
+        try {
+            Actions action = new Actions(webDriver);
+            action.sendKeys(Keys.TAB).build().perform();
+            logger.info("Tab key was pressed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -169,4 +180,12 @@ public class CommonActionsWithElements {
         }
     }
 
+    public void tabToElement(WebElement inputUserNameRegistrationForm) {
+        try {
+            inputUserNameRegistrationForm.sendKeys(Keys.TAB);
+            logger.info("Tab key was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 }

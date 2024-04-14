@@ -44,7 +44,7 @@ public class HeaderElement extends CommonActionsWithElements {
             logger.info("Element is not visible");
             return false;
         }*/
-        return isElementDisplayed(buttonSignOut);
+        return isElementDisplayed(buttonSignOut, "Sign Out");
     }
 
     public CreatePostPage clickOnButtonCreatePost() {

@@ -23,11 +23,14 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
     @FindBy(id = "username-register") //xpath = "//input[@id='username-register']"
-    private WebElement inputUserNameRegistrationForm;
+    public
+    WebElement inputUserNameRegistrationForm;
     @FindBy(id = "email-register") //xpath = "//input[@id='email-register']"
-    private WebElement inputEmailRegistrationForm;
+    public
+    WebElement inputEmailRegistrationForm;
     @FindBy(id = "password-register") //xpath = "//input[@id='password-register']"
-    private WebElement inputPasswordRegistrationForm;
+    public
+    WebElement inputPasswordRegistrationForm;
 
     final static String listErrorsMessagesLocator =
             "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -175,4 +178,11 @@ public class LoginPage extends ParentPage {
         checkElementIsNotDisplayed(buttonSignIn, "Button Sign In");
         return this;
     }
+
+
+
+
+
+
+
 }

@@ -24,7 +24,7 @@ public class BaseTest {
     public void setUp() {
         //WebDriverManager.chromedriver().setup();  //скачує виконуваний файл
        // webDriver = new ChromeDriver(); //відкривання браузера Chrome  замість цього викликаємо метод initDriver
-        webDriver = initDriver();
+        webDriver = initDriver();//відкривання браузера Chrome пустого
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); //дефолтне очікування, протягом 5 сек вебдрайвер буде намагатися виконати дію.
         //кожні півсекунди він буде намагатися клікати на кнопку наприклад. зміг - іде далі. дійде за 5 сек і не зможе клікнути, то впаде помилка
