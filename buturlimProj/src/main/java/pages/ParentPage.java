@@ -46,14 +46,11 @@ abstract public class ParentPage extends CommonActionsWithElements {
 
     public void switchToOldTab() {
         String oldTab = webDriver.getWindowHandle();
-        for (String newTab : webDriver.getWindowHandles()) {
-            if (!newTab.equals(oldTab)) {
                 webDriver.switchTo().window(oldTab);
                 logger.info("Switched to old tab");
-            }
         }
-    }
-    public void closeNewTab() {
+
+    public void closeAllTabsAndSwitchToMainTab() {
         String oldTab = webDriver.getWindowHandle();
         for (String newTab : webDriver.getWindowHandles()) {
             if (!newTab.equals(oldTab)) {
