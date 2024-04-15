@@ -1,13 +1,12 @@
 package signOut;
 
 import baseTests.BaseTest;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class SignOutTest extends BaseTest {
 
     @Test
-    public void TC_002_signOutTest() {
+    public void TC_001_signOutTest_signOutTest() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
@@ -58,6 +57,39 @@ public class SignOutTest extends BaseTest {
         Assert.assertTrue("Password input is not displayed", pageProvider.getLoginPage().isPasswordInputDisplayed());
         Assert.assertTrue("Button Sign In is not displayed", pageProvider.getLoginPage().isButtonSignInDisplayed());
          */
+    }
+
+    @Test
+    //Тест на перевірку разлогінування в двох табах
+    //    Steps
+    //     1. Open login page
+    //     2. Login with valid credentials
+    //     3. Check that button SignOut is visible
+    //     4. Open new tab in browser using JavaScript
+    //     5. Switch to new tab
+    //     6. Open login page
+    //     7. Check that button SignOut is visible
+    //     8. Switch to main tab
+    //     9. Click on button SignOut
+    //     10. Check that button SignOut is not visible
+    //     11. Switch to new tab
+    //     12. Refresh page
+    //     12. Check that button SignOut is not visible
+
+    public void TC_002_signOutTest_signOutInTwoTabs() { //addition 3 to HW6
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage();
+        pageProvider.getLoginPage().openNewTabAndSwitchToIt();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+        pageProvider.getHomePage().switchToMainTab();
+        pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotDisplayed();
+        pageProvider.getHomePage().switchToTab(1);
+        pageProvider.getHomePage().refreshPage();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotDisplayed();
+
 
     }
 

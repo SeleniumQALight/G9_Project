@@ -2,7 +2,10 @@ package pages;
 
 import libs.ConfigProvider;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+
+import java.util.ArrayList;
 
 abstract public class ParentPage extends CommonActionsWithElements { //тепер треба в нащадках реалізувати метод getRelativeUrl
 
@@ -31,4 +34,37 @@ abstract public class ParentPage extends CommonActionsWithElements { //тепе�
                 webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));//тру, бо неточний вираз, не рівний
     }
 
+    //Open new tab in browser using JavaScript
+    public void openNewTabAndSwitchToIt() {
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        logger.info("New tab was opened");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(tabs.size() - 1));
+        logger.info("Switched to new tab");
+    }
+
+    public void switchToMainTab() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(0));
+        logger.info("Switched to main tab");
+    }
+
+    public void closeActiveTabAndSwitchToMainTab() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.close();
+        logger.info("New tab was closed");
+        webDriver.switchTo().window(tabs.get(0));
+        logger.info("Switched to main tab");
+
+    }
+    public void switchToTab(int tabIndex) {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(tabIndex));
+        logger.info("Switched to tab with index " + tabIndex);
+    }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+        logger.info("Page was refreshed");
+    }
 }
