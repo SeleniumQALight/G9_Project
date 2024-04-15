@@ -1,6 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import data.TestData;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
@@ -14,8 +15,8 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button Sign Out is not displayed"
