@@ -157,11 +157,13 @@ public class CommonActionsWithElements {
     }
 
     //press Tab key using Actions class
-    public void pressTabKey() {
+    public void pressTabKey(int repeatNTimes) {
         try {
             Actions action = new Actions(webDriver);
-            action.sendKeys(Keys.TAB).build().perform();
-            logger.info("Tab key was pressed");
+            for (int i = 0; i < repeatNTimes; i++) {
+                action.sendKeys(Keys.TAB).build().perform();
+                }
+            logger.info("Tab key was pressed " + repeatNTimes + " times");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -180,10 +182,20 @@ public class CommonActionsWithElements {
         }
     }
 
-    public void tabToElement(WebElement inputUserNameRegistrationForm) {
+    public void tabToElement(WebElement webElement) {
         try {
-            inputUserNameRegistrationForm.sendKeys(Keys.TAB);
+            webElement.sendKeys(Keys.TAB);
             logger.info("Tab key was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void enterTextIntoField(String text) {
+        try {
+            Actions action = new Actions(webDriver);
+            action.sendKeys(text).build().perform();
+            logger.info(text + " was inputted");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }

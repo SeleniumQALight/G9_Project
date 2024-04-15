@@ -79,10 +79,11 @@ public class LoginTestWithPageObject extends BaseTest {
 
     public void TC_004_loginTest_inputDataDisappearsAfterRefresh() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         pageProvider.getLoginPage().refreshPage();
         pageProvider.getLoginPage().clickOnButtonSignIn();
+
         Assert.assertFalse("Button Sign Out is displayed", pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
     }
 
@@ -100,11 +101,10 @@ public class LoginTestWithPageObject extends BaseTest {
 
     public void TC_005_loginTest_validLoginUsingTabAndEnter() { //addition 1 to HW6
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().pressTabKey();
-        pageProvider.getLoginPage().pressTabKey();
-        pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
-        pageProvider.getLoginPage().pressTabKey();
-        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+        pageProvider.getLoginPage().pressTabKey(2);
+        pageProvider.getLoginPage().enterTextIntoField(TestData.VALID_LOGIN_UI);
+        pageProvider.getLoginPage().pressTabKey(1);
+        pageProvider.getLoginPage().enterTextIntoField(TestData.VALID_PASSWORD_UI);
         pageProvider.getLoginPage().pressEnterKey();
         Assert.assertTrue("Button Sign Out is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
     }

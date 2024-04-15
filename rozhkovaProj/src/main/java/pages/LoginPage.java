@@ -23,13 +23,13 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
     @FindBy(id = "username-register") //xpath = "//input[@id='username-register']"
-    public
+    private
     WebElement inputUserNameRegistrationForm;
     @FindBy(id = "email-register") //xpath = "//input[@id='email-register']"
-    public
+    private
     WebElement inputEmailRegistrationForm;
     @FindBy(id = "password-register") //xpath = "//input[@id='password-register']"
-    public
+    private
     WebElement inputPasswordRegistrationForm;
 
     final static String listErrorsMessagesLocator =

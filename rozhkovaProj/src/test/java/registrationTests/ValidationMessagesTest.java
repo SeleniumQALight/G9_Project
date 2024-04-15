@@ -38,12 +38,12 @@ public class ValidationMessagesTest extends BaseTest {
 
     public void TC_002_validationMessagesTest_validationMessagesTestUsingTabAndEnter() {//addition 2 to HW6
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().tabToElement(pageProvider.getLoginPage().inputUserNameRegistrationForm);
-        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField("ta");
-        pageProvider.getLoginPage().tabToElement(pageProvider.getLoginPage().inputEmailRegistrationForm);
-        pageProvider.getLoginPage().enterTextIntoRegistrationEmailField("ta");
-        pageProvider.getLoginPage().tabToElement(pageProvider.getLoginPage().inputPasswordRegistrationForm);
-        pageProvider.getLoginPage().enterTextIntoRegistrationPasswordField("ta");
+       pageProvider.getLoginPage().pressTabKey(5);
+        pageProvider.getLoginPage().enterTextIntoField("ta");
+        pageProvider.getLoginPage().pressTabKey(1);
+        pageProvider.getLoginPage().enterTextIntoField("ta");
+        pageProvider.getLoginPage().pressTabKey(1);
+        pageProvider.getLoginPage().enterTextIntoField("ta");
         pageProvider.getLoginPage().pressEnterKey();
         pageProvider.getLoginPage().checkErrorsMessages(ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD);
     }
