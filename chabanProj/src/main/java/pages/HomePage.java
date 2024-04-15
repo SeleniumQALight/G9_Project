@@ -59,4 +59,8 @@ public class HomePage extends ParentPage{
         }
         return this;
     }
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
+    }
+
 }
