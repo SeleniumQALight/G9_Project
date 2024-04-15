@@ -2,8 +2,13 @@ package loginTests;
 
 import baseTest.BaseTest;
 import data.TestData;
+import libs.ConfigProvider;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class LoginTestWithPageObject extends BaseTest {
     final String USER_NAME = "qaauto";
@@ -51,6 +56,22 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
         pageProvider.getHomePage().closeNewTabAndSwitchToMainTab();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+
+
+    }
+
+    @Test
+    public void testLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin =
+                ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
+        pageProvider.getLoginPage().enterTextIntoPassword(dataForValidLogin.get("pass"));
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+
+        Assert.assertTrue("Button Sign In  in is not visible",
+                pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
 
 
     }
