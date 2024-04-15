@@ -153,4 +153,10 @@ public class LoginPage extends ParentPage{
         }
         return this;
     }
+
+    public LoginPage refreshPage() {
+        webDriver.navigate().refresh();
+        webDriverWait10.until(ExpectedConditions.visibilityOf(buttonSignIn));
+        return this;
+    }
 }

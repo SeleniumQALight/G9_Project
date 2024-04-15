@@ -55,13 +55,58 @@ public class LoginTestsAllActionInOneClass {
 
     }
 
+    @Test
+    public void invalidLogin(){
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        inputUserNameLoginForm.clear();
+        inputUserNameLoginForm.sendKeys("qaauto");
+        logger.info("'qaauto was inputted into input UserName'");
+
+        WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        inputPasswordLoginForm.sendKeys("123456qwerty1");
+        logger.info("Password was inputted");
+
+        webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
+        logger.info("Button Sign In was clicked");
+
+        Assert.assertFalse("Button Sign out is visible", isButtonSignOutDisplayed());
+        Assert.assertTrue("Button Sign In is not visible", isButtonSignInDisplayed());
+        Assert.assertTrue("Message is not displayed", isErrorMessageDisplayed());
+
+    }
+
+    private boolean isErrorMessageDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//div[contains(text(), 'Invalid username/password.')]")).isDisplayed();
+            logger.info(state + " is message displayed");
+            return state;
+        } catch (Exception e){
+            logger.info("Element is not visible");
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInDisplayed() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).isDisplayed();
+            logger.info(state + " is button displayed");
+            return state;
+        } catch (Exception e){
+            logger.info("'Sign in' is not visible");
+        return false;
+    }
+    }
+
     private boolean isButtonSignOutDisplayed() {
         try {
             boolean state = webDriver.findElement(By.xpath("//button[contains(text(),'Sign Out')]")).isDisplayed();
             logger.info(state + " is button displayed");
             return state;
         } catch (Exception e){
-            logger.info("Element is not visible");
+            logger.info("'Sign out' is not visible");
             return false;
         }
     }
