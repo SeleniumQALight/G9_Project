@@ -105,27 +105,27 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     //check is not displayed
-    public HomePage isButtonSignOutNotVisible() {
+    public HomePage checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut, "Button Sign Out");
         return new HomePage(webDriver);
     }
 
-    public HomePage isMyProfileButtonNotVisible() {
+    public HomePage checkIsMyProfileButtonNotVisible() {
         checkIsElementNotVisible(myProfileButton, "My Profile Button");
         return new HomePage(webDriver);
     }
 
-    public HomePage isButtonCreatePostNotVisible() {
+    public HomePage checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost, "Button Create Post");
         return new HomePage(webDriver);
     }
 
-    public HomePage isSearchIconNotVisible() {
+    public HomePage checkIsSearchIconNotVisible() {
         checkIsElementNotVisible(searchIcon, "Search Icon");
         return new HomePage(webDriver);
     }
 
-    public HomePage isChatIconNotVisible() {
+    public HomePage checkIsChatIconNotVisible() {
         checkIsElementNotVisible(chatIcon, "Chat Icon");
         return new HomePage(webDriver);
     }
