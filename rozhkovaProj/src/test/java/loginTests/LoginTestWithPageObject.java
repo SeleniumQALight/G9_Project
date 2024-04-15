@@ -14,8 +14,8 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void TC_001_loginTest_validLogin() {
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button Sign Out is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
