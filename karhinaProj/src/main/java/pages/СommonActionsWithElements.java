@@ -135,7 +135,6 @@ public class СommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
             protected void setCheckboxToNeededState(WebElement webElement, String neededState) {
                 if (neededState.equals("Checked") && !webElement.isSelected()) {
                     setCheckboxSelected(webElement);
@@ -152,6 +151,10 @@ public class СommonActionsWithElements {
                 }
             }
 
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+
+    }
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

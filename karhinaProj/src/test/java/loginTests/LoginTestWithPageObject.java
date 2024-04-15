@@ -25,9 +25,13 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void invalidLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("NotValidLogin");
+        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto123");
         pageProvider.getLoginPage().enterTextIntoPassword("123456qwerty");
         pageProvider.getLoginPage().clickOnButtonSignIn();
+
+
+
+
 
 
         Assert.assertTrue("Button Sign In  in is not visible", pageProvider.getLoginPage().isButtonSignInDisplayed());
@@ -35,12 +39,19 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Massage 'Invalid username/password' is not visible", pageProvider.getLoginPage().isInvalidUsernamePasswordDisplayed());
     }
 
+    @Test
+    public void testLoginInNewTab() {
+        pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCred();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+        pageProvider.getHomePage().openNewTab();
+        pageProvider.getHomePage().switchToNewTab();
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+        pageProvider.getHomePage().switchToMainTab();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+        pageProvider.getHomePage().closeNewTabAndSwitchToMainTab();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
 
 
-
+    }
 }
-
-
-//1. додати перевірки в тест на валідний логін:
-//- що після того як залогінилися, ми бачимо кнопки Create Post, MyProfile, імʼя юзера
-//- і не бачимо інпутів куди ми вводили логін та пароль
