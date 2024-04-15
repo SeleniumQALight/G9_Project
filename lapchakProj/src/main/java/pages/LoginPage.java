@@ -38,7 +38,8 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listErrorsMessages;
 
-
+    @FindBy(xpath = "//div[contains(text(), 'Invalid username/password.')]")
+    private WebElement errorMessage;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -124,5 +125,13 @@ public class LoginPage extends ParentPage {
             softAssertions.assertAll(); // якщо хоч одна перевірка не пройшла, то тест валиться - додається спеціальна депенденсі
         }
         return this;
+    }
+
+    public boolean isButtonSignInDisplayed() {
+        return isElementDisplayed(buttonSignIn);
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        return isElementDisplayed(errorMessage);
     }
 }
