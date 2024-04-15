@@ -1,6 +1,7 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import data.TestData;
 import org.junit.Test;
 import pages.libs.ConfigProvider;
 import pages.libs.ExcelDriver;
@@ -16,8 +17,8 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN);
-        pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD);
+        pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().checkIsRedirectOnHomePage();
