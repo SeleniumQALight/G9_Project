@@ -61,6 +61,13 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+    public void checkElementIsDisplayed(WebElement webElement){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+    }
+
+    public void checkElementIsNotDisplayed(WebElement webElement) {
+        Assert.assertTrue("Element is displayed", !isElementDisplayed(webElement));
+    }
 
     protected boolean isElementDisplayed(WebElement webElement, String elementName){
         try{
