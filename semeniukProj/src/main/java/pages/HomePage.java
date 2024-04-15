@@ -30,6 +30,10 @@ public class HomePage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
+    public LoginPage getLoginPage() {
+        return new LoginPage(webDriver);
+    }
+
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
         Assert.assertTrue("Invalid page is not Home page", getHeaderElement().isButtonSignOutDisplayed());
