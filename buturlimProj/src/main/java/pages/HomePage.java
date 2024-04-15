@@ -2,7 +2,6 @@ package pages;
 
 
 import data.TestData;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
 
@@ -43,5 +42,4 @@ public class HomePage extends ParentPage{
         }
         return this;
     }
-
 }
