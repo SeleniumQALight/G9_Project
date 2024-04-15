@@ -151,7 +151,10 @@ public class СommonActionsWithElements {
                 }
             }
 
+    public void refreshPage() {
+        webDriver.navigate().refresh();
 
+    }
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

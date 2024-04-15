@@ -52,59 +52,57 @@ public class HomePage extends ParentPage {
     //створити метод для відкриття нової вкладки
 
 
-
-    public HomePage switchToNewTab() {
+    public void openNewTab() {
         try {
-            String oldTab = webDriver.getWindowHandle();
-            ((JavascriptExecutor) webDriver).executeScript("window.open();");
-            for (String tab : webDriver.getWindowHandles()) {
-                webDriver.switchTo().window(tab);
-            }
-
-            logger.info("Switch to new tab");
+            ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+            switchToNewTab();
         } catch (Exception e) {
-            logger.error("Can not switch to new tab " + e);
-            Assert.fail("Can not switch to new tab " + e);
+            logger.error("Can not open new tab " + e);
+            Assert.fail("Can not open new tab " + e);
         }
-        return this;
     }
 
-    public HomePage switchToMainTab() {
-        try {
-            String currentTab = webDriver.getWindowHandle();
-            webDriver.switchTo().window(currentTab);
-            logger.info("Switch to main tab");
-        } catch (Exception e) {
-            logger.error("Can not switch to main tab " + e);
-            Assert.fail("Can not switch to main tab " + e);
-        }
-        return this;
-    }
-
-    public HomePage closeNewTabAndSwitchToMainTab() {
-        try {
-            String currentTab = webDriver.getWindowHandle();
-            for (String tab : webDriver.getWindowHandles()) {
-                if (!tab.equals(currentTab)) {
-                    webDriver.switchTo().window(tab);
-                    webDriver.close();
-                    webDriver.switchTo().window(currentTab);
+        public HomePage switchToNewTab () {
+            try {
+                for (String windowHandle : webDriver.getWindowHandles()) {
+                    webDriver.switchTo().window(windowHandle);
                 }
+
+                logger.info("Switch to new tab");
+            } catch (Exception e) {
+                logger.error("Can not switch to new tab " + e);
+                Assert.fail("Can not switch to new tab " + e);
             }
-            logger.info("Close new tab and switch to main tab");
-        } catch (Exception e) {
-            logger.error("Can not close new tab and switch to main tab " + e);
-            Assert.fail("Can not close new tab and switch to main tab " + e);
+            return this;
         }
-        return this;
-    }
 
 
-    }
+        public HomePage switchToMainTab () {
+            try {
+                webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
+                logger.info("Switch to main tab");
+            } catch (Exception e) {
+                logger.error("Can not switch to main tab " + e);
+                Assert.fail("Can not switch to main tab " + e);
+            }
+            return this;
+        }
 
 
+        public HomePage closeNewTabAndSwitchToMainTab () {
+            try {
+                webDriver.close();
+                logger.info("Close new tab and switch to main tab");
+                switchToMainTab();
+            } catch (Exception e) {
+                logger.error("Can not close new tab and switch to main tab " + e);
+                Assert.fail("Can not close new tab and switch to main tab " + e);
+            }
+            return this;
+        }
 
-
+}
 
 
 

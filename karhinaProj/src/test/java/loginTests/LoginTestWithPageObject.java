@@ -25,9 +25,9 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void invalidLogin(){
         pageProvider.getLoginPage().openLoginPage();
-        pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCred();
+        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto123");
+        pageProvider.getLoginPage().enterTextIntoPassword("123456qwerty");
         pageProvider.getLoginPage().clickOnButtonSignIn();
-        pageProvider.getHomePage().checkIsRedirectToHomePage();
 
 
 
@@ -43,6 +43,7 @@ public class LoginTestWithPageObject extends BaseTest {
     public void testLoginInNewTab() {
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCred();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
+        pageProvider.getHomePage().openNewTab();
         pageProvider.getHomePage().switchToNewTab();
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutDisplayed();
