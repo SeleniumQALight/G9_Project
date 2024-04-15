@@ -76,9 +76,6 @@ public class HeaderElement extends CommonActionsWithElements {
         return this;
     }
 
-    public LoginPage getLoginPage() {
-        return new LoginPage(webDriver);
-    }
     public LoginPage clickOnSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);

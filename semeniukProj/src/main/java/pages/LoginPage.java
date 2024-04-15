@@ -117,10 +117,6 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public HeaderElement getHeaderElement() {
-        return new HeaderElement(webDriver);
-    }
-
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
         return this;

@@ -2,6 +2,8 @@ package signOut;
 
 import baseTest.BaseTest;
 import org.junit.Test;
+import org.openqa.selenium.support.PageFactory;
+import pages.PageProvider;
 
 public class SignOutTest extends BaseTest {
 
@@ -11,15 +13,14 @@ public class SignOutTest extends BaseTest {
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeaderElement()
-                .assertionsForLoggedInUserElementsDisplayed()
-                .getLoginPage().assertionsForLoginPageElementsAreNotDisplayed()
-                .getHeaderElement().clickOnSignOut()
+                .assertionsForLoggedInUserElementsDisplayed();
+        pageProvider.getLoginPage()
+                .assertionsForLoginPageElementsAreNotDisplayed();
+        pageProvider.getHomePage().getHeaderElement().clickOnSignOut()
                 .checkIsRedirectToLoginPage()
-                .assertionsForLoginPageElementsDisplayed()
-                .getHeaderElement().assertionsForLoggedInUserElementsAreNotDisplayed()
-        ;
-
-
+                .assertionsForLoginPageElementsDisplayed();
+        pageProvider.getHomePage().getHeaderElement()
+                .assertionsForLoggedInUserElementsAreNotDisplayed();
     }
 
 }
