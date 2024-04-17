@@ -13,7 +13,7 @@ public class LoginWhileRefreshPage extends BaseTest {
         pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
         pageProvider.getLoginPage().refreshPage();
         pageProvider.getLoginPage().clickOnButtonSignIn();
-        pageProvider.getLoginPage().getHeaderElement().isButtonSignOutNotVisible();
+        pageProvider.getLoginPage().getHeaderElement().checkIsButtonSignOutNotVisible();
     }
 
 }

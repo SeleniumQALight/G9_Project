@@ -18,11 +18,11 @@ public class LogOutTest extends BaseTest {
                 .checkIsInputPasswordNotVisible()
                 .checkIsButtonSignInNotVisible();
         pageProvider.getHomePage().getHeaderElement().logOut()
-                .getHeaderElement().isSearchIconNotVisible()
-                .getHeaderElement().isChatIconNotVisible()
-                .getHeaderElement().isMyProfileButtonNotVisible()
-                .getHeaderElement().isButtonCreatePostNotVisible()
-                .getHeaderElement().isButtonSignOutNotVisible();
+                .getHeaderElement().checkIsSearchIconNotVisible()
+                .getHeaderElement().checkIsChatIconNotVisible()
+                .getHeaderElement().checkIsMyProfileButtonNotVisible()
+                .getHeaderElement().checkIsButtonCreatePostNotVisible()
+                .getHeaderElement().checkIsButtonSignOutNotVisible();
         pageProvider.getLoginPage().checkIsRedirectOnLoginPage()
                 .checkIsInputLoginVisible()
                 .checkIsInputPasswordVisible()
