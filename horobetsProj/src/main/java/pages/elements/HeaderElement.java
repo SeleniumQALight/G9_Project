@@ -18,7 +18,7 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
-    @FindBy(xpath = "//span[contains(text(), 'qaauto')]")
+    @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement userName;
 
     @FindBy(xpath = "//header//a[@class = 'text-white mr-2 header-search-icon']")
