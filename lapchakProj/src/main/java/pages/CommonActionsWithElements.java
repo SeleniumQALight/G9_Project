@@ -102,6 +102,44 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void setCheckBoxState(WebElement checkboxUniquePost, String checkBoxState) {
+        try {
+            if (checkBoxState.equals("checked")) {
+                setCheckBox(checkboxUniquePost);
+                } else if (checkBoxState.equals("unchecked")) {
+                unSetCheckBox(checkboxUniquePost);
+                }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckBox(WebElement checkboxUniquePost) {
+        try {
+            if (!checkboxUniquePost.isSelected()) {
+                checkboxUniquePost.click();
+                logger.info("Checkbox was checked");
+            } else {
+                logger.info("Checkbox is already checked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void unSetCheckBox(WebElement checkboxUniquePost) {
+        try {
+            if (checkboxUniquePost.isSelected()) {
+                checkboxUniquePost.click();
+                logger.info("Checkbox was unchecked");
+            } else {
+                logger.info("Checkbox is already unchecked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     private String getElementName(WebElement webElement) {
         try {
             return webElement.getAccessibleName();

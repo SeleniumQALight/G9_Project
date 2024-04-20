@@ -19,6 +19,7 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoInputBody("body text")
                 //.selectTextInDropdownRoleByVisibleText("QA")
                 .selectValueInDropdownRole("One Person")
+                .checkBoxState("checked")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectedToPostPage()
                 .checkIsSuccessMessageDisplayed()
