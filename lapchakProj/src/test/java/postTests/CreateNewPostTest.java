@@ -1,11 +1,12 @@
 package postTests;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
-    private final String POST_TITLE = "TC_001_lapchak";
+    private final String POST_TITLE = "TC_001_lapchak " + Util.getDateAndTimeFormatted();
 
     @Test
     public void TC_001_createNewPost() {

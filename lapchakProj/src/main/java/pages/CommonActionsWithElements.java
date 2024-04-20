@@ -80,7 +80,7 @@ public class CommonActionsWithElements {
         logger.error("Can't work with element " + e);
         Assert.fail("Can't work with element " + e);
     }
-
+    // select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text) {
         try {
             Select select = new Select(dropdown);
