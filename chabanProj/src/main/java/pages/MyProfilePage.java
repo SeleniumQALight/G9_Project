@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+
 import java.util.List;
 
 public class MyProfilePage extends ParentPage {
@@ -66,4 +67,5 @@ public class MyProfilePage extends ParentPage {
                 , isElementDisplayed(postSuccessfullyDeletedMessage, "Success message"));
         return this;
     }
+
 }
