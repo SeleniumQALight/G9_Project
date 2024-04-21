@@ -17,16 +17,17 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectedToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("body text")
-                //.selectTextInDropdownRoleByVisibleText("QA")
+
                 .selectValueInDropdownRole("One Person")
-                .checkBoxState("checked")
+                .checkBoxState("unchecked")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectedToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-
-
-        ;
+                .checkIsPostUnique()
+                .checkIsPostTitle(POST_TITLE)
+                .checkPostBody("body text")
+                .checkPostNote();
 
         pageProvider.getPostPage()
                 .getHeaderElement().clickOnButtonMyProfile()
