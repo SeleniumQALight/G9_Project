@@ -1,7 +1,9 @@
 package registrationTests;
 
 import baseTest.BaseTest;
+import com.beust.jcommander.Parameters;
 import org.junit.Test;
+import org.junit.runners.Parameterized;
 
 public class ValidationMessagesTest extends BaseTest {
     final String ERROR_USERNAME = "Username must be at least 3 characters.1";
@@ -10,6 +12,7 @@ public class ValidationMessagesTest extends BaseTest {
     final String SEMICOLON = ";";
 
     @Test
+    @Parameters(method = "parametrForValidationMessagesTest");
     public void validationMessagesTest() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField("Tr")
