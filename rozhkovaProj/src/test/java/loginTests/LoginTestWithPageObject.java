@@ -3,6 +3,7 @@ package loginTests;
 import baseTests.BaseTest;
 import categories.SmokeTestFilter;
 import data.TestData;
+import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
@@ -12,9 +13,19 @@ import org.junit.experimental.categories.Category;
 import java.io.IOException;
 import java.util.Map;
 
+@Epic("Allure examples") //групування тестів по епікам для виводу в репорті аллюр
+@Feature("Junit 4 support")
+
+
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     @Category(SmokeTestFilter.class) //тільки тести без параметрів. Якщо треба з параметрами, то треба категорію навісити на клас
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")//лінк на джирі для відстежування певного бага
+    @Issue("432")
+    @Story("Base support for bdd annotations")//яку історію ви розповідаєте
     public void TC_001_loginTest_validLogin() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
