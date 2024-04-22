@@ -13,15 +13,13 @@ import org.junit.runner.RunWith;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
 @RunWith(JUnitParamsRunner.class)
 public class CreatePostDataBaseAndExcelTest extends BaseTest {
     Logger logger = Logger.getLogger(getClass());
-    List<String> titles = new ArrayList<>();
+    String title;
 
     @Test
     @Parameters(method = "parametersForCreatingPost")
@@ -47,7 +45,7 @@ public class CreatePostDataBaseAndExcelTest extends BaseTest {
         pageProvider.getPostPage().checkIsRedirectToPostPage();
         pageProvider.getPostPage().checkTextInSuccessMessage(expectedMessage);
         pageProvider.getPostPage().checkIsPostUnique(expectedState);
-        titles.add(POST_TITlE);
+        title =POST_TITlE;
 
 
     }
@@ -64,11 +62,9 @@ public Collection parametersForCreatingPost() throws IOException {
         pageProvider.getHomePage().openHomePageAndLoginIfNeeded();
         pageProvider.getHomePage().getHeaderElement().clickOnButtonMyProfile();
         pageProvider.getMyProfilePage().checkIsRedirectToMyProfilePage();
-        for (int i = 0; i < titles.size(); i++) {
-            System.out.println(titles.get(i));
-            pageProvider.getMyProfilePage().deletePostsTillPresent(titles.get(i));
+        pageProvider.getMyProfilePage().deletePostsTillPresent(title);
         }
     }
 
 
-}
+
