@@ -80,7 +80,7 @@ public class CommonActionsWithElements {
         logger.error("Can't work with element " + e);
         Assert.fail("Can't work with element " + e);
     }
-
+    // select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text) {
         try {
             Select select = new Select(dropdown);
@@ -97,6 +97,44 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             // TODO implement method to select text in dropdown
             logger.info(value + " was selected in DropDown " + getElementName(dropDownElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckBoxState(WebElement checkboxUniquePost, String checkBoxState) {
+        try {
+            if (checkBoxState.equals("checked")) {
+                setCheckBox(checkboxUniquePost);
+                } else if (checkBoxState.equals("unchecked")) {
+                unSetCheckBox(checkboxUniquePost);
+                }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckBox(WebElement checkboxUniquePost) {
+        try {
+            if (!checkboxUniquePost.isSelected()) {
+                checkboxUniquePost.click();
+                logger.info("Checkbox was checked");
+            } else {
+                logger.info("Checkbox is already checked");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void unSetCheckBox(WebElement checkboxUniquePost) {
+        try {
+            if (checkboxUniquePost.isSelected()) {
+                checkboxUniquePost.click();
+                logger.info("Checkbox was unchecked");
+            } else {
+                logger.info("Checkbox is already unchecked");
+            }
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
