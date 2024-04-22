@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class LoginTestWithPageObject extends BaseTest {
+    //LoginTestWithPageObject#validLogin
     final String USER_NAME = "qaauto";
     @Test
     @Category(SmokeTestFilter.class)
