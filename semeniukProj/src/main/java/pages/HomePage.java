@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,6 +41,7 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+    @Step
     public boolean isButtonSignInDisplayed(){
         return isElementDisplayed(buttonSignIn);
     }
@@ -47,6 +49,7 @@ public class HomePage extends ParentPage {
         return isElementDisplayed(popUp);
     }
 
+    @Step
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
