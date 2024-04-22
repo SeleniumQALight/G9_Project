@@ -1,8 +1,10 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import data.TestData;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import pages.libs.ConfigProvider;
 import pages.libs.ExcelDriver;
 
@@ -15,6 +17,7 @@ public class LoginTestWithPageObject extends BaseTest {
     final String VALID_PASSWORD = "123456qwerty";
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
