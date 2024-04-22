@@ -1,6 +1,7 @@
 package pages.elements;
 
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -76,10 +77,11 @@ public class HeaderElement extends CommonActionWithElements {
         checkElementIsNotDisplayed(buttonSignOut);
         return this;
     }
-
+    @Step
     public LoginPage getLoginPage() {
         return new LoginPage(webDriver);
     }
+    @Step
     public LoginPage clickOnSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);

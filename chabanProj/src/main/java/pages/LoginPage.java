@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -46,7 +47,7 @@ public class LoginPage extends ParentPage{
     protected String getRelativeUrl() {
         return "/";
     }
-
+    @Step
     public void openLoginPage() {
         try{
             webDriver.get(baseUrl);
@@ -57,11 +58,12 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not open login page " + e);
         }
     }
-
+    @Step
     public void enterTextIntoInputLogin(String text) {
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
 
     }
+    @Step
     public void enterTextIntoInputPassword(String text) {
 //        WebElement inputPasswordLoginForm =
 //                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
@@ -71,7 +73,7 @@ public class LoginPage extends ParentPage{
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
 
     }
-
+    @Step
     public void clickOnButtonSignIn(){
 //        WebElement buttonSignIn =
 //                webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
@@ -79,7 +81,7 @@ public class LoginPage extends ParentPage{
 //        logger.info("button was clicked");
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -87,47 +89,54 @@ public class LoginPage extends ParentPage{
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+    @Step
     public boolean isUserNameInputDisplayed(){
         return isElementDisplayed(inputUserNameLoginForm);
     }
+    @Step
     public boolean isPasswordInputDisplayed(){
         return isElementDisplayed(inputPasswordLoginForm);
     }
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkUrlWithPattern();
         //TODO check some element that is only on this page //dz
         return this;
     }
+    @Step
     public LoginPage assertionsForLoginPageElementsDisplayed() {
         checkElementIsDisplayed(inputUserNameLoginForm);
         checkElementIsDisplayed(inputPasswordLoginForm);
         checkElementIsDisplayed(buttonSignIn);
         return this;
     }
+    @Step
     public LoginPage assertionsForLoginPageElementsAreNotDisplayed() {
         checkElementIsNotDisplayed(inputUserNameLoginForm);
         checkElementIsNotDisplayed(inputPasswordLoginForm);
         checkElementIsNotDisplayed(buttonSignIn);
         return this;
     }
-
+    @Step
     public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
         return this;
     }
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessagesText(String messages) {
         //error1;error2;error3 -> [error1, error2, error3]
         String[] expectedErrors = messages.split(";");
@@ -153,7 +162,7 @@ public class LoginPage extends ParentPage{
         }
         return this;
     }
-
+    @Step
     public LoginPage refreshPage() {
         webDriver.navigate().refresh();
         webDriverWait10.until(ExpectedConditions.visibilityOf(buttonSignIn));
