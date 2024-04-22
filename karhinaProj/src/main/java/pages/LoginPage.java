@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -52,6 +53,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -62,26 +64,27 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String text) {
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
-
+    @Step
     public void  enterTextIntoPassword(String text){
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
-
+    @Step
     public void clickOnButtonSignIn(){
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public boolean isButtonSignInDisplayed() {return isElementDisplayed(buttonSignIn);
     }
-
+    @Step
     public boolean isInvalidUsernamePasswordDisplayed() {
         return isElementDisplayed(massageInvalidUsernamePassword);
     }
 
-
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -89,53 +92,53 @@ public class LoginPage extends ParentPage{
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkUrl();
         Assert.assertTrue("Invalid Page Not Home Page", isButtonSignInDisplayed());
         return this;
     }
 
-
+    @Step
     public boolean checkIsInputUserNameDisplayed() {
         return checkElementIsDisplayed(inputUserNameLoginForm);
     }
-
+    @Step
     public boolean checkIsInputPasswordDisplayed() {
         return checkElementIsDisplayed(inputPasswordLoginForm);
     }
-
+    @Step
     public boolean checkIsButtonSignInDisplayed() {
         return checkElementIsDisplayed(buttonSignIn);
     }
-
+    @Step
     public boolean checkIsInputUserNameIsNotDisplayed() {
         return checkElementIsNotDisplayed(inputUserNameLoginForm);
     }
-
+    @Step
     public boolean checkIsInputPasswordIsNotDisplayed() {
         return checkElementIsNotDisplayed(inputPasswordLoginForm);
     }
-
+    @Step
     public boolean checkIsButtonSignInIsNotDisplayed() {
         return checkElementIsNotDisplayed(buttonSignIn);
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
         return this;
     }
-
+    @Step
         public LoginPage enterTextIntoRegistrationEmailField(String email) {
         cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
         }
-
+    @Step
         public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         //error1;error2;error3 -> [error1, error2, error3]
         String[] expectedErrors = messages.split(";");
