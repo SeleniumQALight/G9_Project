@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,9 +17,13 @@ public class PostPage extends ParentPage {
     private WebElement yesPostUniqueMessage;
     @FindBy(xpath = "//p[text()='Is this post unique? : no']")
     private WebElement noPostUniqueMessage;
+
+    private String textPostUniqueLocator = "//p[text()='Is this post unique? : %s']";
+    private String postRoleLocator = "//u[contains(text(),'%s')]";
+
     @FindBy(xpath = ".//h2")
     private WebElement postTextTitle;
-    @FindBy(xpath = ".//p[text()='body text']")
+    @FindBy(xpath = ".//div[@class='body-content'][2]//p")
     private WebElement postTextBody;
     @FindBy(xpath = "//u[contains(text(),'One Person')]")
     private WebElement postRoleOnePerson;
@@ -74,6 +79,14 @@ public class PostPage extends ParentPage {
         }
         return this;
     }
+
+    public PostPage checkValueInPostUniqueMessage(String textInPostUnique) {
+        WebElement postUniqueMessage = webDriver.findElement(By.xpath(String.format(textPostUniqueLocator, textInPostUnique)));
+        Assert.assertTrue("Message 'Is post unique?' is not displayed", isElementDisplayed(postUniqueMessage, "Message 'Is post unique?'"));
+        return this;
+    }
+
+
     public PostPage checkValueInTitleOfPost(String expectedTextInPostTitle) {
         String actualPostTextTitle = postTextTitle.getText();
         Assert.assertEquals("Text in post title is wrong", expectedTextInPostTitle, actualPostTextTitle);
@@ -97,8 +110,9 @@ public class PostPage extends ParentPage {
         return this;
     }*/
 
-    public PostPage checkIsMessageNotificationAboutOnePersonRoleDisplayed() {
-        Assert.assertTrue("Message 'Note: This post was written for One Person' is not displayed", isElementDisplayed(postRoleOnePerson) && isElementDisplayed(TextThisPostWasWrittenFor));
+    public PostPage checkIsMessageNotificationAboutRoleDisplayed(String role) {
+        WebElement postRole = webDriver.findElement(By.xpath(String.format(postRoleLocator, role)));
+        Assert.assertTrue("Message 'Note: This post was written for '" + role + " ' is not displayed", isElementDisplayed(postRole) && isElementDisplayed(TextThisPostWasWrittenFor));
         logger.info("Message 'Note: This post was written for One Person' is displayed");
         return this;
     }

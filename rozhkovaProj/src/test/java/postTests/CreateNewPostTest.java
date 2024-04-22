@@ -28,7 +28,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkValueInPostUniqueMessage()
                 .checkValueInTitleOfPost(POST_TITLE)
                 .checkValueInBodyOfPost("body text")
-                .checkIsMessageNotificationAboutOnePersonRoleDisplayed()
+                .checkIsMessageNotificationAboutRoleDisplayed("One Person")
         ;
 
 
