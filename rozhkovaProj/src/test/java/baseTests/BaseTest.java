@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -22,6 +24,7 @@ public class BaseTest {
     //виконується перед кожним тестом
     @Before
     public void setUp() {
+        logger.info("---------" + testName.getMethodName() + " was started---------");
         //WebDriverManager.chromedriver().setup();  //скачує виконуваний файл
        // webDriver = new ChromeDriver(); //відкривання браузера Chrome  замість цього викликаємо метод initDriver
         webDriver = initDriver();//відкривання браузера Chrome пустого
@@ -36,7 +39,13 @@ public class BaseTest {
     public void tearDown() {
         webDriver.quit();//закриває повністю браузер
         logger.info("Browser was closed");
+        logger.info("---------" + testName.getMethodName() + " was finished---------");
     }
+
+    @Rule //для виведення назви тесту, перед всіма тестами
+    public TestName testName = new TestName();
+
+
     //initDriver - метод, який ініціалізує драйвер
     private WebDriver initDriver() {
         String browserFromProperty = System.getProperty("browser");
