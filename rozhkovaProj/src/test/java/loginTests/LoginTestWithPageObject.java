@@ -1,17 +1,20 @@
 package loginTests;
 
 import baseTests.BaseTest;
+import categories.SmokeTestFilter;
 import data.TestData;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Category(SmokeTestFilter.class) //тільки тести без параметрів. Якщо треба з параметрами, то треба категорію навісити на клас
     public void TC_001_loginTest_validLogin() {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
