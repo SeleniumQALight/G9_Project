@@ -174,4 +174,41 @@ public class CommonActionsWithElements {
            return "";
        }
     }
+    public void openNewTab(){
+        try{
+            ((org.openqa.selenium.JavascriptExecutor)webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+            switchToNewTab();
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+    public void switchToNewTab(){
+        try{
+            for(String windowHandle : webDriver.getWindowHandles()){
+                webDriver.switchTo().window(windowHandle);
+            }
+            logger.info("Switched to new tab");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void switchToMainTab() {
+        try {
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
+            logger.info("Switched to main tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    public void closeCurrentTabAndSwitchToMain(){
+        try{
+            webDriver.close();
+            logger.info("Current tab was closed");
+            switchToMainTab();
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 }

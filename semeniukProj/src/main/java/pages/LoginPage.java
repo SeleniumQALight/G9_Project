@@ -155,10 +155,16 @@ public class LoginPage extends ParentPage {
                     .as("Error " + i)
                     .isIn(expectedErrors);
         }
-
         softAssertions.assertAll();
+        return this;
+    }
+    public HeaderElement getHeaderElement() {
+        return new HeaderElement(webDriver);
+    }
 
-
+    public LoginPage refreshPage() {
+        webDriver.navigate().refresh();
+        webDriverWait10.until(ExpectedConditions.visibilityOf(buttonSignIn));
         return this;
     }
 }
