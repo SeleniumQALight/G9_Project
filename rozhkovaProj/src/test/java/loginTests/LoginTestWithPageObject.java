@@ -30,7 +30,7 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     public void TC_001_01_loginTest_validLoginWithExcel() throws IOException {
-        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");//ств змінну, яка містить мапу з даними з екселя
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
         pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
