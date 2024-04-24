@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -53,6 +54,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -63,6 +65,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String text) {
 //        WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
 //        inputUserNameLoginForm.clear();
@@ -71,6 +74,7 @@ public class LoginPage extends ParentPage{
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String text){
 //        WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
 //        inputPasswordLoginForm.clear();
@@ -79,6 +83,7 @@ public class LoginPage extends ParentPage{
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
+    @Step
     public void clickOnButtonSignIn(){
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
 
@@ -87,14 +92,17 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonSignIn);
     }
 
+    @Step
     public boolean isPopUpDisplayed() {
         return isElementDisplayed(popUp);
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -104,69 +112,80 @@ public class LoginPage extends ParentPage{
 
     }
 
+    @Step
     public boolean isInputLoginDisplayed() {
         return isElementDisplayed(inputUserNameLoginForm);
     }
 
+    @Step
     public boolean isInputPasswordDisplayed() {
         return isElementDisplayed(inputPasswordLoginForm);
     }
 
 
 
-
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkUrl();
         Assert.assertTrue("Invalid page Not Login page", isButtonSignInDisplayed());
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputLoginNotDispayed() {
         checkElementsNotDisplayed(inputUserNameLoginForm, "Input Login");
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputPasswordNotDispayed() {
         checkElementsNotDisplayed(inputPasswordLoginForm, "Input Password");
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInNotDisplayed() {
         checkElementsNotDisplayed(buttonSignIn, "Button Sign In");
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputLoginDispayed() {
         checkElementsDisplayed(inputUserNameLoginForm, "Input Login");
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputPasswordDispayed() {
         checkElementsDisplayed(inputPasswordLoginForm, "Input Password");
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInDisplayed() {
         checkElementsDisplayed(buttonSignIn, "Button Sign In");
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
-
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         // error1; error2; error3; -> [error1, error2, error3]
         String[] expectedErrors = messages.split(";");

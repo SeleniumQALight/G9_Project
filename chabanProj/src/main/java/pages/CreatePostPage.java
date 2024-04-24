@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,12 +36,12 @@ public class CreatePostPage extends ParentPage{
         Assert.assertTrue("Invalid page -  Not Create Post page", isElementDisplayed(inputTitle));
         return this;
     }
-
+@Step
 public CreatePostPage enterTitleInToInputTitle(String title) {
         cleanAndEnterTextIntoElement(inputTitle, title);
         return this;
     }
-
+    @Step
     public CreatePostPage enterTextIntoInputBody(String text) {
       cleanAndEnterTextIntoElement(inputBody, text);
         return this;
@@ -51,16 +52,17 @@ public CreatePostPage enterTitleInToInputTitle(String title) {
         selectValueInDropdownByVisibleText(dropdownRole, text);
         return this;
     }
-
+@Step
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
-
+@Step
     public CreatePostPage selectValueInDropdownRole(String value) {
         selectValueInDropdown(dropdownRole, value);
         return this;
     }
+    @Step
     public CreatePostPage selectCheckBox() {
         checkBoxUniquePost.isSelected();
         if (!checkBoxUniquePost.isSelected()) {
@@ -71,6 +73,7 @@ public CreatePostPage enterTitleInToInputTitle(String title) {
         }
         return this;
     }
+    @Step
     public CreatePostPage deSelectCheckBox() {
         checkBoxUniquePost.isSelected();
         if (checkBoxUniquePost.isSelected()) {
@@ -81,7 +84,7 @@ public CreatePostPage enterTitleInToInputTitle(String title) {
         }
         return this;
     }
-
+@Step
     public CreatePostPage settingCheckBox(String state) {
         if (state.equals("check")) {
              selectCheckBox();

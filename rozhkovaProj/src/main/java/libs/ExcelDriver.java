@@ -28,15 +28,15 @@ public class ExcelDriver {
 		System.out.println("sheetName = " + sheetName);
 		System.out.println("columnNumber = " + columnNumber);
 		Map<String, String> testData = new HashMap<>();
-		// Create stream for reading from file
+		// Create stream for reading from file. встановляюємо коннекшн до файлу
 		InputStream input = new FileInputStream(dataFileName);
-		// Get Excel WorkBook from input stream
+		// Get Excel WorkBook from input stream. встановлюємо коннекшн до внутрішньої структури ексель
 		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(input));//розібрати як ми бачимо в ексель
-		// Get Excel sheet from WorkBook
+		// Get Excel sheet from WorkBook. Тільки той аркуш, що нас цікавить
 		HSSFSheet sheet = wb.getSheet(sheetName);
 
 		// Get number of data values
-        int dataSize = sheet.getPhysicalNumberOfRows() - 1;
+        int dataSize = sheet.getPhysicalNumberOfRows() - 1;//метод з бібліотеки пои, який повертає кількість рядків в таблиці
 		// Look over the table and put key-value pairs into the Map collection
 		for (int k = 1; k < (dataSize + 1); k++) {
 			HSSFCell keyCell = sheet.getRow(k).getCell(0);
@@ -45,7 +45,7 @@ public class ExcelDriver {
 			testData.put(keyCell.getStringCellValue(), valueCell.getStringCellValue());
 		}
 
-		input.close();
+		input.close();//обовязково треба закрити коннекшен до файлу. бо може бути помилка і ніхто не зможе зайти в файл
 		return testData;
 	}
 
