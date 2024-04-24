@@ -8,9 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.*;
 
-import java.util.List;
-
-public class HeaderElement extends СommonActionsWithElements {
+public class HeaderElement extends CommonActionsWithElements_new {
 
     //описує елементи, які є в хедері залогіненого користувача
 

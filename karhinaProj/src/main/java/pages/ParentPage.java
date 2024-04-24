@@ -4,7 +4,7 @@ import libs.ConfigProvider;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
- abstract public class ParentPage extends СommonActionsWithElements {
+ abstract public class ParentPage extends CommonActionsWithElements_new {
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
