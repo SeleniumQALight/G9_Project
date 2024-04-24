@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.DB_Util_seleniumUsers;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -20,7 +21,7 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//button[contains(text(),'Sign In')]") //ініціалізується в CommonActionWithElements
     private WebElement buttonSignIn;
-    @FindBy (xpath = "//input [@placeholder = 'Username']")
+    @FindBy(xpath = "//input [@placeholder = 'Username']")
     private WebElement inputUserNameLoginForm;
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPasswordLoginForm;
@@ -40,7 +41,6 @@ public class LoginPage extends ParentPage {
     private List<WebElement> listErrorsMessages;
 
 
-
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -50,10 +50,12 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonSignIn, "Button Sign In");
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -64,12 +66,14 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkUrlWithPattern();
         Assert.assertTrue("Invalid page Not Login page", isButtonSignInDisplayed());
         return this;
     }
 
+    @Step
     public void enterTextIntoInputLogin(String text) {
         //WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath("//input [@placeholder = 'Username']"));  у @FindBy
         //inputUserNameLoginForm.clear(); - приписаний метод у батьківському класі
@@ -77,20 +81,25 @@ public class LoginPage extends ParentPage {
         // logger.info(text + " was inputted into input UserName");
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
-    public void enterTextIntoInputPassword (String text){
+
+    @Step
+    public void enterTextIntoInputPassword(String text) {
         //WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         //inputPasswordLoginForm.clear();
         //inputPasswordLoginForm.sendKeys(text);
         //logger.info(text + " Password was inputted");
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
-    public void clickOnButtonSignIn(){
-       // WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")); у @FindBy
-       //buttonSignIn.click();   //метод у батьківському прописаний
-       // logger.info("Button was clicked");
+
+    @Step
+    public void clickOnButtonSignIn() {
+        // WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")); у @FindBy
+        //buttonSignIn.click();   //метод у батьківському прописаний
+        // logger.info("Button was clicked");
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -110,21 +119,25 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         //error1;error2;error3 -> [error1, error2, error3]
         String[] expectedErrors = messages.split(";");//якщо три валідних, то масив буде з трьох елементів. якщо один невалідний, то масив буде з одного елементу
@@ -155,41 +168,50 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public boolean isUserNameInputDisplayed() {
         return isElementDisplayed(inputUserNameLoginForm, "User Name input");
     }
+
     public LoginPage checkIsUserNameInputDisplayed() {
         checkElementIsDisplayed(inputUserNameLoginForm, "User Name input");
         return this;
     }
 
+    @Step
     public LoginPage checkIsPasswordInputDisplayed() {
         checkElementIsDisplayed(inputPasswordLoginForm, "Password input");
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInDisplayed() {
         checkElementIsDisplayed(buttonSignIn, "Button Sign In");
         return this;
     }
 
+    @Step
     public boolean isPasswordInputDisplayed() {
         return isElementDisplayed(inputPasswordLoginForm, "Password input");
     }
 
+    @Step
     public LoginPage checkIsUserNameInputNotDisplayed() {
         checkElementIsNotDisplayed(inputUserNameLoginForm, "User Name input");
         return this;
     }
 
+    @Step
     public LoginPage checkIsPasswordInputNotDisplayed() {
         checkElementIsNotDisplayed(inputPasswordLoginForm, "Password input");
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInNotDisplayed() {
         checkElementIsNotDisplayed(buttonSignIn, "Button Sign In");
         return this;
     }
+
 
 }
