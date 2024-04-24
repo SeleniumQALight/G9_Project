@@ -15,6 +15,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
         <aspectj.version>1.9.21</aspectj.version>
         <compiler.version>1.8</compiler.version>
         <tag>@R001</tag>
