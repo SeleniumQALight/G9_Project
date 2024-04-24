@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,32 +36,32 @@ public class HeaderElement extends СommonActionsWithElements {
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
-
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
-
+    @Step
     public boolean isButtonSignOutDisplayed() {
         return isElementDisplayed(buttonSignOut);
     }
-
+    @Step
     public boolean isButtonCreatePostDisplayed() {
         return isElementDisplayed(buttonCreatePost);
     }
-
+    @Step
     public boolean isButtonMyProfileDisplayed() {
         return isElementDisplayed(buttonMyProfile);
     }
-
+    @Step
     public boolean checkIsButtonSignOutDisplayed() {
         return checkElementIsDisplayed(buttonSignOut);
     }
-
+    @Step
     public boolean checkIsButtonCreatePostDisplayed() {
         return checkElementIsDisplayed(buttonCreatePost);
     }
-
+    @Step
     public boolean checkIsButtonMyProfileDisplayed() {
         return checkElementIsDisplayed(buttonMyProfile);
     }
@@ -70,51 +71,52 @@ public class HeaderElement extends СommonActionsWithElements {
         String locator = String.format(userNameLocator, userName);
         return webDriver.findElement(By.xpath(locator));
     }
-
+    @Step
     public boolean checkIsUsernameIsPresent(String userName) {
         Assert.assertTrue("Username is not displayed", isElementDisplayed(getUserName(userName)));
         return true;
     }
-
+    @Step
     public boolean checkIsButtonSearchDisplayed() {
         return checkElementIsDisplayed(buttonSearch);
     }
-
+    @Step
     public boolean checkIsButtonChatDisplayed() {
         return checkElementIsDisplayed(buttonChat);
     }
 
-
+    @Step
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
 
-
+    @Step
     public LoginPage clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
         return new LoginPage(webDriver);
     }
-
+    @Step
     public boolean checkIsButtonSearchIsNotDisplayed() {
         return checkElementIsNotDisplayed(buttonSearch);
     }
-
+    @Step
     public boolean checkIsButtonChatIsNotDisplayed() {
         return checkElementIsNotDisplayed(buttonChat);
     }
-
+    @Step
     public boolean checkIsButtonMyProfileIsNotDisplayed() {
         return checkElementIsNotDisplayed(buttonMyProfile);
     }
-
+    @Step
     public boolean checkIsButtonCreatePostIsNotDisplayed() {
         return checkElementIsNotDisplayed(buttonCreatePost);
     }
+    @Step
     public boolean checkIsButtonSignOutIsNotDisplayed() {
         return checkElementIsNotDisplayed(buttonSignOut);
     }
-
+    @Step
     public boolean checkIsUsernameIsNotPresent(String userName) {
         Assert.assertFalse("Username is displayed", isElementDisplayed(getUserName(userName)));
         return true;
