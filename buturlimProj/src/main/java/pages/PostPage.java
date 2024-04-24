@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,6 +40,7 @@ public class PostPage extends ParentPage{
         return new HeaderElement(webDriver);
     }
 
+    @Step
     public PostPage checkIsRedirectOnPostPage() {
         checkUrlWithPattern();
         Assert.assertTrue("Title is not displayed", isElementDisplayed(titleMessage, "Title"));
@@ -47,40 +49,47 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    @Step
     public PostPage checkIsSuccessMessageDisplayed() {
         Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage, "Success message"));
         return this;
     }
 
+    @Step
     public PostPage checkTextInSuccessMessage(String messageText) {
         String textFromElement = successMessage.getText();
         Assert.assertEquals("Text in message", messageText, textFromElement);
         return this;
     }
 
+    @Step
     public PostPage checkIsPostUnique() {
         Assert.assertTrue("Post is not unique", isElementDisplayed(isPostUnique, "Unique post"));
         return this;
     }
 
+    @Step
     public PostPage checkTextInTitle(String title) {
         String textFromElement = titleMessage.getText();
         Assert.assertEquals("Text in title", title, textFromElement);
         return this;
     }
 
+    @Step
     public PostPage checkTextInBody(String body) {
         String textFromElement = bodyMessage.getText();
         Assert.assertEquals("Text in body", body, textFromElement);
         return this;
     }
 
+    @Step
     public PostPage checkNoteMessage(String note) {
         String textFromElement = noteMessage.getText();
         Assert.assertEquals("Text in note", note, textFromElement);
         return this;
     }
 
+    @Step
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost);
         return new MyProfilePage(webDriver);
