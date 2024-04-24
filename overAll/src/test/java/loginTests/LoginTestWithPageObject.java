@@ -42,7 +42,7 @@ public class LoginTestWithPageObject extends BaseTest {
     public void validLoginWithExcel() throws IOException {
         Map<String, String> dataForValidLogin =
                 ExcelDriver.getData(ConfigProvider.configProperties.DATA_FILE(), "validLogOn");
-        pageProvider.getLoginPage().openLoginPage()
+        pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(dataForValidLogin.get("login"));
         pageProvider.getLoginPage().enterTextIntoInputPassword(dataForValidLogin.get("pass"));
         pageProvider.getLoginPage().clickOnButtonSignIn();
