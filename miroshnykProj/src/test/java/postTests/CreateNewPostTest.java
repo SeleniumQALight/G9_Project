@@ -1,4 +1,4 @@
-package postTest;
+package postTests;
 
 import baseTest.BaseTest;
 import libs.Util;
@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Test;
 
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "TC_001_miroshnyk" + Util.getDateAndTimeFormatted();
+    final String POST_TITLE = "TC_001_radulenko_" + Util.getDateAndTimeFormatted();
 
     @Test
     public void TC_001_createNewPost() {
@@ -15,8 +15,8 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreatePostPage()
-                .enterTitleIntoInputTitle(POST_TITLE)
-                .enterTextIntoTextareaBody("Body text")
+                .enterTitleInToInputTitle(POST_TITLE)
+                .enterTextIntoInputBody("body text")
 //                .selectTextInDropdownRoleByVisibleText("Приватне повідомлення")
                 .selectValueInDropdownRole("One Person")
                 .clickOnSaveNewPostButton()
@@ -24,7 +24,6 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
-
 
 
 
@@ -36,12 +35,13 @@ public class CreateNewPostTest extends BaseTest {
     }
 
     @After
-    public void deletePost() {
+    public void deletePosts() {
         pageProvider.getHomePage()
                 .openHomePageAndLoginIfNeeded()
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostsTillPresent(POST_TITLE);
+                .deletePostsTillPresent(POST_TITLE)
+        ;
     }
 
 

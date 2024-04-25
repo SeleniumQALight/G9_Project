@@ -10,9 +10,9 @@ public class CreatePostPage extends ParentPage {
     private WebElement inputTitle;
 
     @FindBy(xpath = ".//textarea[@id='post-body']")
-    private WebElement textareaBody;
+    private WebElement textAreaBody;
 
-    @FindBy(tagName = "select") //скорочена форма локатора xpath = ".//select"
+    @FindBy(tagName = "select") // скорочена форма локатора xpath = ".//select"
     private WebElement dropdownRole;
 
     @FindBy(xpath = ".//button[text()='Save New Post']")
@@ -30,25 +30,27 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         checkUrl();
-        Assert.assertTrue("Invalid page Not Create Post page", isElementDisplayed(inputTitle));
+        Assert.assertTrue("Invalid page - not Create Post Page"
+                , isElementDisplayed(inputTitle));
         return this;
     }
 
-        public CreatePostPage enterTitleIntoInputTitle(String title) {
+    public CreatePostPage enterTitleInToInputTitle(String title) {
         cleanAndEnterTextIntoElement(inputTitle, title);
         return this;
     }
 
-    public CreatePostPage enterTextIntoTextareaBody(String bodyText) {
-        cleanAndEnterTextIntoElement(textareaBody, bodyText);
+    public CreatePostPage enterTextIntoInputBody(String bodyText) {
+        cleanAndEnterTextIntoElement(textAreaBody, bodyText);
         return this;
     }
 
-    // select text in dropdown Role by visible text
+    //select text in dropdown Role by visible text
     public CreatePostPage selectTextInDropdownRoleByVisibleText(String text) {
         selectTextInDropdownByVisibleText(dropdownRole, text);
         return this;
     }
+
 
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);

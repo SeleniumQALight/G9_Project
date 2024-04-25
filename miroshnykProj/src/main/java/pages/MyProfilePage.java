@@ -8,13 +8,12 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MyProfilePage extends ParentPage {
-
+public class MyProfilePage extends ParentPage{
     @FindBy(xpath = "//*[text()='Post successfully deleted.']")
     private WebElement postSuccessfullyDeletedMessage;
 
+    private String postTitleLocator = ".//*[text()='%s']"; // параметризований локатор
 
-    public String postTitleLocator = "//*[text()='%s']"; // параметризований локатор
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -25,29 +24,31 @@ public class MyProfilePage extends ParentPage {
         return "/profile/[a-zA-Z0-9]*";
     }
 
-    public MyProfilePage checkIsRedirectToMyProfilePage() {
+    public MyProfilePage checkIsRedirectToMyProfilePage(){
         checkUrlWithPattern();
         // TODO check some element that is only on this page
         return this;
     }
 
-    // get post with locator
+    // get post with title
     private List<WebElement> getPostsWithTitle(String title) {
         String locator = String.format(postTitleLocator, title);
-        return webDriver.findElements(By.xpath(locator)); // якщо не знайде жодного то поверне пустий список і не буде ексепшена
+        return webDriver.findElements(By.xpath(locator)); // якщо не знайде жодного то поверне пустий список
+//                                            // і не буде ексепшена
     }
 
-    public MyProfilePage checkPostWithTitleIsPresent(String postTitle, int expectedNumberOfPosts) {
-        Assert.assertEquals("Number of posts with title " + postTitle, expectedNumberOfPosts, getPostsWithTitle(postTitle).size());
-
-    return this;
+    public MyProfilePage checkPostWithTitleIsPresent(String postTitle, int expectedNumberOfPosts){
+        Assert.assertEquals("Number of posts with title " + postTitle
+                , expectedNumberOfPosts, getPostsWithTitle(postTitle).size());
+        return this;
     }
+
 
     public MyProfilePage deletePostsTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsWithTitle(postTitle);
         int counter = 0;
-        final int MAX_POST_COUNT = 100;
-        while (!postsList.isEmpty() && (counter < MAX_POST_COUNT)){
+        final int MAX_POST_COUNT = 100; //postsList.size(); //100
+        while (!postsList.isEmpty() && (counter< MAX_POST_COUNT)){
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
@@ -58,15 +59,16 @@ public class MyProfilePage extends ParentPage {
             postsList = getPostsWithTitle(postTitle);
             counter++;
         }
-        if (counter>=MAX_POST_COUNT){
+        if (counter >= MAX_POST_COUNT){
             Assert.fail("There are more than " + MAX_POST_COUNT + " posts with title " + postTitle);
         }
         return this;
     }
 
-    public MyProfilePage checkIsMessageSuccessDeletePresent() {
-        Assert.assertTrue("Message 'Post Successfully Deleted' is not displayed",
-                isElementDisplayed(postSuccessfullyDeletedMessage, "Post Successfully Deleted message"));
+
+    public MyProfilePage checkIsMessageSuccessDeletePresent(){
+        Assert.assertTrue("Message 'Post Successfully Deleted' is not displayed"
+                , isElementDisplayed(postSuccessfullyDeletedMessage, "Post Successfully Deleted message"));
         return this;
     }
 }

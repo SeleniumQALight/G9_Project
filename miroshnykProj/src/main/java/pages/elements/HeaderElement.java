@@ -9,9 +9,9 @@ import pages.MyProfilePage;
 
 // описує елементи які є в хедері залогіненого юзера
 public class HeaderElement extends CommonActionsWithElements {
-    // myProfile Button
+    // myProfile button
     @FindBy(xpath = "//img[@alt='My profile']")
-    private WebElement myProfileButton;
+    private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//button[contains(text(),'Sign Out')]")
     private WebElement buttonSignOut;
@@ -19,14 +19,16 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = "//*[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
 
     public MyProfilePage clickOnMyProfileButton() {
-        clickOnElement(myProfileButton);
+        clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
+
     public boolean isButtonSignOutDisplayed() {
         return isElementDisplayed(buttonSignOut);
     }
