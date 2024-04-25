@@ -24,7 +24,6 @@ public class LoginTestAllActionInOneClass {
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         logger.info("Browser was opened");
-
     }
 
     @After
@@ -38,12 +37,14 @@ public class LoginTestAllActionInOneClass {
         webDriver.get("https://aqa-complexapp.onrender.com");
         logger.info("Site was opened");
 
-        WebElement inputUserNameLoginForm = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        WebElement inputUserNameLoginForm =
+                webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
         inputUserNameLoginForm.clear();
         inputUserNameLoginForm.sendKeys("qaauto");
         logger.info("'qaauto' was inputted into input UserName");
 
-        WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        WebElement inputPasswordLoginForm =
+                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         inputPasswordLoginForm.clear();
         inputPasswordLoginForm.sendKeys("123456qwerty");
         logger.info("Password was inputted");
@@ -51,7 +52,9 @@ public class LoginTestAllActionInOneClass {
         webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]")).click();
         logger.info("Button Sign In was clicked");
 
-        Assert.assertTrue("Button Sign out is not visible ", isButtonSignOutDisplayed());
+        Assert.assertTrue("Button Sign out is not visible", isButtonSignOutDisplayed());
+
+
     }
 
     private boolean isButtonSignOutDisplayed() {
@@ -63,5 +66,8 @@ public class LoginTestAllActionInOneClass {
             logger.info("Element is not visible");
             return false;
         }
+
     }
+
+
 }

@@ -1,11 +1,13 @@
 package pages;
 
+import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,8 +22,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує всі елементи описані @FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
 
     protected void clickOnElement(WebElement webElement){
@@ -29,7 +31,7 @@ public class CommonActionsWithElements {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
-            logger.info(elementName + "Element was clicked");
+            logger.info(elementName + " Element was clicked ");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -49,9 +51,9 @@ public class CommonActionsWithElements {
         try{
             boolean state = webElement.isDisplayed();
             if (state){
-                logger.info(getElementName(webElement) + "Element is displayed");
+                logger.info(getElementName(webElement) + " Element is displayed");
             } else {
-                logger.info(getElementName(webElement) + "Element is not displayed");
+                logger.info(getElementName(webElement) +" Element is not displayed");
             }
             return state;
         }catch (Exception e){
@@ -64,9 +66,9 @@ public class CommonActionsWithElements {
         try{
             boolean state = webElement.isDisplayed();
             if (state){
-                logger.info(elementName + "Element is displayed");
+                logger.info(elementName + " Element is displayed");
             } else {
-                logger.info(elementName + "Element is not displayed");
+                logger.info(elementName +" Element is not displayed");
             }
             return state;
         }catch (Exception e){
@@ -76,12 +78,12 @@ public class CommonActionsWithElements {
     }
 
     // select text in dropdown by visible text
-    protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text){
-        try{
+    protected void selectTextInDropdownByVisibleText(WebElement dropdown, String text) {
+        try {
             Select select = new Select(dropdown);
             select.selectByVisibleText(text);
-            logger.info(text + " was selected in dropdown" + getElementName(dropdown));
-        }catch (Exception e){
+            logger.info(text + " was selected in dropdown " + getElementName(dropdown));
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
@@ -90,7 +92,18 @@ public class CommonActionsWithElements {
         try {
             Select select = new Select(dropdown);
             select.selectByValue(value);
-            logger.info(value + " was selected in dropdown" + getElementName(dropdown));
+            logger.info(value + " was selected in dropdown " + getElementName(dropdown));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // press Enter key using Actions class
+    public void pressEnterKey() {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(Keys.ENTER).build().perform();
+            logger.info("Enter key was pressed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -101,10 +114,10 @@ public class CommonActionsWithElements {
         Assert.fail("Can not work with element " + e);
     }
 
-    private String getElementName(WebElement webElement) {
-        try {
+    private String getElementName(WebElement webElement){
+        try{
             return webElement.getAccessibleName();
-        } catch (Exception e) {
+        }catch (Exception e){
             return "";
         }
     }
