@@ -1,5 +1,7 @@
 package pages;
 
+import io.qameta.allure.Link;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,24 +26,25 @@ public class MyProfilePage extends ParentPage {
     protected String getRelativeUrl() {
         return "/profile/[a-zA-Z0-9]*";
     }
-
+    @Step
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkUrlWithPattern();
         //TODO check some element that is only on this page
         return this;
     }
-
+    @Step
     //get post with title
     private List<WebElement> getPostsWithTitle(String title) {
         String locator = String.format(postTitleLocator, title);
         return webDriver.findElements(By.xpath(locator)); //якщо не знайде елемент, то поверне пустий список і не буде єксепшена
     }
+    @Step
     public MyProfilePage checkPostWithTitleIsPresented(String postTitle, int expectedNumberOfPosts) {
         Assert.assertEquals("Number of posts with title " + postTitle
                 ,expectedNumberOfPosts, getPostsWithTitle(postTitle).size());
         return this;
     }
-
+    @Step
     public MyProfilePage deletePostsTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsWithTitle(postTitle);
         int counter = 0;
@@ -62,6 +65,7 @@ public class MyProfilePage extends ParentPage {
         }
         return this;
     }
+    @Step
     public MyProfilePage checkIsMessageSuccessDeleteDisplayed() {
         Assert.assertTrue("Success message is not displayed"
                 , isElementDisplayed(postSuccessfullyDeletedMessage, "Success message"));

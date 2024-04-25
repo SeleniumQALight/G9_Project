@@ -3,6 +3,7 @@ package pages;
 
 import data.TestData;
 import io.opentelemetry.api.internal.Utils;
+import io.qameta.allure.Step;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -59,6 +60,7 @@ public class LoginPage extends ParentPage {
 
     final String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -69,26 +71,32 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String text) {
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String text) {
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public boolean isLoginErrorDisplayed() {
         return isElementDisplayed(loginError, "Login Error");
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonSignIn, "Button Sign In");
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -97,57 +105,68 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage checkIsRedirectOnLoginPage() {
         checkUrl();
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputLoginVisible() {
         checkIsElementVisible(inputUserNameLoginForm, "Input Login");
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPasswordLoginForm, "Input Password");
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn, "Button Sign In");
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInNotVisible() {
         checkIsElementNotVisible(buttonSignIn, "Button Sign In");
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputLoginNotVisible() {
         checkIsElementNotVisible(inputUserNameLoginForm, "Input Login");
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPasswordLoginForm, "Input Password");
         return this;
     }
 
 
+    @Step
     public LoginPage enterTextIntoRegistrationUsernameField(String username) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, username);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessagesTexts(String messages) {
         // error1;error2; error3 -> [error1, error2, error3]
         String[] errors = messages.split(";");

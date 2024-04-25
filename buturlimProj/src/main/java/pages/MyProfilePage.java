@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,7 @@ public class MyProfilePage extends ParentPage{
         return "/profile/[a-zA-Z0-9]*";
     }
 
+    @Step
     public MyProfilePage checkIsRedirectToMyProfilePage () {
         checkUrlWithPattern();
         Assert.assertTrue("Small avatar is not displayed", isElementDisplayed(avatarSmall, "Avatar small"));
@@ -40,11 +42,13 @@ public class MyProfilePage extends ParentPage{
         return webDriver.findElements(By.xpath(locator));    // якщо не знайдено елементи, то повертається пустий список без помилки
     }
 
+    @Step
     public MyProfilePage checkPostWithTitleIsPresent(String post_title, int expectedNumberOfPosts) {
         Assert.assertEquals("Number of posts with title " + post_title, expectedNumberOfPosts, getPostsWithTitle(post_title).size());
         return this;
     }
 
+    @Step
     public MyProfilePage deletePostsTillPresent(String postTitle) {
         List<WebElement> posts = getPostsWithTitle(postTitle);
         int counter = 0;
@@ -66,6 +70,7 @@ public class MyProfilePage extends ParentPage{
         return this;
     }
 
+    @Step
     public MyProfilePage checkIsPostSuccessfullyDeletedMessageDisplayed() {
         Assert.assertTrue("Post successfully deleted message is not displayed", isElementDisplayed(postSuccessfullyDeletedMessage, "Post successfully deleted message"));
         return this;

@@ -1,6 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,9 +18,13 @@ public class PostPage extends ParentPage {
     private WebElement yesPostUniqueMessage;
     @FindBy(xpath = "//p[text()='Is this post unique? : no']")
     private WebElement noPostUniqueMessage;
+
+    private String textPostUniqueLocator = "//p[text()='Is this post unique? : %s']";
+    private String postRoleLocator = "//u[contains(text(),'%s')]";
+
     @FindBy(xpath = ".//h2")
     private WebElement postTextTitle;
-    @FindBy(xpath = ".//p[text()='body text']")
+    @FindBy(xpath = ".//div[@class='body-content'][2]//p")
     private WebElement postTextBody;
     @FindBy(xpath = "//u[contains(text(),'One Person')]")
     private WebElement postRoleOnePerson;
@@ -41,28 +47,33 @@ public class PostPage extends ParentPage {
         return new HeaderElement(webDriver);
     }
 
+    @Step
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
         //TODO check some element that must be present at this page
         return this;
     }
 
+    @Step
     public PostPage checkIsSuccessMessageDisplayed() {
         Assert.assertTrue("Success message is not displayed", isElementDisplayed(successMessage, "Success message")); //додали назву елемента для логів
         return this;
     }
 
+    @Step
     public PostPage checkTextInSuccessMessage(String expectedMessageText) {
         String actualText = successMessage.getText();//якщо елемент знайдений по локатору, а не по тексту, то буде працювати на будь-якій мові
         Assert.assertEquals("Text in message", expectedMessageText, actualText);
         return this;
     }
 
+    @Step
     public PostPage checkIsMessagePostUniqueDisplayed() {
         Assert.assertTrue("Message 'Is post unique?' is not displayed", isElementDisplayed(postUniqueMessage));
         return this;
     }
 
+    @Step
     public PostPage checkValueInPostUniqueMessage() {
         if (isElementDisplayed(yesPostUniqueMessage)) {
             logger.info("Message 'Is post unique? : yes' is displayed");
@@ -74,6 +85,16 @@ public class PostPage extends ParentPage {
         }
         return this;
     }
+
+    @Step
+
+    public PostPage checkValueInPostUniqueMessage(String textInPostUnique) {
+        WebElement postUniqueMessage = webDriver.findElement(By.xpath(String.format(textPostUniqueLocator, textInPostUnique)));
+        Assert.assertTrue("Message 'Is post unique?' is not displayed", isElementDisplayed(postUniqueMessage, "Message 'Is post unique?'"));
+        return this;
+    }
+
+
     public PostPage checkValueInTitleOfPost(String expectedTextInPostTitle) {
         String actualPostTextTitle = postTextTitle.getText();
         Assert.assertEquals("Text in post title is wrong", expectedTextInPostTitle, actualPostTextTitle);
@@ -81,6 +102,7 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    @Step
     public PostPage checkValueInBodyOfPost(String expectedTextInPostBody) {
         String actualPostTextBody = postTextBody.getText();
         Assert.assertEquals("Text in post body is wrong", expectedTextInPostBody, actualPostTextBody);
@@ -96,13 +118,15 @@ public class PostPage extends ParentPage {
         logger.info("Texts in post title and post body are correct");
         return this;
     }*/
-
-    public PostPage checkIsMessageNotificationAboutOnePersonRoleDisplayed() {
-        Assert.assertTrue("Message 'Note: This post was written for One Person' is not displayed", isElementDisplayed(postRoleOnePerson) && isElementDisplayed(TextThisPostWasWrittenFor));
+    @Step
+    public PostPage checkIsMessageNotificationAboutRoleDisplayed(String role) {
+        WebElement postRole = webDriver.findElement(By.xpath(String.format(postRoleLocator, role)));
+        Assert.assertTrue("Message 'Note: This post was written for '" + role + " ' is not displayed", isElementDisplayed(postRole) && isElementDisplayed(TextThisPostWasWrittenFor));
         logger.info("Message 'Note: This post was written for One Person' is displayed");
         return this;
     }
 
+    @Step
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost);
         return new MyProfilePage(webDriver);

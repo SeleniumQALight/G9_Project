@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -28,12 +29,14 @@ abstract public class ParentPage extends CommonActionsWithElements {
     }
 
 
+    @Step
     public void openNewTab() {
         webDriverWait15.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
         ((JavascriptExecutor) webDriver).executeScript("window.open()");
         logger.info("New tab was opened");
     }
 
+    @Step
     public void switchToNewTab() {
         String oldTab = webDriver.getWindowHandle();
         for (String newTab : webDriver.getWindowHandles()) {
@@ -44,12 +47,14 @@ abstract public class ParentPage extends CommonActionsWithElements {
         }
     }
 
+    @Step
     public void switchToOldTab() {
         String oldTab = webDriver.getWindowHandle();
                 webDriver.switchTo().window(oldTab);
                 logger.info("Switched to old tab");
         }
 
+    @Step
     public void closeAllTabsAndSwitchToMainTab() {
         String oldTab = webDriver.getWindowHandle();
         for (String newTab : webDriver.getWindowHandles()) {
@@ -61,6 +66,7 @@ abstract public class ParentPage extends CommonActionsWithElements {
         }
     }
 
+    @Step
     public void refreshPage() {
         webDriver.navigate().refresh();
         logger.info("Page was refreshed");

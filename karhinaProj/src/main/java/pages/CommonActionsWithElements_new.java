@@ -12,12 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class СommonActionsWithElements {
+public class CommonActionsWithElements_new {
     protected WebDriver webDriver;
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriverWait webDriverWait10, webDriverWait15;
 
-    public СommonActionsWithElements(WebDriver webDriver) {
+    public CommonActionsWithElements_new(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //Ініціалізує всі елементи описані в @FindBy
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
