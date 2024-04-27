@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.OutputType;
@@ -32,6 +33,7 @@ public class BaseTest {
     // ця секція буде виконуватись перед кожним тестом
     @Before
     public void setUp() {
+        logger.info("----- " + testname.getMethodName() + " was started -----");
         // WebDriverManager.chromedriver().setup(); // скачує виконуваний файл(версію браузера)
         //webDriver = new ChromeDriver();
         webDriver = initDriver();
@@ -46,6 +48,7 @@ public class BaseTest {
     public void tearDown() {
 //        webDriver.quit();
 //        logger.info("Browser was closed");
+        logger.info("----- " + testname.getMethodName() + " was finished -----");
 
     }
 
@@ -71,7 +74,7 @@ public class BaseTest {
         return webDriver;
     }
     @Rule()
-    public final TestWatcher watchman = new TestWatcher() {
+    public final TestName testname = new TestName() {
         @Override
         protected void failed(Throwable e, Description description) {
             screenshot();
