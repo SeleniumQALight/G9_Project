@@ -1,13 +1,14 @@
 package loginTests;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import data.TestData;
 import io.qameta.allure.*;
 import libs.ConfigProvider;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
-
+import org.junit.experimental.categories.Category;
 import java.io.IOException;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Story("Base support for bdd annotations")
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin(){
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
