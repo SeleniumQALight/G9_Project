@@ -21,6 +21,8 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//input[@type='checkbox']")
     private WebElement checkbox;
 
+    @FindBy(xpath = ".//input[@name='uniquePost']")
+    private WebElement checkBoxUniquePost;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -67,6 +69,36 @@ public class CreatePostPage extends ParentPage {
     public CreatePostPage setCheckboxPostUniqueToNeededState(String neededState) {
         setCheckboxToNeededState(checkbox, neededState);
         return this;
+    }
 
+    public CreatePostPage selectCheckBox() {
+        checkBoxUniquePost.isSelected();
+        if (!checkBoxUniquePost.isSelected()) {
+            clickOnElement(checkBoxUniquePost);
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox is already selected");
+        }
+        return this;
+    }
+
+    public CreatePostPage deSelectCheckBox() {
+        checkBoxUniquePost.isSelected();
+        if (checkBoxUniquePost.isSelected()) {
+            clickOnElement(checkBoxUniquePost);
+            logger.info("Checkbox is deselected");
+        } else {
+            logger.info("Checkbox is already deselected");
+        }
+        return this;
+    }
+    public CreatePostPage settingCheckBox(String state) {
+        if (state.equals("check")) {
+            selectCheckBox();
+        }
+        if (state.equals("uncheck")) {
+            deSelectCheckBox();
+        }
+        return this;
     }
 }
