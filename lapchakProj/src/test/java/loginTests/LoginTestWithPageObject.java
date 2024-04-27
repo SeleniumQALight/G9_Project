@@ -17,6 +17,8 @@ import java.util.Map;
 @Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
 
+    // LoginTestWithPageObject#validLogin
+
     @Description("Some detailed test description")
     @Link("https://example.org")
     @Link(name = "allure", type = "mylink")
