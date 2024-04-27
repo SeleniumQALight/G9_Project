@@ -52,6 +52,9 @@ public class BaseTest {
 
     }
 
+    @Rule()
+    public final TestName testname = new TestName();
+
     // initDriver() - метод для ініціалізації драйвера
     private WebDriver initDriver() {
         String browserFromProperty = System.getProperty("browser");
@@ -74,7 +77,7 @@ public class BaseTest {
         return webDriver;
     }
     @Rule()
-    public final TestName testname = new TestName() {
+    public final TestWatcher testWatcher = new TestWatcher() {
         @Override
         protected void failed(Throwable e, Description description) {
             screenshot();
