@@ -7,8 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class HomePage extends ParentPage{
-
+public class HomePage extends ParentPage {
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -33,7 +32,7 @@ public class HomePage extends ParentPage{
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
-        if (this.getHeaderElement().isButtonSignOutDisplayed()){
+        if (this.getHeaderElement().isButtonSignOutDisplayed()) {
             logger.info("User is already logged in");
         } else {
             loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -44,4 +43,5 @@ public class HomePage extends ParentPage{
         }
         return this;
     }
+
 }

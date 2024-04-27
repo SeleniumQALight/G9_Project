@@ -2,6 +2,7 @@ package pages;
 
 
 import data.TestData;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,17 +21,19 @@ public class HomePage extends ParentPage{
         return "/";
     }
 
+    @Step
     public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
     }
 
+    @Step
     public HomePage chekIsRedirectToHomePage() {
         checkUrl();
         Assert.assertTrue("Invalid page Not Home page", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
 
-
+    @Step
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();

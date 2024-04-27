@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,47 +40,50 @@ public class PostPage extends ParentPage {
     public HeaderElement getHeaderElement() {
         return new HeaderElement(webDriver);
     }
-
+    @Step
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
         //TODO check some element that is only on this page //dz
         return this;
     }
 
+    @Step
     public PostPage checkIsSuccessMessageDisplayed() {
         Assert.assertTrue("Success message is not displayed"
                 , isElementDisplayed(successMessage, "Success message"));
         return this;
     }
-
+    @Step
     public PostPage checkTextInSuccessMessage(String ExpectedMessageText) {
         String actualText = successMessage.getText();
         Assert.assertEquals("Text in message is not as expected", ExpectedMessageText, actualText);
         return this;
     }
+    @Step
     public PostPage checkTitlesValue(String ExpectedMessageText){
         String actualTitle= postTitle.getText();
         Assert.assertEquals("Title is not as expected", ExpectedMessageText, actualTitle);
         return this;
     }
+    @Step
     public PostPage checkBodyValue(String ExpectedMessageText){
         String actualBody = postBody.getText();
         Assert.assertEquals("Body is not as expected", ExpectedMessageText, actualBody);
         return this;
     }
-
+    @Step
     public PostPage checkBodyNoteValue(String ExpectedMessageText){
         String actualBodyNote = bodyNote.getText();
         Assert.assertEquals("BodyNote is not as expected", ExpectedMessageText, actualBodyNote);
         return this;
     }
-
+    @Step
     public PostPage checkIsPostUnique(String ExpectedValue){
         String actualValue = isPostUnique.getText();
         Assert.assertEquals("Post is not unique", ExpectedValue, actualValue);
         return this;
     }
-
+    @Step
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost);
         return new MyProfilePage(webDriver);
