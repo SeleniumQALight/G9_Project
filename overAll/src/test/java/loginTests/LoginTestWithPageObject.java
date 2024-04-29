@@ -30,7 +30,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().openLoginPage();
         pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
         pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
-       // pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getLoginPage().clickOnButtonSignIn();
 
         Assert.assertTrue("Button Sign Out is not displayed"
                 , pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
@@ -49,5 +49,16 @@ public class LoginTestWithPageObject extends BaseTest {
 
         Assert.assertTrue("Button Sign Out is not displayed"
                 , pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
+    }
+
+    @Test
+    public void TC_002_loginTest_notValidLogin() {
+        pageProvider.getLoginPage().openLoginPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto22");
+        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+
+        Assert.assertFalse("Button Sign Out is not displayed", pageProvider.getHomePage().getHeaderElement().isButtonSignOutDisplayed());
+        Assert.assertTrue("Alert message is not visible", pageProvider.getHomePage().isAlertMessageDisplayed());
     }
 }

@@ -9,6 +9,10 @@ import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
 
+    @FindBy(xpath = "//div[text()= 'Invalid username/password.']")
+    private WebElement alertMessage;
+
+
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -44,4 +48,8 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+
+    public boolean isAlertMessageDisplayed() {
+        return isElementDisplayed(alertMessage, "Alert Message");
+    }
 }

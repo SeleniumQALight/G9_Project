@@ -49,6 +49,7 @@ public class CommonActionsWithElements {
 
     protected boolean isElementDisplayed(WebElement webElement){
         try{
+            webDriverWait10.until(ExpectedConditions.visibilityOf(webElement));
             boolean state = webElement.isDisplayed();
             if (state){
                 logger.info(getElementName(webElement) + " Element is displayed");

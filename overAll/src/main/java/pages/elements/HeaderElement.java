@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
+import pages.LoginPage;
 import pages.MyProfilePage;
 
 // описує елементи які є в хедері залогіненого юзера
@@ -40,5 +41,10 @@ public class HeaderElement extends CommonActionsWithElements {
     public CreatePostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+
+    public LoginPage clickOnSignOutButton() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
     }
 }
