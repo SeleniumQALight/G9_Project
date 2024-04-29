@@ -85,6 +85,9 @@
             <artifactId>allure-junit4</artifactId>
             <version>2.25.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+
+
     </dependencies>
 
     <profiles>

@@ -16,7 +16,7 @@ import java.time.Duration;
 
 public class BaseTest {
     WebDriver webDriver;
-    Logger logger = Logger.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
 
     // ця секція буде виконуватись перед кожним тестом
