@@ -55,10 +55,13 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistrationForm;
 
-    @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listErrorsMessages;
 
-    final String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonRegistration;
+
+    final String listErrorsMessagesLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @Step
     public void openLoginPage() {
@@ -190,6 +193,23 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
         return this;
+    }
+
+    public LoginPage enterRegistrationDataIfNotNull(String userName, String email, String password) {
+        if (userName != null) {
+            enterTextIntoRegistrationUsernameField(userName);
+        }
+        if (email != null) {
+            enterTextIntoRegistrationEmailField(email);
+        }
+        if (password != null) {
+            enterTextIntoRegistrationPasswordField(password);
+        }
+        return this;
+    }
+
+    public void clickOnButtonRegistration() {
+        clickOnElement(buttonRegistration);
     }
 }
 
