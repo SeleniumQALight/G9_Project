@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -47,10 +48,12 @@ public class LoginPage extends ParentPage {
     }
 
     @Override
+    @Step
     protected String getRelativeUrl() {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -62,14 +65,17 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String text) {
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
 
+    @Step
     public void enterTextIntoPassword(String text) {
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
+    @Step
     public void clickOnButtonSignIn() {
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
 //        buttonSignIn.click();
@@ -77,6 +83,7 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
 
         openLoginPage();
@@ -87,21 +94,25 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessagesText(String messages) {
         // error1; error2; error3 - очікувані повідомлення -> [error1, error2, error3]
         String[] expectedErrors = messages.split(";");
@@ -127,10 +138,12 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonSignIn);
     }
 
+    @Step
     public boolean isErrorMessageDisplayed() {
         return isElementDisplayed(errorMessage);
     }
