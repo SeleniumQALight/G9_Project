@@ -17,7 +17,6 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectedToCreatePostPage()
                 .enterTitleInToInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("body text")
-
                 .selectValueInDropdownRole("One Person")
                 .checkBoxState("unchecked")
                 .clickOnSaveNewPostButton()
