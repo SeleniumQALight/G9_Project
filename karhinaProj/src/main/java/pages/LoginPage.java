@@ -46,6 +46,9 @@ public class LoginPage extends ParentPage{
     private List<WebElement> listErrorsMessages;
 
 
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -181,5 +184,21 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    public LoginPage enterRegistrationDataIfNotNull(String userName, String email, String password) {
+        if (userName != null) {
+            enterTextIntoRegistrationUserNameField(userName);
+        }
+        if (email != null) {
+            enterTextIntoRegistrationEmailField(email);
+        }
+        if (password != null) {
+            enterTextIntoRegistrationPasswordField(password);
+        }
+        return this;
+    }
+
+    public void clickOnButtonSignUp() {
+        clickOnElement(buttonSignUp);
+    }
 }
 
