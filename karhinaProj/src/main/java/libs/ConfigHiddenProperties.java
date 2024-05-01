@@ -7,6 +7,7 @@ public interface ConfigHiddenProperties extends Config {
     String login();
     String password();
     String MySQL_DB_PASSWORD();
+    String loginNew();
 
 
 }

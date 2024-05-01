@@ -34,6 +34,9 @@ public class LoginPage extends ParentPage{
     @FindBy(id="password-register")
     private WebElement inputPasswordRegistrationForm;
 
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
     final String listErrorsMessagesLocator= "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @FindBy(xpath = listErrorsMessagesLocator)
@@ -80,6 +83,10 @@ public class LoginPage extends ParentPage{
 //        buttonSignIn.click();
 //        logger.info("button was clicked");
         clickOnElement(buttonSignIn);
+    }
+    @Step
+    public void clickOnButtonSignUp(){
+        clickOnElement(buttonSignUp);
     }
     @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
@@ -166,6 +173,19 @@ public class LoginPage extends ParentPage{
     public LoginPage refreshPage() {
         webDriver.navigate().refresh();
         webDriverWait10.until(ExpectedConditions.visibilityOf(buttonSignIn));
+        return this;
+    }
+
+    public LoginPage enterRegistrationDataIfNotNull(String userName, String email, String password) {
+        if (userName != null) {
+            enterTextIntoRegistrationUserNameField(userName);
+        }
+        if (email != null) {
+            enterTextIntoRegistrationEmailField(email);
+        }
+        if (password != null) {
+            enterTextIntoRegistrationPasswordField(password);
+        }
         return this;
     }
 }
