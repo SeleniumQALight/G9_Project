@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class BaseTest {
     WebDriver webDriver;
-    Logger logger = Logger.getLogger(getClass());
+    protected Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
     protected ArrayList<ScreenShot> listOfScreenShots = new ArrayList<>();
 
@@ -46,8 +46,8 @@ public class BaseTest {
 
     @After
     public void tearDown(){
-        webDriver.quit();
-        logger.info("Browser was closed");
+//        webDriver.quit();
+//        logger.info("Browser was closed");
         logger.info("--------" + testName.getMethodName() + " was finished --------");
     }
 
