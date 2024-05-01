@@ -71,6 +71,8 @@ public class PostPage extends ParentPage{
     public PostPage checkIsPostUnique(boolean isUnique) {
         if (isUnique) {
             isPostUnique();
+        } else {
+            Assert.assertFalse("Post is unique", isElementDisplayed(isPostUnique, "Unique post"));
         }
         return this;
     }
