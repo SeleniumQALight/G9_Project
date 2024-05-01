@@ -6,5 +6,5 @@ import org.aeonbits.owner.Config;
 public interface ConfigHiddenProperties extends Config {
     String login();
     String MySQL_DB_PASSWORD();
-
+    String loginNew();
 }
