@@ -24,8 +24,8 @@ public class CreatePostWithDataFomDBAndExel extends BaseTest {
     @Test
     @Parameters(method = "parametersForCreatePost")
     public void createPostWithDataFomDBAndExel(String title, String body, String role, String checkBoxState, String expectedMessageNewPost, String textInPostUnique) throws SQLException, ClassNotFoundException {
-        postTitle = String.format(title, Util.getDateAndTimeFormatted(), "Title Karhina");
-        body = String.format(body, Util.getDateAndTimeFormatted());
+       postTitle = String.format(title, Util.getDateAndTimeFormatted(), "Title Karhina");
+        body = String.format(body, Util.getDateAndTimeFormatted(), "Body Karhina");
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithNewValidCredFromDB()
                 .checkIsRedirectToHomePage()
@@ -33,16 +33,16 @@ public class CreatePostWithDataFomDBAndExel extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTitleIntoInputTitle(postTitle)
                 .enterTextIntoInputBody(body)
-                .setCheckboxPostUniqueSelected()
+                .setCheckboxPostUniqueToNeededState(checkBoxState)
                 .selectValueInDropdownRole(role)
                 .clickOnButtonSaveNewPost()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage(expectedMessageNewPost)
-                .checkValueInMessagePostUnique()
+                .checkValueInPostUniqueMessage(textInPostUnique)
                 .checkValueInTitleOfPost(postTitle)
                 .checkValueInBodyOfPost(body)
-                .checkIsMessageNotificationAboutPostForOnePersonDisplayed()
+                .checkIsMessageNotificationAboutRoleDisplayed(role)
         ;
 
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
