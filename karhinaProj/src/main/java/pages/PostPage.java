@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,9 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
+
+    private String textPostUniqueLocator = "//p[text()='Is this post unique? : %s']";
+    private String postRoleLocator = "//u[contains(text(),'%s')]";
 
 
     public PostPage(WebDriver webDriver) {
@@ -85,6 +89,11 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    public PostPage checkValueInPostUniqueMessage(String textInPostUnique) {
+        WebElement postUniqueMessage = webDriver.findElement(By.xpath(String.format(textPostUniqueLocator, textInPostUnique)));
+        Assert.assertTrue("Message 'Is post unique?' is not displayed", isElementDisplayed(postUniqueMessage, "Message 'Is post unique?'"));
+        return this;
+    }
     public PostPage checkValueInTitleOfPost(String expectedPostTextTitle) {
         String actualPostTextTitle = postTextTitle.getText();
         Assert.assertEquals("Incorrect text in title", expectedPostTextTitle, actualPostTextTitle);
@@ -107,7 +116,14 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    public PostPage checkIsMessageNotificationAboutRoleDisplayed(String role) {
+        WebElement postRole = webDriver.findElement(By.xpath(String.format(postRoleLocator, role)));
+        Assert.assertTrue("Message 'This post was written for one person' is not displayed",
+                isElementDisplayed(postTextForOnePerson) && isElementDisplayed(textNoteThisPostWasWrittenFor));
+        logger.info("Message 'This post was written for one person' is displayed");
 
+        return this;
+    }
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost);
         return new MyProfilePage(webDriver);
