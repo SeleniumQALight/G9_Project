@@ -1,6 +1,7 @@
 package pages;
 
 import data.TestData;
+import io.qameta.allure.Step;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -33,6 +34,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistrationForm;
 
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSignUp;
+
     final static String listErrorsMessagesLocator
             = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
@@ -47,6 +51,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(baseUrl);
@@ -57,14 +62,17 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterTextIntoInputLogin(String text) {
         cleanAndEnterTextIntoElement(inputUserNameLoginForm, text);
     }
 
+    @Step
     public void enterTextIntoInputPassword(String text){
         cleanAndEnterTextIntoElement(inputPasswordLoginForm, text);
     }
 
+    @Step
     public void clickOnButtonSignIn(){
 //        WebElement buttonSignIn =
 //                webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
@@ -73,6 +81,7 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openLoginPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
@@ -81,21 +90,23 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         cleanAndEnterTextIntoElement(inputUserNameRegistrationForm, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email){
         cleanAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password){
         cleanAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String messages) {
         // error1;error2;error3 -> [error1, error2, error3]
         String[] expectedErrors = messages.split(";");
@@ -122,5 +133,22 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll();
 
         return this;
+    }
+
+    public LoginPage enterRegistrationDataIfNotNull(String userName, String email, String password) {
+        if (userName!=null){
+            enterTextIntoRegistrationUserNameField(userName);
+        }
+        if (email!=null){
+            enterTextIntoRegistrationEmailField(email);
+        }
+        if(password!=null){
+            enterTextIntoRegistrationPasswordField(password);
+        }
+        return this;
+    }
+
+    public void clickOnSignUpButton(){
+        clickOnElement(buttonSignUp);
     }
 }
