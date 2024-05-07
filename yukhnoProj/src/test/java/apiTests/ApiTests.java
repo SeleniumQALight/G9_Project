@@ -7,7 +7,7 @@ import org.junit.Test;
 import static io.restassured.RestAssured.given;
 
 public class ApiTests {
-    final String USER_NAME = "autoapi";
+    final String USER_NAME = "annay";
     @Test
     public void getAllPostsForUser(){
         given()
