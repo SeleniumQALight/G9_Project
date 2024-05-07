@@ -7,10 +7,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>overAll</artifactId>
+    <artifactId>yukhnoProj</artifactId>
     <packaging>jar</packaging>
 
-    <name>overAll</name>
+    <name>yukhnoProj</name>
     <url>http://maven.apache.org</url>
 
     <properties>

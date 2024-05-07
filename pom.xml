@@ -22,6 +22,7 @@
     <module>skuratovskaProj</module>
     <module>chabanProj</module>
     <module>tsivilProj</module>
+      <module>yukhnoProj</module>
   </modules>
 
   <properties>
