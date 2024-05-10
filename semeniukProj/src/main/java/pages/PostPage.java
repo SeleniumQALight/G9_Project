@@ -115,9 +115,9 @@ public class PostPage extends ParentPage {
         return new MyProfilePage(webDriver);
     }
 
-    public PostPage checkIsPostUnique(String ExpectedValue) {
+    public PostPage checkIsPostUnique(String expectedValue) {
         String actualValue = isPostUnique.getText();
-        Assert.assertEquals("Post is not unique", ExpectedValue, actualValue);
+        Assert.assertEquals("Post is not unique", expectedValue, actualValue);
         return this;
     }
 }

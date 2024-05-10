@@ -72,7 +72,6 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage selectCheckBox() {
-        checkBoxUniquePost.isSelected();
         if (!checkBoxUniquePost.isSelected()) {
             clickOnElement(checkBoxUniquePost);
             logger.info("Checkbox is selected");
