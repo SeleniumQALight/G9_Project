@@ -28,7 +28,7 @@ public class CreateNewPost extends BaseTest {
             .checkIsRedirectOnPostPage()
             .checkIsSuccessMessageDisplayed()
             .checkTextInSuccessMessage(SUCCESS_MESSAGE)
-            .checkIsPostUnique()
+            .isPostUnique()
             .checkTextInTitle(POST_TITLE)
             .checkTextInBody(POST_BODY)
             .checkNoteMessage(NOTE_MESSAGE)

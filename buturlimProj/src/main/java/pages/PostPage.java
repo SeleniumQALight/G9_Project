@@ -63,8 +63,17 @@ public class PostPage extends ParentPage{
     }
 
     @Step
-    public PostPage checkIsPostUnique() {
+    public PostPage isPostUnique() {
         Assert.assertTrue("Post is not unique", isElementDisplayed(isPostUnique, "Unique post"));
+        return this;
+    }
+
+    public PostPage checkIsPostUnique(boolean isUnique) {
+        if (isUnique) {
+            isPostUnique();
+        } else {
+            Assert.assertFalse("Post is unique", isElementDisplayed(isPostUnique, "Unique post"));
+        }
         return this;
     }
 
