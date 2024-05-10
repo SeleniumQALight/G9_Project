@@ -29,6 +29,7 @@ public class PostDto {
         this.isVisitorOwner = isVisitorOwner;
     }
 
+    //обовязково треба геттери і сеттери для всіх полів, щоб можна було звертатися до них з інших класів і до них звертається софт ассершен
     public String getId() {
         return id;
     }
