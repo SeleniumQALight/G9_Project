@@ -6,7 +6,6 @@ import api.dto.responceDto.PostsDto;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,10 +34,10 @@ public class ApiTests {
         //method 2 -  DTO (data transfer object)
                 .extract().body().as(PostsDto[].class)
         ;
-    logger.info(actualResponseAsDto[0].toString());
-    logger.info("Size = " + actualResponseAsDto.length);
-    logger.info("Title [0] = " + actualResponseAsDto[0].getTitle());
-    logger.info("Username [0] = " + actualResponseAsDto[0].getAuthor().getUsername());
+        logger.info(actualResponseAsDto[0].toString());
+        logger.info("Size = " + actualResponseAsDto.length);
+        logger.info("Title [0] = " + actualResponseAsDto[0].getTitle());
+        logger.info("Username [0] = " + actualResponseAsDto[0].getAuthor().getUsername());
 
         for (int i = 0; i < actualResponseAsDto.length; i++) {
             Assert.assertEquals("Username is not matched in post " + i
