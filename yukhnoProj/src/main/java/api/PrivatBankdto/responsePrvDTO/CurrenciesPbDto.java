@@ -1,23 +1,25 @@
 package api.PrivatBankdto.responsePrvDTO;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.List;
 
-public class currenciesPbDto {
+public class CurrenciesPbDto {
     private String date;
     private String bank;
     private Integer baseCurrency;
     private String baseCurrencyLit;
-    private List<exchangeRateDto> exchangeRate;
+    private List<ExchangeRateDto> exchangeRate;
 
-    @JsonCreator
-    public currenciesPbDto(String date, String bank, Integer baseCurrency, String baseCurrencyLit, List<exchangeRateDto> exchangeRate) {
+    public CurrenciesPbDto(String date, String bank, Integer baseCurrency, String baseCurrencyLit, List<ExchangeRateDto> exchangeRate) {
         this.date = date;
         this.bank = bank;
         this.baseCurrency = baseCurrency;
         this.baseCurrencyLit = baseCurrencyLit;
         this.exchangeRate = exchangeRate;
+    }
+
+    public CurrenciesPbDto(){
+
     }
 
     public String getDate() {
@@ -52,11 +54,11 @@ public class currenciesPbDto {
         this.baseCurrencyLit = baseCurrencyLit;
     }
 
-    public List<exchangeRateDto> getExchangeRate() {
+    public List<ExchangeRateDto> getExchangeRate() {
         return exchangeRate;
     }
 
-    public void setExchangeRate(List<exchangeRateDto> exchangeRate) {
+    public void setExchangeRate(List<ExchangeRateDto> exchangeRate) {
         this.exchangeRate = exchangeRate;
     }
 

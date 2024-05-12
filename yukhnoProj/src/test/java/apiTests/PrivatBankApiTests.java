@@ -1,10 +1,12 @@
 package apiTests;
 
 import api.PrivatBankEndpoints;
-import api.PrivatBankdto.responsePrvDTO.currenciesPbDto;
-import api.PrivatBankdto.responsePrvDTO.exchangeRateDto;
+import api.PrivatBankdto.responsePrvDTO.CurrenciesPbDto;
+import api.PrivatBankdto.responsePrvDTO.ExchangeRateDto;
 import io.restassured.http.ContentType;
+import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,9 +17,10 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class PrivatBankApiTests {
+    private Logger logger = Logger.getLogger(getClass());
     @Test
     public void getExchangeRatesPrivatBank(){
-        currenciesPbDto actualResponseAsDto =
+        CurrenciesPbDto actualResponseAsDto =
         given()
                 .contentType(ContentType.JSON)
                 .log().all()
@@ -34,25 +37,29 @@ public class PrivatBankApiTests {
                 .body("baseCurrency", equalTo(980))
                 .body("baseCurrencyLit", equalTo("UAH"))
         // validation exchangeRate
-                .extract().body().as(currenciesPbDto.class);
+                .extract().body().as(CurrenciesPbDto.class);
 
         List<String> currencies = Arrays.asList("AUD", "AZN", "BYN", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP",
                 "GEL", "HUF", "ILS", "JPY", "KZT", "MDL", "NOK", "PLN", "SEK", "SGD", "TMT", "TRY", "UAH", "USD", "UZS");
 
-        List<exchangeRateDto> exchangeRates = new ArrayList<>();
+        List<ExchangeRateDto> exchangeRates = new ArrayList<>();
         for (String currency : currencies) {
-            exchangeRates.add(new exchangeRateDto("UAH", currency));
+            exchangeRates.add(new ExchangeRateDto("UAH", currency));
         }
 
-        currenciesPbDto expectedResponseDto =
-                new currenciesPbDto("22.03.2022", "PB", 980, "UAH", exchangeRates);
+        CurrenciesPbDto expectedResponseDto =
+                new CurrenciesPbDto("22.03.2022", "PB", 980, "UAH", exchangeRates);
+
+        Assert.assertEquals("Number of posts ", expectedResponseDto.getExchangeRate().toArray().length,
+                actualResponseAsDto.getExchangeRate().toArray().length);
 
         SoftAssertions softAssertions = new SoftAssertions();
 
         softAssertions
                 .assertThat(actualResponseAsDto)
                     .usingRecursiveComparison()          // all objects will be checked, not only one
-                        .ignoringFields("saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate")
+                        .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB",
+                                "exchangeRate.saleRate", "exchangeRate.purchaseRate")
                             .isEqualTo(expectedResponseDto);
 
         softAssertions.assertAll();
