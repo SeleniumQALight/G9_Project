@@ -5,10 +5,14 @@ import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostDto;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -33,9 +37,11 @@ public class ApiTests {
                         .then()//після виконання запиту перевіряємо результат
                         .log().all()//виводимо в консоль всі дані, які отримали від сервера
                         .statusCode(200)//перевіряємо, що статус код відповіді 200
-                        //method 1 - restassured assert// перевірки, які вбудовані в restassured - недолік, якщо багато філдів, то треба кожний філд перевірити окремо
+
+                        //method 1 - restassured assert// одразу перевірки точково.  перевірки, які вбудовані в restassured - недолік, якщо багато філдів, то треба кожний філд перевірити окремо
                         .assertThat().body("[0].title", equalTo("The second Default post")) //перевіряємо: перший пост, поле тайтл, має бути рівним вказаному тексту
                         .body("author.username", everyItem(equalTo(USER_NAME)))//перевіряємо: автор всіх постів має бути вказаного користувача, пройтися по всім постам
+
                         //method 2 - DTO - Data Transfer Object// з респонсу зробимо java об'єкт, як актуал, і зробимо обєкт як експектід, щою порівняти їх
                         .extract().body().as(PostDto[].class);//витягуємо тіло (у нашому випадку список обєктів) відповіді та перетворюємо його в об'єкт класу PostDto
                                                               //треба геттери і сетттери і пустий конструктор. щоб рест ашуред міг засетити значення в поля
@@ -98,6 +104,26 @@ public class ApiTests {
 
         Assert.assertEquals("Message in response", "\"Sorry, invalid user requested. Wrong username - "+NOT_VALID_USER_NAME+
                 " or there is no posts. Exception is undefined\"", actualResponse);
+
+    }
+    //без DTO, дістати частину інформації з респонсу. method 4 - json path
+    @Test
+    public void getAllPostsByUserPath(){
+        Response actualResponse = apiHelper.getAllPostsByUserRequest(USER_NAME).extract().response();//витягуємо всю відповідь
+        //з кожного поста дістати тайитл і створти список тайтлів
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        List<String> actualListOfTitles = actualResponse.jsonPath().getList("title", String.class);//дістаємо список тайтлів у типі стрінг класу
+        for (int i = 0; i < actualListOfTitles.size(); i++) {
+            softAssertions.assertThat(actualListOfTitles.get(i)).as("Item number " + i).contains("Default post");//перевіряємо, що в кожному тайтлі є слово Default post
+        }
+
+        List<Map> actualAuthorList = actualResponse.jsonPath().getList("author", Map.class);//дістаємо список авторів у вигляді мапи, бо це підобєкт
+        for (int i = 0; i < actualAuthorList.size(); i++) {
+            softAssertions.assertThat(actualAuthorList.get(i).get("username")).as("Username in item number " + i).isEqualTo(USER_NAME);//перевіряємо, що в кожному авторі є вказаний користувач
+        }
+        softAssertions.assertAll();
+
 
     }
 }
