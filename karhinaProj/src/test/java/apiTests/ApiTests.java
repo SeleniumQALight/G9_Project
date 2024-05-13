@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
@@ -125,4 +126,13 @@ public class ApiTests {
 
         softAssertions.assertAll();
     }
+
+    @Test
+    public void getAllPostByUserSchema(){
+        apiHelper.getAllPostsByUserRequest(USER_NAME)
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("response.json"));
+
+    }
+
 }
