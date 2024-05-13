@@ -2,6 +2,7 @@ package pages;
 
 import data.TestData;
 import io.qameta.allure.Step;
+import libs.DB_Util_seleniumUsers;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -12,10 +13,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//button[contains(text(),'Sign In')]") // ініціалізується в CommonActionWithElements
     private WebElement buttonSignIn;
@@ -62,7 +64,7 @@ public class LoginPage extends ParentPage{
         try {
             webDriver.get(baseUrl);
             logger.info("Login page was opened with url " + baseUrl);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not open Login Page " + e);
             Assert.fail("Can not open Login Page " + e);
         }
@@ -78,7 +80,7 @@ public class LoginPage extends ParentPage{
     }
 
     @Step
-    public void enterTextIntoInputPassword(String text){
+    public void enterTextIntoInputPassword(String text) {
 //        WebElement inputPasswordLoginForm = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
 //        inputPasswordLoginForm.clear();
 //        inputPasswordLoginForm.sendKeys(text);
@@ -87,7 +89,7 @@ public class LoginPage extends ParentPage{
     }
 
     @Step
-    public void clickOnButtonSignIn(){
+    public void clickOnButtonSignIn() {
 //        WebElement buttonSignIn = webDriver.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
 
 //        buttonSignIn.click();
@@ -124,7 +126,6 @@ public class LoginPage extends ParentPage{
     public boolean isInputPasswordDisplayed() {
         return isElementDisplayed(inputPasswordLoginForm);
     }
-
 
 
     @Step
@@ -194,7 +195,7 @@ public class LoginPage extends ParentPage{
         String[] expectedErrors = messages.split(";");
 
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(
-                By.xpath(listErrorsMessagesLocator), expectedErrors.length ));
+                By.xpath(listErrorsMessagesLocator), expectedErrors.length));
 
         Util.waitABit(1);
 
@@ -218,21 +219,34 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
+    @Step
     public LoginPage enterRegistrationDataIfNotNull(String userName, String email, String password) {
-        if (userName != null){
+        if (userName != null) {
             enterTextIntoRegistrationUserNameField(userName);
         }
-        if (email != null){
+        if (email != null) {
             enterTextIntoRegistrationEmailField(email);
         }
-        if (password !=null){
+        if (password != null) {
             enterTextIntoRegistrationPasswordField(password);
         }
         return this;
     }
 
-    public void clickOnSignUpButton(){
+    public void clickOnSignUpButton() {
         clickOnElement(buttonSignUp);
 
+    }
+
+    @Step
+    public HomePage openLoginPageAndFillLoginFormWithValidCredFromDB() throws SQLException, ClassNotFoundException {
+        openLoginPage();
+        enterTextIntoInputLogin(TestData.VALID_NEW_LOGIN_UI);
+        DB_Util_seleniumUsers dbUtilseleniumUsers = new DB_Util_seleniumUsers();
+        String password = dbUtilseleniumUsers.getPassForLogin(TestData.VALID_NEW_LOGIN_UI);
+        logger.info("Pass for login " + TestData.VALID_NEW_LOGIN_UI + " is " + password);
+        enterTextIntoInputPassword(password);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }
