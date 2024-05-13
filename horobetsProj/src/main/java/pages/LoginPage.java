@@ -249,4 +249,9 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+
+    }
 }
