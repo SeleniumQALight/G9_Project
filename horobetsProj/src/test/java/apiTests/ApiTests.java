@@ -5,10 +5,14 @@ import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostsDto;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -98,6 +102,29 @@ public class ApiTests {
                         " or there is no posts. Exception is undefined\""
                 , actualResponse
         );
+    }
+
+    @Test
+    public void getAllPostsByUserPath(){
+        // method 4 - json path
+        Response actualResponse = apiHelper.getAllPostsByUserRequest(USER_NAME).extract().response();
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        List<String> actualListOfTitles = actualResponse.jsonPath().getList("title", String.class);
+        for (int i = 0; i < actualListOfTitles.size(); i++) {
+            softAssertions.assertThat(actualListOfTitles.get(i))
+                    .as("Item number " + i)
+                    .contains("Default post");
+        }
+
+        List<Map> actualAuthorList = actualResponse.jsonPath().getList("author", Map.class);
+        for (int i = 0; i < actualAuthorList.size(); i++) {
+            softAssertions.assertThat(actualAuthorList.get(i).get("username"))
+                    .as("Item number " + i)
+                    .isEqualTo(USER_NAME);
+        }
+
+        softAssertions.assertAll();
     }
 
 }
