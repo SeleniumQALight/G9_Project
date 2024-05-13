@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
@@ -112,7 +113,7 @@ public class ApiTests {
         for (int i = 0; i < actualListOfTitles.size(); i++) {
             softAssertions.assertThat(actualListOfTitles.get(i))
                     .as("Item number " + i)
-                    .contains("first Default post");
+                    .contains("Default post");
         }
 
         List<Map> actualAuthorList = actualResponse.jsonPath().getList("author", Map.class);
@@ -126,7 +127,11 @@ public class ApiTests {
     }
 
 
-
+    @Test
+    public void getAllPostsByUserSchema(){
+        apiHelper.getAllPostsByUserRequest(USER_NAME)
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
+    }
 
 
 
