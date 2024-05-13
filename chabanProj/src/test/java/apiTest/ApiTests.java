@@ -1,12 +1,12 @@
 package apiTest;
 
+import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responceDto.AuthorDto;
 import api.dto.responceDto.PostsDto;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,6 +17,7 @@ import static org.hamcrest.CoreMatchers.everyItem;
 public class ApiTests {
     final String USER_NAME = "autoapi";
     private Logger logger = Logger.getLogger(getClass());
+    private ApiHelper apiHelper = new ApiHelper();
     @Test
     public void getAllPostsForUser(){
        PostsDto[] actualResponseAsDto =
@@ -82,6 +83,19 @@ public class ApiTests {
         softAssertions.assertAll();
 
 
+
+    }
+    @Test
+    public void getAllPostsByUserNegative(){
+        final String NOT_VALID_USER_NAME = "NotValidUser";
+        // method 3 - Response as String
+        String actualResponse = apiHelper.getAllPostsByUserRequest(NOT_VALID_USER_NAME, 400)
+                .extract().response().body().asString();
+
+        Assert.assertEquals("Message in response is not as expected"
+                , "\"Sorry, invalid user requested. Wrong username - "+NOT_VALID_USER_NAME+
+                        " or there is no posts. Exception is undefined\""
+                , actualResponse);
 
     }
 }
