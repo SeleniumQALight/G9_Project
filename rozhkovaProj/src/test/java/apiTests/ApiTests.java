@@ -1,5 +1,6 @@
 package apiTests;
 
+import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostDto;
@@ -16,6 +17,7 @@ import static org.hamcrest.CoreMatchers.everyItem;
 public class ApiTests {
     final String USER_NAME = "autoapi";
     private Logger logger = Logger.getLogger(getClass());
+    private ApiHelper apiHelper = new ApiHelper();
 
     @Test
     public void getAllPostsForUser() {
@@ -37,6 +39,8 @@ public class ApiTests {
                         //method 2 - DTO - Data Transfer Object// з респонсу зробимо java об'єкт, як актуал, і зробимо обєкт як експектід, щою порівняти їх
                         .extract().body().as(PostDto[].class);//витягуємо тіло (у нашому випадку список обєктів) відповіді та перетворюємо його в об'єкт класу PostDto
                                                               //треба геттери і сетттери і пустий конструктор. щоб рест ашуред міг засетити значення в поля
+
+        //method 3 - коли в респонсі стрінг тільки, наприклад невалідний якийсь кейс
 
         logger.info(actualResponseAsDto[0].toString());
         logger.info("Size = " + actualResponseAsDto.length);
@@ -84,5 +88,16 @@ public class ApiTests {
                 .isEqualTo(expectedResponseAsDto);
 
         softAssertions.assertAll();//після всіх перевірок викликаємо метод, який виведе всі помилки, якщо вони є
+    }
+
+    @Test //використовуємо method 3 - респонс, як стрінга
+    public void getAllPostsByUserNegative(){
+        final String NOT_VALID_USER_NAME = "notValidUser";
+        String actualResponse = apiHelper.getAllPostsByUserRequest(NOT_VALID_USER_NAME, 400)
+                .extract().response().body().asString();//витягуємо тіло відповіді у вигляді стрінги. asString() - метод рест ашурента, перетворює в стрінгу
+
+        Assert.assertEquals("Message in response", "\"Sorry, invalid user requested. Wrong username - "+NOT_VALID_USER_NAME+
+                " or there is no posts. Exception is undefined\"", actualResponse);
+
     }
 }
