@@ -1,5 +1,6 @@
 package apiTests;
 
+import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDTO.AuthorDto;
 import api.dto.responseDTO.PostDto;
@@ -16,6 +17,7 @@ import static org.hamcrest.CoreMatchers.everyItem;
 public class ApiTests {
     final String USER_NAME = "autoapi";
     private Logger logger = Logger.getLogger(getClass());
+    private ApiHelper apiHelper = new ApiHelper();
     @Test
     public void getAllPostsForUser(){
         PostDto[] actualResponseAsDto =
@@ -48,18 +50,29 @@ public class ApiTests {
 
         //Expected result
         PostDto[] expectedResponseDto = {
-                new PostDto("The second Default post",
-                        "This post was created automatically after cleaning the database",
-                        "All Users",
-                        "no",
-                        new AuthorDto(USER_NAME),
-                        false),
-                new PostDto("The first Default post",
-                        "This post was created automatically after cleaning the database",
-                        "All Users",
-                        "no",
-                        new AuthorDto(USER_NAME),
-                        false)
+//                new PostDto("The second Default post",
+//                        "This post was created automatically after cleaning the database",
+//                        "All Users",
+//                        "no",
+//                        new AuthorDto(USER_NAME),
+//                        false),
+//                new PostDto("The first Default post",
+//                        "This post was created automatically after cleaning the database",
+//                        "All Users",
+//                        "no",
+//                        new AuthorDto(USER_NAME),
+//                        false)
+
+                PostDto.builder()
+                        .title("The second Default post").body("This post was created automatically after cleaning the database")
+                        .select("All Users").uniquePost("no")
+                        .isVisitorOwner(false).author(AuthorDto.builder().username(USER_NAME).build())
+                        .build(),
+                PostDto.builder()
+                        .title("The first Default post").body("This post was created automatically after cleaning the database")
+                        .select("All Users").uniquePost("no")
+                        .isVisitorOwner(false).author(AuthorDto.builder().username(USER_NAME).build())
+                        .build()
 
         };
 
@@ -77,4 +90,31 @@ public class ApiTests {
 
 
     }
+
+    @Test
+    public void getAllPostsByUserNegative() {
+        final String NOT_VALID_USER_NAME = "NotValidUser";
+        String actualResponse = apiHelper
+                .getAllPostsByUserRequest(NOT_VALID_USER_NAME, 400)
+                .extract().response().body().asString();
+
+        Assert.assertEquals(
+                "Message in response"
+                ,"\"Sorry, invalid user requested. Wrong username - "+NOT_VALID_USER_NAME+
+                        " or there is no posts. Exception is undefined\""
+                ,actualResponse
+        );
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

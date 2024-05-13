@@ -1,41 +1,50 @@
 package api.dto.responseDTO;
 
+
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AuthorDto {
     private String username;
     private String avatar;
 
     // default
-    public AuthorDto(){
+//    public AuthorDto(){
+//
+//    }
 
-    }
-
-    public AuthorDto(String username) {
-        this.username = username;
-    }
+//    public AuthorDto(String username) {
+//        this.username = username;
+//    }
 
     // Getter and Setter
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    @Override
-    public String toString() {
-        return "AuthorDto{" +
-                "username='" + username + '\'' +
-                ", avatar='" + avatar + '\'' +
-                '}';
-    }
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
+//
+//    public String getAvatar() {
+//        return avatar;
+//    }
+//
+//    public void setAvatar(String avatar) {
+//        this.avatar = avatar;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "AuthorDto{" +
+//                "username='" + username + '\'' +
+//                ", avatar='" + avatar + '\'' +
+//                '}';
+//    }
 }
