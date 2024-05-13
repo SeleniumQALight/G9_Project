@@ -66,6 +66,6 @@ public class ApiTests {
                 .ignoringFields("id", "createdDate", "author.avatar") //ігноруємо поля, які не важливі для нас
                 .isEqualTo(expectedResponseAsDto);
 
-        softAssertions.assertAll();
+        softAssertions.assertAll();//після всіх перевірок викликаємо метод, який виведе всі помилки, якщо вони є
     }
 }
