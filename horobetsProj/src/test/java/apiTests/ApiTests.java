@@ -1,5 +1,6 @@
 package apiTests;
 
+import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostsDto;
@@ -18,6 +19,7 @@ public class ApiTests {
     final String USER_NAME = "autoapi";
 
     private Logger logger = Logger.getLogger(getClass());
+    private ApiHelper apiHelper = new ApiHelper();
 
     @Test
     public void getAllPostsForUser() {
@@ -79,6 +81,23 @@ public class ApiTests {
 
         softAssertions.assertAll();
 
-
     }
+
+
+    @Test
+    public void getAllPostsByUserNegative() {
+        final String NOT_VALID_USER_NAME = "NotValidUser";
+        // method 3 -Response as String
+        String actualResponse = apiHelper
+                .getAllPostsByUserRequest(NOT_VALID_USER_NAME, 400)
+                .extract().response().body().asString();
+
+        Assert.assertEquals(
+                "Message in response "
+                , "\"Sorry, invalid user requested. Wrong username - "+NOT_VALID_USER_NAME+
+                        " or there is no posts. Exception is undefined\""
+                , actualResponse
+        );
+    }
+
 }
