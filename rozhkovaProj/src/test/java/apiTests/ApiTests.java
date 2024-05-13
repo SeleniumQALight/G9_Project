@@ -36,7 +36,8 @@ public class ApiTests {
                         .body("author.username", everyItem(equalTo(USER_NAME)))//перевіряємо: автор всіх постів має бути вказаного користувача, пройтися по всім постам
                         //method 2 - DTO - Data Transfer Object// з респонсу зробимо java об'єкт, як актуал, і зробимо обєкт як експектід, щою порівняти їх
                         .extract().body().as(PostDto[].class);//витягуємо тіло (у нашому випадку список обєктів) відповіді та перетворюємо його в об'єкт класу PostDto
-        ;
+                                                              //треба геттери і сетттери і пустий конструктор. щоб рест ашуред міг засетити значення в поля
+
         logger.info(actualResponseAsDto[0].toString());
         logger.info("Size = " + actualResponseAsDto.length);
         logger.info("Title [0] = " + actualResponseAsDto[0].getTitle());//достукатися до конкретного поля
@@ -52,10 +53,26 @@ public class ApiTests {
 
         //Expected Result
         PostDto [] expectedResponseAsDto = {
-                new PostDto("The second Default post", "This post was created automatically after cleaning the database",
+                /*new PostDto("The second Default post", "This post was created automatically after cleaning the database",
                         "All Users", "no", new AuthorDto(USER_NAME) ,false),
                 new PostDto("The first Default post", "This post was created automatically after cleaning the database",
-                        "All Users", "no", new AuthorDto(USER_NAME) ,false)
+                        "All Users", "no", new AuthorDto(USER_NAME) ,false)*/
+                PostDto.builder() //створити обєект з наступними полями. не використовувати багато конструкторів якщо нам треба різні поля
+                        .title("The second Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build())
+                        .isVisitorOwner(false)
+                        .build(),//саме тут створюємо обєкт
+                PostDto.builder()
+                        .title("The first Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .author(AuthorDto.builder().username(USER_NAME).build())
+                        .isVisitorOwner(false)
+                        .build()
         };
 
 //спочатку перевіряємо кількість постів. Якщо співпало, то тоді вже проходимося по всім постам
