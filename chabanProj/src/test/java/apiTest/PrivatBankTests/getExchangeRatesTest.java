@@ -16,7 +16,7 @@ public class getExchangeRatesTest {
     @Test
     public void getExchangeRates(){
         BasicInfo actualExchangeRate =
-                given()
+                given().queryParam("date", "22.03.2022")
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -59,19 +59,18 @@ public class getExchangeRatesTest {
 
 
                SoftAssertions softAssertions = new SoftAssertions();
-               softAssertions.assertThat(actualExchangeRate.getDate()).isEqualTo(expectedExchangeRate.getDate());
-               softAssertions.assertThat(actualExchangeRate.getBank()).isEqualTo(expectedExchangeRate.getBank());
-               softAssertions.assertThat(actualExchangeRate.getBaseCurrency()).isEqualTo(expectedExchangeRate.getBaseCurrency());
-               softAssertions.assertThat(actualExchangeRate.getBaseCurrencyLit()).isEqualTo(expectedExchangeRate.getBaseCurrencyLit());
+
+               softAssertions.assertThat(actualExchangeRate)
+                       .usingRecursiveComparison()
+                       .ignoringFields("exchangeRate")
+                       .isEqualTo(expectedExchangeRate);
+
         for (int i = 0; i < actualExchangeRate.getExchangeRate().length; i++) {
             softAssertions.assertThat(actualExchangeRate.getExchangeRate()[i])
                     .usingRecursiveComparison()
                     .ignoringFields("saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate")
                     .isEqualTo(expectedExchangeRate.getExchangeRate()[i]);
             softAssertions.assertAll();
-
-    }
-
-
+        }
     }
 }
