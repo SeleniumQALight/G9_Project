@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
@@ -106,7 +107,7 @@ public class ApiTests {
                 " or there is no posts. Exception is undefined\"", actualResponse);
 
     }
-    //без DTO, дістати частину інформації з респонсу. method 4 - json path
+    //без DTO, дістати частину інформації з респонсу і передати далі. method 4 - json path
     @Test
     public void getAllPostsByUserPath(){
         Response actualResponse = apiHelper.getAllPostsByUserRequest(USER_NAME).extract().response();//витягуємо всю відповідь
@@ -124,6 +125,14 @@ public class ApiTests {
         }
         softAssertions.assertAll();
 
+
+    }
+
+    //перевірити типи даних респонсу. Називається schema. у папку resources створюємо файл response.json
+    @Test
+    public void getAllPostsByUsersSchema(){
+        apiHelper.getAllPostsByUserRequest(USER_NAME)//провалідує 200
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));//перевіряємо схему, яка знаходиться в ресурсах: типи даних, які мають бути в респонсі
 
     }
 }
