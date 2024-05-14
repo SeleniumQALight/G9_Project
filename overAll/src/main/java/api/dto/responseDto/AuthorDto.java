@@ -1,4 +1,4 @@
-package api.dto.responceDto;
+package api.dto.responseDto;
 
 import lombok.*;
 
@@ -8,12 +8,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class AuthorDto {
     private String username;
     private String avatar;
 
-//    public AuthorDto() {
+//    public AuthorDto(){
+//
 //    }
 
 //    public AuthorDto(String username) {
