@@ -11,7 +11,7 @@ import privatBankApi.dto.responseDto.ExchangeRate;
 
 import static io.restassured.RestAssured.given;
 
-public class getExchangeRatesTest {
+public class GetExchangeRatesTest {
     private Logger logger = Logger.getLogger(getClass());
     @Test
     public void getExchangeRates(){
@@ -65,12 +65,13 @@ public class getExchangeRatesTest {
                        .ignoringFields("exchangeRate")
                        .isEqualTo(expectedExchangeRate);
 
-        for (int i = 0; i < actualExchangeRate.getExchangeRate().length; i++) {
-            softAssertions.assertThat(actualExchangeRate.getExchangeRate()[i])
+            softAssertions.assertThat(actualExchangeRate)
                     .usingRecursiveComparison()
-                    .ignoringFields("saleRateNB", "purchaseRateNB", "saleRate", "purchaseRate")
-                    .isEqualTo(expectedExchangeRate.getExchangeRate()[i]);
+                    .ignoringFields("exchangeRate.saleRateNB",
+                            "exchangeRate.purchaseRateNB",
+                            "exchangeRate.saleRate", "exchangeRate.purchaseRate")
+                    .isEqualTo(expectedExchangeRate);
             softAssertions.assertAll();
         }
     }
-}
+

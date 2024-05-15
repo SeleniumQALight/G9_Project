@@ -10,7 +10,7 @@ import privatBankApi.dto.responseDto.BasicInfo;
 
 import static io.restassured.RestAssured.given;
 
-public class validationRatesTest {
+public class ValidationRatesTest {
     private Logger logger = Logger.getLogger(getClass());
 
     @Test
