@@ -41,10 +41,10 @@ public class ApiTests {
         //method 2 -  DTO (data transfer object)
                 .extract().body().as(PostsDto[].class)
         ;
-    logger.info(actualResponseAsDto[0].toString());
-    logger.info("Size = " + actualResponseAsDto.length);
-    logger.info("Title [0] = " + actualResponseAsDto[0].getTitle());
-    logger.info("Username [0] = " + actualResponseAsDto[0].getAuthor().getUsername());
+        logger.info(actualResponseAsDto[0].toString());
+        logger.info("Size = " + actualResponseAsDto.length);
+        logger.info("Title [0] = " + actualResponseAsDto[0].getTitle());
+        logger.info("Username [0] = " + actualResponseAsDto[0].getAuthor().getUsername());
 
         for (int i = 0; i < actualResponseAsDto.length; i++) {
             Assert.assertEquals("Username is not matched in post " + i
