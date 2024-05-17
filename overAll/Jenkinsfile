@@ -1,0 +1,42 @@
+pipeline{
+    environment {
+        NUMBER = 3
+    }
+    agent {
+        label 'mylable'
+    }
+
+    stages{
+        stage('Build JAR'){
+            steps{
+                echo 'Run container with number 3 ...'
+                sh "docker run -e NUMBER=${NUMBER} vinsdocker/squares"
+
+            }
+        }
+        stage('stage-2'){
+            environment {
+              CC = 6
+            }
+            steps{
+                echo 'Run container with different number ...'
+                sh "docker run -e NUMBER=${NUMBER} vinsdocker/squares"
+
+            }
+       }
+
+    }
+
+    post{
+        always{
+            sh "docker system prune -f"
+        }
+        success{
+            echo 'This will run only if the pipeline is successful'
+        }
+        failure{
+            echo 'This will run only if the pipeline is failed'
+        }
+    }
+
+}
