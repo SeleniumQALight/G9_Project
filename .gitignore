@@ -20,3 +20,6 @@ allure-results
 
 ### Mac OS ###
 .DS_Store
+/overAll/master/
+/overAll/master/jenkins_home/
+/overAll/master/node/*

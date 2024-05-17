@@ -1,0 +1,47 @@
+            java -cp 'libs/*' org.junit.runner.JUnitCore loginTests/LoginTestWithPageObject
+            java -cp 'libs/*' org.junit.runner.JUnitCore loginTests.LoginTestWithPageObject
+            java -Denv=qa -cp 'libs/*' org.junit.runner.JUnitCore loginTests.LoginTestWithPageObject
+
+allure
+            java -cp 'libs/*' RunTest
+        maven generate
+            allure:report -Dallure.results.directory=docker-resources/allure-results
+
+run test with allure
+            java -Denv=QA -cp 'libs/*' RunTest loginTests.LoginTestWithPageObject
+            java -Denv=QA -cp 'libs/*' RunTest suits.SmokeSuite
+            java -Dbrowser=remote -cp 'libs/*' RunTest loginTests.LoginTestWithPageObject
+
+docker-compose
+            docker-compose -f grid.yaml up --scale firefox=2 --scale chrome=3 -d
+
+            docker-compose -f grid.yaml ps
+            docker-compose -f grid.yaml down
+
+Describe image in file
+           Dockerfile
+
+docker build image
+            docker build -t=radulenko/overall-tests .
+
+docker run container
+            docker run -it -v ${PWD}/target/allure-results:/home/selemium-docker/allure-results radulenko/overall-tests
+
+run tests from container on selenium grid on my local machine
+
+            java -Dbrowser=remote -DseleniumHubHost=192.168.0.121 -cp 'libs/*' RunTest loginTests.LoginTestWithPageObject
+
+            java -Dbrowser=remote -Denv=aqa -DseleniumHubHost=192.168.0.121 -cp 'libs/*' RunTest suits.RegressionSuite -threadcount=2
+
+Run test from image
+        docker run -e BROWSER=remote -e ENV=aqa -e SELENIUM_HUB_HOST=192.168.0.121 -e SUITES=suits.RegressionSuite -e THREAD_COUNT=2 -v ${PWD}/target/allure-results:/home/selemium-docker/allure-results radulenko/overall-tests
+
+Docker delete unused images
+        docker system prune -f
+
+Docker-compose run tests
+
+        docker-compose -f grid-plus-tests.yaml up --scale firefox=2 --scale chrome=3 -d
+
+See logs of container
+        docker-compose logs test2

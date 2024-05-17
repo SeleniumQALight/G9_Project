@@ -20,6 +20,14 @@
         <aspectj.version>1.9.21</aspectj.version>
         <compiler.version>1.8</compiler.version>
         <tag>@R001</tag>
+        <!-- plugins versions -->
+        <maven.compiler.version>3.11.0</maven.compiler.version>
+        <maven.dependency.version>3.6.0</maven.dependency.version>
+        <maven.jar.version>3.3.0</maven.jar.version>
+        <maven.surefire.version>3.1.2</maven.surefire.version>
+        <maven.resources.plugin>3.3.1</maven.resources.plugin>
+        <!-- output directory -->
+        <package.directory>${project.build.directory}/docker-resources</package.directory>
     </properties>
 
     <dependencies>
@@ -130,7 +138,7 @@
         <profile>
             <id>regularTests</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
                 <property>
                     <name>profile</name>
                     <value>regularTests</value>
@@ -163,13 +171,18 @@
                             <systemProperties>
                                 <property>
                                     <name>allure.results.directory</name>
-                                    <value>${project.build.directory}/allure-results</value>
+                                    <value>${project.build.directory}/target/allure-results</value>
                                 </property>
                                 <property>
                                     <name>allure.link.issue.pattern</name>
                                     <value>https://example.org/issue/{}</value>
                                 </property>
                             </systemProperties>
+                            <systemPropertyVariables>
+                                <browser>chrome</browser>
+                                <env>qa</env>
+                            </systemPropertyVariables>
+                            <test>LoginTestWithPageObject#validLogin</test>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -185,6 +198,7 @@
     </profiles>
 
     <build>
+        <finalName>overall-code</finalName>
         <plugins>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
@@ -201,6 +215,71 @@
                     <target>15</target>
                 </configuration>
             </plugin>
+
+            <!-- To copy all the dependencies to run our tests as part of "mvn package" -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${package.directory}/libs
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- To package our page objects, test classes into jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.version}</version>
+                <configuration>
+                    <outputDirectory>${package.directory}/libs</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- To copy resources into the output directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${package.directory}/src/main/resources</outputDirectory>
+                            <resources>
+<!--                                <resource>-->
+<!--                                    <directory>src/test</directory>-->
+<!--                                </resource>-->
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
         </plugins>
     </build>
 </project>
