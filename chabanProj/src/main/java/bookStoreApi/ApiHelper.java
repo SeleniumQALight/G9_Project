@@ -59,7 +59,7 @@ public class ApiHelper {
                 .header("Authorization", "Bearer " + token)
                 .queryParam("UserId", userId)
                 .when()
-                .delete(EndPoints.DELETE_BOOKS)
+                .delete(EndPoints.BOOKS)
                 .then()
                 .spec(responseSpecification.statusCode(HttpStatus.SC_NO_CONTENT));
     }
@@ -78,12 +78,9 @@ public class ApiHelper {
         return getAllBooksRequest().extract().response().getBody().as(GeneralInfo.class);
     }
 
-    public String getIsbn() {
+    public String getIsbn(int index) {
         BooksDto[] books = getAllBooks().getBooks();
-        for (int i = 0; i < books.length; i++) {
-        }
-        System.out.println(books[0].getIsbn());
-        return books[0].getIsbn();
+        return books[index].getIsbn();
     }
 
     public void addBookToProfile(String token, String userId) {
@@ -93,7 +90,7 @@ public class ApiHelper {
 
         ArrayList<Map<String, String>> collectionOfIsbns = new ArrayList<>();
         Map<String, String> isbnMap = new HashMap<>();
-        isbnMap.put("isbn", getIsbn());
+        isbnMap.put("isbn", getIsbn(0));
         collectionOfIsbns.add(isbnMap);
 
         bodyRequest.put("collectionOfIsbns", collectionOfIsbns);
@@ -104,7 +101,7 @@ public class ApiHelper {
                 .header("Authorization", "Bearer " + token)
                 .body(bodyRequest)
                 .when()
-                .post(EndPoints.ADD_BOOK)
+                .post(EndPoints.BOOKS)
                 .then()
                 .spec(responseSpecification.statusCode(HttpStatus.SC_CREATED));
     }

@@ -16,7 +16,7 @@ public class BooksDto {
     private String author;
     private String publish_date;
     private String publisher;
-    private int pages;
+    private Integer pages;
     private String description;
     private String website;
 

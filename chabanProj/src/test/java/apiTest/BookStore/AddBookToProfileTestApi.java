@@ -26,6 +26,7 @@ public class AddBookToProfileTestApi {
         }
         @Test
     public void addBookToProfile(){
+
                 int numberOfBooksBeforeAdding = apiHelper.getBooks(token,userId).length;
                 apiHelper.addBookToProfile(token, userId);
                 int numberOfBooksAfterAdding = apiHelper.getBooks(token,userId).length;
@@ -34,7 +35,7 @@ public class AddBookToProfileTestApi {
                 SoftAssertions softAssertions = new SoftAssertions();
                 softAssertions.assertThat(apiHelper.getBooks(token, userId)[numberOfBooksAfterAdding-1].getIsbn())
                    .as("ISBN of added book")
-                   .isEqualTo(apiHelper.getIsbn());
+                   .isEqualTo(apiHelper.getIsbn(0));
 
             softAssertions.assertAll();
         }
