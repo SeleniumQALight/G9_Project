@@ -15,6 +15,7 @@ echo "BROWSER       : ${BROWSER:-remote}"
 echo "THREAD_COUNT  : ${THREAD_COUNT:-1}"
 echo "TEST_SUITE    : ${SUITES}"
 echo "ENV           : ${ENV:-aqa}"
+echo "DEFAULT_LOGIN : ${DEFAULT_LOGIN:-qaauto}"
 echo "-------------------------------------------"
 
 # Do not start the tests immediately. Hub has to be ready with browser nodes
@@ -36,7 +37,7 @@ done
 echo "Selenium Grid is up and running. Running the test...."
 
 # Start the java command
-java -Dbrowser=${BROWSER:-remote} -Denv=${ENV:-aqa} -DseleniumHubHost=${SELENIUM_HUB_HOST:-hub} \
+java -Dbrowser=${BROWSER:-remote} -DdefaultLogin=${DEFAULT_LOGIN:-qaauto} -Denv=${ENV:-aqa} -DseleniumHubHost=${SELENIUM_HUB_HOST:-hub} \
                                     -cp 'libs/*' RunTest \
                                     ${SUITES} \
                                     -threadcount=${THREAD_COUNT:-1}
