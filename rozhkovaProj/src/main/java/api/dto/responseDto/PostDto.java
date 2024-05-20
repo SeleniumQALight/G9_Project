@@ -1,6 +1,14 @@
 package api.dto.responseDto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+
+@NoArgsConstructor // прибираємо дефолтний конструктор
+@Data // включаєь в себе геттери і сеттери
+@ToString
+
+@AllArgsConstructor // конструктор з усіма полями, використовується разом з @Builder
+@Builder//для патерну білдер
 
 public class PostDto {
     //всі поля ссилочні мають бути, щоб якщо поле не прийде, то було налл
@@ -17,17 +25,20 @@ public class PostDto {
     private AuthorDto author;
     private Boolean isVisitorOwner;
 
-    public PostDto() { //дефолтний конструктор
-    }
+   /* public PostDto() { //дефолтний конструктор
+    }*/ //замінили на @NoArgsConstructor
 
-    public PostDto(String title, String body, String select, String uniquePost, AuthorDto author, Boolean isVisitorOwner) {
+    /*public PostDto(String title, String body, String select, String uniquePost, AuthorDto author, Boolean isVisitorOwner) {
         this.title = title;
         this.body = body;
         this.select = select;
         this.uniquePost = uniquePost;
         this.author = author;
-        this.isVisitorOwner = isVisitorOwner;
-    }
+        this.isVisitorOwner = isVisitorOwner;*///замінили на @AllArgsConstructor @Builder
+    //}
+/*
+    //обовязково треба геттери і сеттери для всіх полів, щоб можна було звертатися до них з інших класів і до них звертається софт ассершен
+    замінилии на @Data
 
     public String getId() {
         return id;
@@ -93,6 +104,7 @@ public class PostDto {
         isVisitorOwner = visitorOwner;
     }
 
+//замінили на @ToString
     @Override
     public String toString() {//відображення обєкта в консольці
         return "PostDto{" +
@@ -105,5 +117,5 @@ public class PostDto {
                 ", author=" + author +
                 ", isVisitorOwner=" + isVisitorOwner +
                 '}';
-    }
+    }*/
 }
