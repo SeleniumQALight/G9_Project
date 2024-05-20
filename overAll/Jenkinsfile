@@ -1,42 +1,40 @@
 pipeline{
-    environment {
-        NUMBER = 3
-    }
-    agent {
-        label 'mylable'
-    }
+
+    agent none
 
     stages{
         stage('Build JAR'){
+            agent {
+               docker {
+                   image 'maven:3.9.3-eclipse-temurin-17-focal'
+               }
+            }
             steps{
-                echo 'Run container with number 3 ...'
-                sh "docker run -e NUMBER=${NUMBER} vinsdocker/squares"
-
+                sh 'mvn -pl overAll clean package -DskipTests'
             }
         }
-        stage('stage-2'){
-            environment {
-              CC = 6
-            }
+        stage('Build Docker Image'){
             steps{
-                echo 'Run container with different number ...'
-                sh "docker run -e NUMBER=${NUMBER} vinsdocker/squares"
-
+                script{
+                        app = docker.build('radulenko/selenium:latest', './overAll')
+                }
             }
-       }
+        }
+
+
+        stage('Push Docker Image'){
+             steps{
+                script{
+                   docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cred'){
+                       app.push('latest')
+                       app.push("${env.BUILD_NUMBER}")
+                    }
+
+                }
+             }
+        }
 
     }
 
-    post{
-        always{
-            sh "docker system prune -f"
-        }
-        success{
-            echo 'This will run only if the pipeline is successful'
-        }
-        failure{
-            echo 'This will run only if the pipeline is failed'
-        }
-    }
 
 }
