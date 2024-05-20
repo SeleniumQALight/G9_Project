@@ -45,3 +45,10 @@ Docker-compose run tests
 
 See logs of container
         docker-compose logs test2
+
+
+run Jenkins
+ docker-compose -f jenkins.yaml up
+
+run Jenkins NODE
+java -jar agent.jar -url http://localhost:8080/ -secret 9c8e240a60f42ada1d34914349bafd43c81f660e2c69253d9176b436858464e6 -name NODE1 -workDir "/Users/taras/Desktop/WorkSpace/G9/G9-TAF/G9_Project/overAll/master/node"
