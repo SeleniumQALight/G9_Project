@@ -77,25 +77,24 @@ public class ApiHelperDemoqa {
                 .header("Authorization", "Bearer " + token)
                 .queryParam("UserId", userId)
                 .when()
-                .delete(EndPointsDemoqa.DELETE_ALL_BOOKS)
+                .delete(EndPointsDemoqa.BOOKS)
                 .then()
                 .log().all()
                 .statusCode(204);
     }
 
-    public String getAllBooks(){
+    public List<Map<String, String>> getAllBooks(){
         Response response =
             given()
                     .spec(requestSpecification)
                     .when()
-                    .get(EndPointsDemoqa.GET_ALL_BOOKS)
+                    .get(EndPointsDemoqa.BOOKS)
                     .then()
                     .spec(responseSpecification)
                     .extract().response();
 
         JsonPath jsonPath = response.jsonPath();
-        String isbn = jsonPath.get("books[0].isbn");
-        return isbn;
+        return jsonPath.getList("books");
 
     }
 
@@ -115,14 +114,14 @@ public class ApiHelperDemoqa {
                 .header("Authorization", "Bearer " + token)
                 .body(requestBody.toMap())
                 .when()
-                .post(EndPointsDemoqa.ADD_BOOK_TO_USER)
+                .post(EndPointsDemoqa.BOOKS)
                 .then()
                 .log().all()
                 .statusCode(201);
 
     }
 
-    public Map<String, String> getUserInfo(String userId, String token, String isbn) {
+    public List<String> getUserInfo(String userId, String token) {
         Response response = given()
                 .spec(requestSpecification)
                 .header("Authorization", "Bearer " + token)
@@ -130,15 +129,12 @@ public class ApiHelperDemoqa {
                 .get(EndPointsDemoqa.GET_USER_INFO, userId)
                 .then()
                 .spec(responseSpecification)
-                .assertThat()
-                .body("books[0].isbn", equalTo(isbn))
                 .extract().response();
 
         JsonPath jsonPath = response.jsonPath();
-        List<String> books = jsonPath.getList("books");
-        assertEquals(1, books.size());
+        return jsonPath.getList("books.isbn");
 
-        return jsonPath.getMap("user");
+
 
     }
 }

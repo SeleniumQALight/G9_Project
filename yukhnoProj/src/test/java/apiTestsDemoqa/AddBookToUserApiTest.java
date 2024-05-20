@@ -4,7 +4,12 @@ import apiDemoqa.ApiHelperDemoqa;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Map;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AddBookToUserApiTest {
     ApiHelperDemoqa apiHelperDemoqa = new ApiHelperDemoqa();
@@ -22,10 +27,11 @@ public class AddBookToUserApiTest {
 
     @Test
     public void AddBookToUserApi(){
-        String isbn = apiHelperDemoqa.getAllBooks();
+        String isbn = apiHelperDemoqa.getAllBooks().get(0).get("isbn");
         apiHelperDemoqa.addBookToUser(userId, token, isbn);
-        apiHelperDemoqa.getUserInfo(userId, token, isbn);
-
+        List<String> userBooks = apiHelperDemoqa.getUserInfo(userId, token);
+        assertEquals(1, userBooks.size());
+        assertTrue(userBooks.contains(isbn));
 
     }
 }
