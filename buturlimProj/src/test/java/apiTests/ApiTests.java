@@ -5,12 +5,15 @@ import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostsDto;
+import categories.SmokeTestFilter;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
+@Category(SmokeTestFilter.class)
 public class ApiTests {
     final String USER_NAME = "autoapi";
 
@@ -31,6 +35,7 @@ public class ApiTests {
         PostsDto[] actualResponseAsDto =
                 given()
                 .contentType(ContentType.JSON)
+                .filter(new AllureRestAssured())
                 .log().all()
                 .when()
                 .get(EndPoints.POSTS_BY_USER, USER_NAME)
