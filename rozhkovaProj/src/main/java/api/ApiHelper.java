@@ -2,6 +2,7 @@ package api;
 
 import api.dto.responseDto.PostDto;
 import data.TestData;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -22,6 +23,7 @@ public class ApiHelper {//зібрані методи, які будуть ви�
 
     //щоб винести повторювані запити/поля: наприклад, given
     RequestSpecification requestSpecification = new RequestSpecBuilder()
+            .addFilter(new AllureRestAssured()) //додаємо фільтр, щоб відображати в аллюр репорті
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL) //=log().all(), такий синтаксис у RequestSpecBuilder
             .build();
