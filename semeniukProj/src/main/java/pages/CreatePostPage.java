@@ -71,33 +71,34 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
-    public CreatePostPage selectCheckBox() {
-        if (!checkBoxUniquePost.isSelected()) {
-            clickOnElement(checkBoxUniquePost);
-            logger.info("Checkbox is selected");
-        } else {
-            logger.info("Checkbox is already selected");
-        }
-        return this;
-    }
-
-    public CreatePostPage deSelectCheckBox() {
-        checkBoxUniquePost.isSelected();
-        if (checkBoxUniquePost.isSelected()) {
-            clickOnElement(checkBoxUniquePost);
-            logger.info("Checkbox is deselected");
-        } else {
-            logger.info("Checkbox is already deselected");
-        }
-        return this;
-    }
+//    public CreatePostPage selectCheckBox() {
+//        if (!checkBoxUniquePost.isSelected()) {
+//            clickOnElement(checkBoxUniquePost);
+//            logger.info("Checkbox is selected");
+//        } else {
+//            logger.info("Checkbox is already selected");
+//        }
+//        return this;
+//    }
+//
+//    public CreatePostPage deSelectCheckBox() {
+//        checkBoxUniquePost.isSelected();
+//        if (checkBoxUniquePost.isSelected()) {
+//            clickOnElement(checkBoxUniquePost);
+//            logger.info("Checkbox is deselected");
+//        } else {
+//            logger.info("Checkbox is already deselected");
+//        }
+//        return this;
+//    }
     public CreatePostPage settingCheckBox(String state) {
-        if (state.equals("check")) {
-            selectCheckBox();
-        }
-        if (state.equals("uncheck")) {
-            deSelectCheckBox();
-        }
+        setCheckboxToNeededState (checkBoxUniquePost, state);
+//        if (state.equals("check")) {
+//            selectCheckBox();
+//        }
+//        if (state.equals("uncheck")) {
+//            deSelectCheckBox();
+//        }
         return this;
     }
 }
