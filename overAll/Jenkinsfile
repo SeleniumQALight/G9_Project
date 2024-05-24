@@ -7,6 +7,7 @@ pipeline{
             agent {
                docker {
                    image 'maven:3.9.3-eclipse-temurin-17-focal'
+                   args '-u root -v /tmp/.m2:/root/.m2'
                }
             }
             steps{
@@ -27,7 +28,7 @@ pipeline{
                 script{
                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-cred'){
                        app.push('latest')
-                       app.push("${env.BUILD_NUMBER}")
+                       app.push("NEW_V_${env.BUILD_NUMBER}")
                     }
 
                 }
