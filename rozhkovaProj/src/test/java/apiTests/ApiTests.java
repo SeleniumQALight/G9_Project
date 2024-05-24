@@ -4,12 +4,15 @@ import api.ApiHelper;
 import api.EndPoints;
 import api.dto.responseDto.AuthorDto;
 import api.dto.responseDto.PostDto;
+import categories.SmokeTestFilter;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +22,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
+@Category(SmokeTestFilter.class)
 public class ApiTests {
     final String USER_NAME = "autoapi";
     private Logger logger = Logger.getLogger(getClass());
@@ -30,6 +34,7 @@ public class ApiTests {
         PostDto[] actualResponseAsDto = //результат зберігаємо в цій змінній, щоб потіім можна кудись передати
                 given()//починаємо готувати запит, що отримати пости для користувача: авторизацію, налаштовувати хедери, якщо є
                         .contentType(ContentType.JSON)//вказуємо, що хочемо отримати дані у форматі JSON
+                        .filter(new AllureRestAssured())//інтегруємо фллюр з ресташуред (бібліотека в депенденсі allure-rest-assured):  запит і респонс буде відображатися в аллюр репорті
                         .log().all()//виводимо в консоль всі дані, які відправляються на сервер
 
                         .when()//вказуємо, що саме хочемо зробити - дія
