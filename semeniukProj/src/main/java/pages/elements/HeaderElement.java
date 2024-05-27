@@ -1,6 +1,7 @@
 package pages.elements;
 
 import io.qameta.allure.Step;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,6 +37,11 @@ public class HeaderElement extends CommonActionsWithElements {
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
+    }
+
+    public HeaderElement checkIsMyProfilePresent(){
+        Assert.assertTrue("Button My Profile is not present", isElementDisplayed(buttonMyProfile));
+        return this;
     }
 
     @Step
