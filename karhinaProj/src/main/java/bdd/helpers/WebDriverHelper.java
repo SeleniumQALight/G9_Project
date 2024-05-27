@@ -13,7 +13,7 @@ public class WebDriverHelper {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
-    public WebDriverHelper(WebDriver driver) {
+    public WebDriverHelper() {
         if (webDriver == null) {
             webDriver = initDriver();
         }
@@ -26,7 +26,7 @@ public class WebDriverHelper {
     public void quitDriver() {
         webDriver.quit();
         logger.info("Browser was closed");
-        }
+
     }
 
     public WebDriver initDriver() {
