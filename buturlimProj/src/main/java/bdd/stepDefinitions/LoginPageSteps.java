@@ -1,16 +1,24 @@
 package bdd.stepDefinitions;
 
+import bdd.helpers.WebDriverHelper;
+import data.TestData;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
-public class LoginPageSteps {
+public class LoginPageSteps extends MainSteps {
+    public LoginPageSteps(WebDriverHelper webDriverHelper) {
+        super(webDriverHelper);
+    }
+
     @Given("I open Login page")
     public void iOpenLoginPage() {
-        //TODO: open login page method
+        pageProvider.getLoginPage().openLoginPage();
     }
 
     @When("I login with valid credentials")
     public void iLoginWithValidCredentials() {
-        //TODO: login with valid credentials method
+        pageProvider.getLoginPage().enterTextIntoInputLogin(TestData.VALID_LOGIN_UI);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(TestData.VALID_PASSWORD_UI);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
     }
 }
