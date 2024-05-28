@@ -118,6 +118,15 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
+    protected void checkTextInElement(WebElement webElement, String ExpectedText){
+//        try {
+            Assert.assertTrue("Element is not displayed",isElementDisplayed(webElement));
+            String  textFromElement = webElement.getText();
+            Assert.assertEquals("Text in element not matched", ExpectedText, textFromElement);
+//        }catch (Exception e){
+//            printErrorAndStopTest(e);
+//        }
+    }
 
 
     private void printErrorAndStopTest(Exception e) {
