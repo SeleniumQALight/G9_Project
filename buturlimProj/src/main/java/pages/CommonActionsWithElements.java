@@ -71,6 +71,16 @@ public class CommonActionsWithElements {
         Assert.assertFalse(elementName + " is displayed", isElementDisplayed(webElement, elementName));
     }
 
+    protected void checkTextInElement(WebElement webElement, String expectedText) {
+//        try {
+            checkIsElementVisible(webElement, "Element");
+            String textFromElement = webElement.getText();
+            Assert.assertEquals("Text in element not expected", expectedText, textFromElement);
+//        }catch (Exception e){
+//            printErrorAndStopTest(e);
+//}
+    }
+
     // Select text in dropdown by visible text
     protected void selectTextInDropdownByVisibleText(WebElement dropdown, String textForSelect) {
         try {
