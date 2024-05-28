@@ -1,9 +1,16 @@
 package bdd.stepDefinitions;
 
+import bdd.helpers.WebDriverHelper;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
 public class Hook {
+    WebDriverHelper webDriverHelper;
+
+    // picocontainer
+    public Hook(WebDriverHelper webDriverHelper){
+        this.webDriverHelper = webDriverHelper;
+    }
 
     @Before
     public void setUp(){
@@ -11,7 +18,7 @@ public class Hook {
     }
     @After
     public void tearDown(){
-
+        webDriverHelper.quitDriver();
     }
 
 }

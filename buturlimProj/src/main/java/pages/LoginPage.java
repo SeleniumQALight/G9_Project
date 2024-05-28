@@ -223,6 +223,10 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonRegistration() {
         clickOnElement(buttonRegistration);
     }
+
+    public void checkTextInAlertMesage(String message) {
+        checkTextInElement(loginError, message);
+    }
 }
 
 

@@ -156,6 +156,17 @@ public class CommonActionsWithElements_new {
 
     }
 
+    protected void checkTextInElement(WebElement webElement, String expectedText) {
+//        try {
+            Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+            String actualText = webElement.getText();
+            Assert.assertEquals("Text in element not matched", expectedText, actualText);
+
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);

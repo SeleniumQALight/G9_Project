@@ -199,4 +199,15 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    protected void checkTextInElement(WebElement webElement, String expectedText) {
+        //try {
+            Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));//замість трай кетч
+            String textFromElement = webElement.getText();
+            Assert.assertEquals("Text in element is not matched", expectedText, textFromElement);
+            logger.info("Text in element is expected");
+      //  } catch (Exception e) {
+    //        printErrorAndStopTest(e);}
+    }
+
 }
