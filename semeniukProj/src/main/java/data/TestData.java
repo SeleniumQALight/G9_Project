@@ -10,4 +10,7 @@ public class TestData {
 
     public static final String VALID_LOGIN_API = "semeniukAPI";
     public static final String VALID_PASSWORD_API = "semeniukAPI12345";
+
+    public static final String DEMO_QA_VALID_LOGIN = "semeniukDemoAPI";
+    public static final String DEMO_QA_VALID_PASSWORD = "@Semeniuk()12345";
 }
