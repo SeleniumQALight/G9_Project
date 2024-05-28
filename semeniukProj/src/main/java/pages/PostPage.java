@@ -35,6 +35,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//i")
     private WebElement textNoteThisPostWasWrittenFor;
 
+    @FindBy(xpath = ".//*/p[contains(text(),'unique')]")
+    private WebElement isPostUnique;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -49,7 +52,7 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkIsRedirectToPostPage() {
-       checkUrlWithPattern();
+        checkUrlWithPattern();
         //TODO check some element that is only on this page
         return this;
     }
@@ -73,10 +76,10 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public PostPage checkValueInMessagePostUnique(){
-        if (isElementDisplayed(postUniqueYesMessage)){
+    public PostPage checkValueInMessagePostUnique() {
+        if (isElementDisplayed(postUniqueYesMessage)) {
             logger.info("Message 'Is this post unique? : yes' is displayed");
-        } else if (isElementDisplayed(postUniqueNoMessage)){
+        } else if (isElementDisplayed(postUniqueNoMessage)) {
             logger.info("Message 'Is this post unique? : no' is displayed");
         } else {
             logger.error("Message 'Is this post unique? : yes' or 'Is this post unique? : no' is not displayed");
@@ -92,7 +95,7 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public PostPage checkValueInBodyOfPost (String expectedTextBody) {
+    public PostPage checkValueInBodyOfPost(String expectedTextBody) {
         String actualTextBody = postTextBody.getText();
         Assert.assertEquals("Incorrect text in body", expectedTextBody, actualTextBody);
         logger.info("Correct text in body");
@@ -110,5 +113,11 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost);
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkIsPostUnique(String expectedValue) {
+        String actualValue = isPostUnique.getText();
+        Assert.assertEquals("Post is not unique", expectedValue, actualValue);
+        return this;
     }
 }
