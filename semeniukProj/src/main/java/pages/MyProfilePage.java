@@ -14,6 +14,9 @@ public class MyProfilePage extends ParentPage{
 
     private String postTitleLocator = ".//*[text()='%s']"; // параметризований локатор
 
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -66,6 +69,11 @@ public class MyProfilePage extends ParentPage{
     public MyProfilePage checkIsMessageSuccessDeletedPresent() {
         Assert.assertTrue("Message 'Post Successfully Deleted' is not displayed"
                 , isElementDisplayed(postSuccessfullyDeletedMessage, "Post Successfully Deleted message"));
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts ", numberOfPosts, postsList.size());
         return this;
     }
 }
