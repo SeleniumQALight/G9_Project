@@ -8,6 +8,6 @@ public class TestData {
     public static final String VALID_NEW_LOGIN_UI = System.getProperty("defaultloginNew", ConfigProvider.configHiddenProperties.loginNew());
     public static final String VALID_PASSWORD_UI = "123456qwerty";
 
-    public static final String VALID_LOGIN_API = "AutoTetiana";
+    public static final String VALID_LOGIN_API = "autotetiana";
     public static final String VALID_PASSWORD_API = "Qwerty123456";
 }

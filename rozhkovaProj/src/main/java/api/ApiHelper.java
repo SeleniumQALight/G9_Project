@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -109,6 +110,26 @@ public class ApiHelper {//зібрані методи, які будуть ви�
                 .delete(EndPoints.DELETE_POST, id)
                 .then()
                 .spec(responseSpecification);
+
+    }
+
+    public void createPosts(int numberOfPosts, String token, Map<String, String> postData) {
+        for (int i = 0; i < numberOfPosts; i++) {//працюємо через мапу, можна і через DTO
+            HashMap<String, String> requestBody = new HashMap<>();//бо немає вкладень. якби були, то треба було ств джейсон обєкт
+            requestBody.put("title", postData.get("title") + i);
+            requestBody.put("body", postData.get("body"));
+            requestBody.put("select1", postData.get("select"));//перший має піти в запиті, другий який ми передаємот з таблиці
+            requestBody.put("uniquePost", "no");
+            requestBody.put("token", token);
+
+            given()
+                    .spec(requestSpecification)
+                    .body(requestBody)
+                    .when()
+                    .post(EndPoints.CREATE_POST)
+                    .then()
+                    .spec(responseSpecification);
+        }
 
     }
 }
