@@ -49,4 +49,8 @@ public class WebDriverHelper {
         }
         return webDriver;
     }
+
+    public void quitDriver() {
+
+    }
 }
