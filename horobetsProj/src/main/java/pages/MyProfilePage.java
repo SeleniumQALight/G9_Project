@@ -19,6 +19,9 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = "//*[@class='avatar-small']")
     private WebElement avatarSmall;
 
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -73,6 +76,11 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage checkIsMessageSuccessDeletePresent() {
         Assert.assertTrue("Message 'Post Successfully Deleted' is not displayed'"
                 , isElementDisplayed(postSuccessfullyDeletedMessage, "Post Successfully Deleted message"));
+        return this;
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts ", numberOfPosts, postsList.size()); // асерт приймає примітивні типи тому в методі int, а не Integer
         return this;
     }
 }
