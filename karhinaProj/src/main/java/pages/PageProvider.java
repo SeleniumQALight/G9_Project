@@ -25,4 +25,7 @@ public class PageProvider {
         return new CreatePostPage(webDriver);
     }
 
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver);
+    }
 }
