@@ -19,8 +19,6 @@ import java.util.Map;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertEquals;
 
 public class ApiHelperDemoqa {
 
