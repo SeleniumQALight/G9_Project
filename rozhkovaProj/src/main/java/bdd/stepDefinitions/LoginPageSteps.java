@@ -2,6 +2,7 @@ package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
 import data.TestData;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -43,5 +44,25 @@ public class LoginPageSteps extends MainSteps{
     public void iSeeAlertMessageWithTextInvalidUsernamePassword(String message) {
         pageProvider.getLoginPage().checkTextInAlertMessageInCenter(message);
 
+    }
+
+    @When("I enter {string} into input Registration UserName field in Login page")
+    public void iEnterIntoInputRegistrationUserNameFieldInLoginPage(String userName) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName);
+    }
+
+    @And("I enter {string} into input Registration Email field in Login page")
+    public void iEnterIntoInputRegistrationEmailFieldInLoginPage(String email) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmailField(email);
+    }
+
+    @And("I enter {string} into input Registration Password field in Login page")
+    public void iEnterIntoInputRegistrationPasswordFieldInLoginPage(String password) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationPasswordField(password);
+    }
+
+    @Then("I see the following {string} in the Registration fields")
+    public void iSeeTheFollowingInTheRegistrationFields(String error_messages) {
+        pageProvider.getLoginPage().checkErrorsMessages(error_messages);
     }
 }
