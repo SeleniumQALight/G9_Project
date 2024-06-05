@@ -35,7 +35,6 @@ public class ApiHelperPrivatBank {
     public Map<String, String> getExchangeRateByApi(String currency){
         Response response = given()
                 .spec(requestSpecification)
-//                .queryParam("json", " ", "exchange", " ", "coursid", CourseId)
                 .when()
                 .params("json", " ", "exchange", " ", "coursid", CourseId)
                 .get(EndPointsPrivatBank.CURRENCY_EXCHANGE)
