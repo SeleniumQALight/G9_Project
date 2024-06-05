@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,17 +19,8 @@ public class PrivatBankPage extends ParentPage {
         return "";
     }
 
-    @FindBy(xpath = ".//td[@id='USD_buy']")
-    private WebElement usdBuyRate;
-
-    @FindBy(xpath = ".//td[@id='USD_sell']")
-    private WebElement usdSellRate;
-
-    @FindBy(xpath = ".//td[@id='EUR_buy']")
-    private WebElement eurBuyRate;
-
-    @FindBy(xpath = ".//td[@id='EUR_sell']")
-    private WebElement eurSellRate;
+    private String sellRateLocator = ".//td[@id='%s_sell']";
+    private String buyRateLocator = ".//td[@id='%s_buy']";
 
     public PrivatBankPage checkIsRedirectOnPrivatBankPage() {
         checkUrlForPrivatBank();
@@ -48,13 +40,15 @@ public class PrivatBankPage extends ParentPage {
     public Map<String, String> getExchangeRatesFromUI(String currency) {
         openPrivatBankPage();
         Map<String, String> exchangeRates = new HashMap<>();
-        if (currency.equals("USD")) {
-            exchangeRates.put("buy", usdBuyRate.getText());
-            exchangeRates.put("sale", usdSellRate.getText());
-        } else if (currency.equals("EUR")) {
-            exchangeRates.put("buy", eurBuyRate.getText());
-            exchangeRates.put("sale", eurSellRate.getText());
-        }
+
+        String buy = String.format(buyRateLocator, currency);
+        String sell = String.format(sellRateLocator, currency);
+
+        String buyRate = webDriver.findElement(By.xpath(buy)).getText();
+        String sellRate = webDriver.findElement(By.xpath(sell)).getText();
+
+        exchangeRates.put("buy", buyRate);
+        exchangeRates.put("sale", sellRate);
         return exchangeRates;
     }
 
