@@ -1,6 +1,5 @@
 package pages;
 
-import io.qameta.allure.Link;
 import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -17,6 +16,9 @@ public class MyProfilePage extends ParentPage {
     private WebElement postSuccessfullyDeletedMessage;
 
     private String postTitleLocator = ".//*[text()='%s']";
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -72,4 +74,9 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public MyProfilePage checkNumberOfPostsInPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts is not expected", numberOfPosts, postList.size());
+
+        return this;
+    }
 }
