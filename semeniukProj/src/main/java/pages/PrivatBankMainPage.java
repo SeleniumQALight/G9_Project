@@ -2,16 +2,17 @@ package pages;
 
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PrivatBankMainPage extends ParentPage{
 
     public PrivatBankMainPage(WebDriver webDriver) { super(webDriver); }
+
     @Override
     protected String getRelativeUrl() {
         return "";
@@ -19,38 +20,32 @@ public class PrivatBankMainPage extends ParentPage{
     private Logger logger = Logger.getLogger(getClass());
     String privatbankUrl = "https://privatbank.ua";
 
-    @FindBy(xpath = "//td[@id='EUR_buy']")
-    private WebElement buyRateEuro;
-    @FindBy(xpath = "//td[@id='EUR_sell']")
-    private WebElement saleRateEuro;
-    @FindBy(xpath = "//td[@id='USD_buy']")
-    private WebElement buyRateUsd;
-    @FindBy(xpath = "//td[@id='USD_sell']")
-    private WebElement saleRateUsd;
+    String privatBankMainUrl = "https://privatbank.ua";
+    private String currencyLocator = "//td[@id='%s_%s']";
 
     @Step
-    public void openPrivatBankPage(){
+    public void openPrivatBankPage() {
         try {
-            webDriver.get(privatbankUrl);
-            logger.info("PrivatBank was opened with url " + privatbankUrl);
-        }catch (Exception e){
-            logger.error("Can not open PrivatBank " + e);
-            Assert.fail("Can not open PrivatBank " + e);
+            webDriver.get(String.valueOf(privatBankMainUrl));
+            logger.info("PrivatBank Page was opened with URL " + privatBankMainUrl);
+        } catch (Exception e) {
+            logger.error("Can not open PrivatBank Page " + e);
+            Assert.fail("Can not open PrivatBank Page " + e);
         }
     }
 
-    public Map<String, String> getBuyAndSaleRateFromUI(String currencyName) {
+    public Map<String, String> getBuyAndSaleRateFromUI(String currency) {
         openPrivatBankPage();
-        Map<String, String> exchangeRate = new HashMap<>();
-        if (currencyName.equals("USD")) {
-            exchangeRate.put("buy", buyRateUsd.getText());
-            exchangeRate.put("sale", saleRateUsd.getText());
-        } else if (currencyName.equals("EUR")) {
-            exchangeRate.put("buy", buyRateEuro.getText());
-            exchangeRate.put("sale", saleRateEuro.getText());
-        }
-        logger.info(exchangeRate);
-        return exchangeRate;
+        Map<String, String> currencyExchangeRate = new HashMap<>();
 
+        String buyLocator = String.format(currencyLocator, currency, "buy");
+        String sellLocator = String.format(currencyLocator, currency, "sell");
+
+        WebElement buyElement = webDriver.findElement(By.xpath(buyLocator));
+        WebElement sellElement = webDriver.findElement(By.xpath(sellLocator));
+
+        currencyExchangeRate.put("buy", buyElement.getText());
+        currencyExchangeRate.put("sale", sellElement.getText());
+        return currencyExchangeRate;
     }
 }
