@@ -30,12 +30,15 @@ public class ApiHelperPrivatBank {
             .build();
 
     Logger logger = Logger.getLogger(getClass());
+    private final int CourseId = 5;
 
     public Map<String, String> getExchangeRateByApi(String currency){
         Response response = given()
                 .spec(requestSpecification)
+//                .queryParam("json", " ", "exchange", " ", "coursid", CourseId)
                 .when()
-                .post(EndPointsPrivatBank.CURRENCY_EXCHANGE)
+                .params("json", " ", "exchange", " ", "coursid", CourseId)
+                .get(EndPointsPrivatBank.CURRENCY_EXCHANGE)
                 .then()
                 .spec(responseSpecification)
                 .extract().response();

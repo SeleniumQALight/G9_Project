@@ -2,12 +2,14 @@ package pages.elements;
 
 import io.qameta.allure.Step;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.ParentPage;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PrivatBankPage extends ParentPage {
@@ -17,22 +19,11 @@ public class PrivatBankPage extends ParentPage {
 
     @Override
     protected String getRelativeUrl() {
-        return null;
+        return "";
     }
 
     String privatBankMainUrl = "https://privatbank.ua";
-
-    @FindBy(xpath = "//td[@id='USD_buy']")
-    private WebElement buyExchangeRateUsd;
-
-    @FindBy(xpath = "//td[@id='USD_sell']")
-    private WebElement saleExchangeRateUsd;
-
-    @FindBy(xpath = "//td[@id='EUR_buy']")
-    private WebElement buyExchangeRateEuro;
-
-    @FindBy(xpath = "//td[@id='EUR_sell']")
-    private WebElement saleExchangeRateEuro;
+    private String currencyLocator = "//td[@id='%s_%s']";
 
     @Step
     public void openPrivatBankPage() {
@@ -45,19 +36,18 @@ public class PrivatBankPage extends ParentPage {
         }
     }
 
-        public Map<String, String> getBuyAndSaleRateFromUI (String currency) {
-            openPrivatBankPage();
-            Map<String, String> currencyeExchangeRate = new HashMap<>();
-            if (currency.equals("USD")) {
-                currencyeExchangeRate.put("buy", buyExchangeRateUsd.getText());
-                currencyeExchangeRate.put("sale", saleExchangeRateUsd.getText());
-            } else if (currency.equals("EUR")) {
-                currencyeExchangeRate.put("buy", buyExchangeRateEuro.getText());
-                currencyeExchangeRate.put("sale", saleExchangeRateEuro.getText());
-            }
+    public Map<String, String> getBuyAndSaleRateFromUI(String currency) {
+        openPrivatBankPage();
+        Map<String, String> currencyExchangeRate = new HashMap<>();
 
-            return currencyeExchangeRate;
+            String buyLocator = String.format(currencyLocator, currency, "buy");
+            String sellLocator = String.format(currencyLocator, currency, "sell");
 
-        }
+            WebElement buyElement = webDriver.findElement(By.xpath(buyLocator));
+            WebElement sellElement = webDriver.findElement(By.xpath(sellLocator));
 
+            currencyExchangeRate.put("buy", buyElement.getText());
+            currencyExchangeRate.put("sale", sellElement.getText());
+        return currencyExchangeRate;
+    }
 }
