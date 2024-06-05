@@ -15,10 +15,7 @@ Feature: Login Feature
     Then I see alert message with text 'Invalid username/password.'
 
 
-
     Examples:
       | login           | password       |
       | qaauto          | not_valid_pass |
       | not_valid_login | 123456qwerty   |
-
-
