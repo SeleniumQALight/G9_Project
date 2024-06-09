@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,17 +23,7 @@ public class PrivatbankMainPage extends ParentPage{
 
     String privatbankUrl = "https://privatbank.ua";
 
-    @FindBy(xpath = "//td[@id='EUR_buy']")
-    private WebElement buyRateEuro;
-
-    @FindBy(xpath = "//td[@id='EUR_sell']")
-    private WebElement saleRateEuro;
-
-    @FindBy(xpath = "//td[@id='USD_buy']")
-    private WebElement buyRateUsd;
-
-    @FindBy(xpath = "//td[@id='USD_sell']")
-    private WebElement saleRateUsd;
+    private String rateCurrency = "//td[@id='%s']";
 
     @Step
     public void openPrivatbankPage(){
@@ -49,13 +39,15 @@ public class PrivatbankMainPage extends ParentPage{
     public Map<String, String> getBuyAndSaleRateFromUI(String currencyName) {
         openPrivatbankPage();
         Map<String, String> exchangeRate = new HashMap<>();
-        if (currencyName.equals("USD")) {
-            exchangeRate.put("buy", buyRateUsd.getText());
-            exchangeRate.put("sale", saleRateUsd.getText());
-        } else if (currencyName.equals("EUR")) {
-            exchangeRate.put("buy", buyRateEuro.getText());
-            exchangeRate.put("sale", saleRateEuro.getText());
-        }
+
+        String buyRateLocator = String.format(rateCurrency, currencyName + "_buy");
+        String saleRateLocator = String.format(rateCurrency, currencyName + "_sell");
+
+        WebElement buyRateElement = webDriver.findElement(By.xpath(buyRateLocator));
+        WebElement saleRateElement = webDriver.findElement(By.xpath(saleRateLocator));
+
+        exchangeRate.put("buy", buyRateElement.getText());
+        exchangeRate.put("sale", saleRateElement.getText());
 
         logger.info(exchangeRate);
         return exchangeRate;

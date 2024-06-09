@@ -34,6 +34,9 @@ public class PrivatbankApiHelper {
     public Map<String, String> getBuyAndSaleRateFromApi(String currencyName){
         Response response = given()
                 .spec(requestSpecification)
+                .queryParams("json", "true")
+                .queryParams("exchange", "true")
+                .queryParams("coursid", "5")
                 .when()
                 .post(PrivatBankEndpoints.PUBLIC_EXCHANGE_API)
                 .then()
