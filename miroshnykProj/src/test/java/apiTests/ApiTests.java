@@ -5,7 +5,6 @@ import api.EndPoints;
 import api.dto.responsDto.AuthorDto;
 import api.dto.responsDto.PostsDto;
 import categories.SmokeTestFilter;
-import com.beust.ah.A;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

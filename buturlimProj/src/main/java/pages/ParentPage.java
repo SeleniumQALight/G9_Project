@@ -12,6 +12,7 @@ abstract public class ParentPage extends CommonActionsWithElements {
    // String baseUrl = String.format("https://%s-complexapp.onrender.com", environment);
 
     String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", environment);
+    String privatUrl = ConfigProvider.configProperties.privatUrl();
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
@@ -21,6 +22,10 @@ abstract public class ParentPage extends CommonActionsWithElements {
 
     protected void checkUrl() {
         Assert.assertEquals("Invalid page URL", baseUrl + getRelativeUrl(), webDriver.getCurrentUrl());
+    }
+
+    protected void checkUrlForPrivatBank() {
+        Assert.assertEquals("Invalid page URL", privatUrl, webDriver.getCurrentUrl());
     }
 
     protected void checkUrlWithPattern() {
