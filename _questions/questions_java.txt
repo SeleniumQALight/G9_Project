@@ -8,6 +8,11 @@
            //stream API
            //default methods
 
+    // Additional tools
+        1. Playwright library (Java)
+        1. Spring Framework
+        1. Docker and Docker-compose
+        2. Cloud services (AWS, Azure, Google Cloud)
 
    **Java**
         1.Парадігми ООП
