@@ -1,5 +1,6 @@
 package bdd.stepDefinitions;
 
+import api.PrivatbankApiHelper;
 import bdd.helpers.WebDriverHelper;
 import pages.PageProvider;
 

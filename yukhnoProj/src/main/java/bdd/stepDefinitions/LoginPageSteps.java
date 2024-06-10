@@ -2,7 +2,6 @@ package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
 import data.TestData;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

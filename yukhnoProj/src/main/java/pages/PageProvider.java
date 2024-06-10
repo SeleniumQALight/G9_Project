@@ -21,6 +21,12 @@ public class PageProvider {
         return new PostPage(webDriver);
     }
 
-    public MyProfilePage getMyProfilePage() {return new MyProfilePage(webDriver);
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver);
+    }
+
+    public PrivatbankMainPage getPrivatbankMainPage() {
+        return new PrivatbankMainPage(webDriver);
     }
 }
+
