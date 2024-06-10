@@ -3,6 +3,7 @@
            //collections stack, queue, deque, set
            //відображення TreeMap, LinkedHashMap
            ** Java 8 **
+           Example: overAll/src/main/java/learnStream
            //лямбда вирази
            //функціональні інтерфейси
            //stream API
