@@ -2,6 +2,7 @@ package bdd.stepDefinitions;
 
 import bdd.helpers.WebDriverHelper;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public class MyProfilePageSteps extends MainSteps{
@@ -19,4 +20,6 @@ public class MyProfilePageSteps extends MainSteps{
     public void iSeeNumberOfPostsPostsInPostsListOnMyProfilePage(int numberOfPosts) {
         pageProvider.getMyProfilePage().checkNumberOfPostsInPosts(numberOfPosts);
     }
+
+
 }

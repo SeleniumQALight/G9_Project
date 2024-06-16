@@ -25,4 +25,7 @@ public class PageProvider {
 
     public MyProfilePage getMyProfilePage() {return new MyProfilePage(webDriver);
     }
+    public pages.privatBank.HomePage getPrivatBankHomePage() {
+        return new pages.privatBank.HomePage(webDriver);
+    }
 }

@@ -3,6 +3,7 @@ package pages;
 import libs.ConfigProvider;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -178,4 +179,9 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
+    public void scrollToElement(WebElement webElement) {
+        JavascriptExecutor js = (JavascriptExecutor) this.webDriver;
+        js.executeScript("arguments[0].scrollIntoView();", webElement);
+    }
+
 }
