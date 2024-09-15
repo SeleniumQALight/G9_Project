@@ -10,4 +10,7 @@ public class TestData {
 
     public static final String VALID_LOGIN_API = "autotetiana";
     public static final String VALID_PASSWORD_API = "Qwerty123456";
+
+    public static final String VALID_LOGIN_API_DEMO_QA = "tetianar";
+    public static final String VALID_PASSWORD_API_DEMO_QA = "!Qwerty123456";
 }
